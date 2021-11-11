@@ -18,6 +18,7 @@
 \usepackage{tabularx}
 \usepackage{fontawesome5}
 \usepackage{multicol}
+\usepackage{graphicx}
 \setlength{\multicolsep}{-3.0pt}
 \setlength{\columnsep}{-1pt}
 \input{glyphtounicode}
@@ -111,24 +112,29 @@
 %-------------------------------------------
 %%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 \begin{document}
+
 
 %----------HEADING----------
 
 % Top Corner Contact Information
-  \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
-    \textbf{{\Large Curriculum vitae}} & Updated: August 2021\\
-    \href{https://amrabdel.com/cv}{https://amrabdel.com/cv} &  \\
-  \end{tabular*}
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  % \textbf{{}} & Updated: November 2021\\
+  % \href{https://amrabdel.com/cv}{https://amrabdel.com/cv} &  \\
+\end{tabular*}
+
+\includegraphics[width=0.15\linewidth]{Amr-Headshot_v2.jpg}
 
 % Center Contact Information
+\vspace{-10mm}
 \begin{center}
+  \vspace{-10mm}
     {\Huge \scshape Amr Abdel-Motaleb} \\ \vspace{1pt}
-    Denver, CO 80206 \\ \vspace{1pt}
-    \small \raisebox{-0.1\height}\faPhone\ +1 (720) 464-7250 ~ \href{mailto:bamr4287@gmail.com}{\raisebox{-0.2\height}\faEnvelope\  \underline{bamr4287@gmail.com}} ~ 
-    \href{https://linkedin.com/in/amrabdel/}{\raisebox{-0.2\height}\faLinkedin\ \underline{linkedin.com/in/amrabdel}}  ~
-    \href{https://github.com/bamr4287}{\raisebox{-0.2\height}\faGithub\ \underline{github.com/bamr4287}}
+    {\Large Denver, CO 80206} \\ \vspace{6mm}
+    \small \raisebox{-0.1\height}\faPhone\ +1 (720) 352-4641 ~ \href{mailto:amr.abdel@gmail.com}{\raisebox{-0.2\height}\faEnvelope\  amr.abdel@gmail.com} ~ 
+    \href{https://linkedin.com/in/amrabdel/}{\raisebox{-0.2\height}\faLinkedin\ linkedin.com/in/amrabdel}  ~
+    \href{https://github.com/bamr87}{\raisebox{-0.2\height}\faGithub\ github.com/bamr87}
+    \href{https://bashconsultants.com}{\raisebox{-0.2\height}\faGlobe\ bashconsultants.com}
     \vspace{-8pt}
 \end{center}
 
@@ -144,10 +150,12 @@
     \begin{itemize}[leftmargin=0.15in, label={}]
       \small{\item{
       \textbf{GPA}{: 3.9} \\
-      \textbf{Emphasis}{: Mobile Computing Tech} \\
+      \textbf{Emphasis}{: Mobile Computing} \\
       }}
   \end{itemize}
   \resumeSubHeadingListEnd
+\vspace{-5mm}
+
 % Bachelors Degree
   \resumeSubHeadingListStart
     \resumeSubheading
@@ -159,8 +167,9 @@
          \textbf{Emphasis}{: Corporate Finance and Accounting} \\
          }}
      \end{itemize}
-
   \resumeSubHeadingListEnd
+\vspace{-5mm}
+
 % Study Abroad Program
   \resumeSubHeadingListStart
     \resumeSubheading
@@ -172,6 +181,7 @@
       }}
   \end{itemize}
   \resumeSubHeadingListEnd
+\vspace{-5mm}
 
 %-----------EXPERIENCE-----------
 \section{Professional Experience}
@@ -179,7 +189,7 @@
   \resumeSubHeadingListStart
     \resumeSubheading
       {BASH Consulting LLC}{January 2020 -- Present}
-      {Solutions Architect}{Denver, CO}
+      {Solutions Architect - IT/Finance}{Denver, CO}
       \begin{itemize}[leftmargin=0.15in, label={}]
         \small{\item{
          \textbf{Industry}{: FinTech} \\
@@ -187,24 +197,24 @@
          }}
      \end{itemize}
       \resumeItemListStart
-        \resumeItem{Small business application development for inventory management systems}
-        \resumeItem{Cloud eCommerce software integrations using RESTful Web APIs and Webhooks}
-        \resumeItem{Technology advisory of Cloud applications and data warehousing}
+        \resumeItem{Technical/functional consulting in enterprise software  (QAD, Infor LN, Infor Cloud Suite, HFM)}
+        \resumeItem{Small business application development (inventory management systems)}
+        \resumeItem{Design and develop cloud eCommerce software integrations}
+        \resumeItem{Technology advisory of Cloud applications and data governance}
         \resumeItem{Financial business modeling and analysis}
         \resumeItem{BI Dashboard and operational reporting development }
         \resumeItem{AWS, GPC, Azure architecture and management}
-        \resumeItem{Technical/functional enterprise software consulting (QAD, Infor LN, Infor Cloud Suite, HFM)}
         \resumeItem{Accounting Information System design and configuration}
         \resumeItem{CRM design, configuration, integration, and deployment}
       \resumeItemListEnd
 
     \resumeSubheading
       {AsteelFlash}{March 2018 -- January 2020}
-      {Global Business Analyst \& Business Process Owner - Finance}{New York, NY}
+      {Global Business Analyst \& Business Process Owner - Finance}{Denver, CO}
       \begin{itemize}[leftmargin=0.15in, label={}]
         \small{\item{
          \textbf{Department}{: IT/Finance} \\
-         \textbf{Industry}{: Electornics Manufacturing Services} \\
+         \textbf{Industry}{: Electronics Manufacturing Services} \\
          \textbf{Scope}{: Worldwide} \\
          }}
      \end{itemize}
@@ -212,6 +222,7 @@
         \resumeItem{Manage IT-Finance projects worldwide and report progress to executive management}
         \resumeItem{Define system and business rules for the finance/accounting operations and reporting}
         \resumeItem{Manage/define the finance and accounting reporting foundations and Chart of Accounts at the local and consolidated (HFM) level}
+        \resumeItem{Ensure coherence and harmonization with Hyperion Financial Management}
         \resumeItem{Define Finance core model procedures and adaptations needed to meet local business requirements}
         \resumeItem{Develop functional specifications for customization development}
         \resumeItem{Coordinate internal/external development effort of approved customizations and ensure conformance to the specifications}
@@ -219,6 +230,7 @@
         \resumeItem{Define/Manage data control methodology and governance related to finance}
       \resumeItemListEnd
 
+    \pagebreak
     \resumeSubheading
       {Wolters Kluwer}{November 2017 -- March 2018}
       {Senior Business Consultant}{New York, NY}
@@ -241,7 +253,7 @@
       \begin{itemize}[leftmargin=0.15in, label={}]
         \small{\item{
          \textbf{Department}{: Professional Consulting Services} \\
-         \textbf{Industry}{: Enterprice Resource Planning Software} \\
+         \textbf{Industry}{: Enterprise Resource Planning Software} \\
          \textbf{Scope}{: Worldwide} \\
          }}
      \end{itemize}
@@ -262,7 +274,7 @@
       \begin{itemize}[leftmargin=0.15in, label={}]
         \small{\item{
          \textbf{Department}{: Professional Consulting Services} \\
-         \textbf{Industry}{: Enterprice Resource Planning Software} \\
+         \textbf{Industry}{: Enterprise Resource Planning Software} \\
          \textbf{Scope}{: North America} \\
          }}
      \end{itemize}
@@ -270,6 +282,7 @@
         \resumeItem{Implementation lead for various SyteLine ERP projects (design solution, perform testing, conduct training, analyze business processes)}
         \resumeItem{Conducted business process workshops to analyze current business requirements, constraints, and proposed industry best practice solutions}
         \resumeItem{Implemented shop floor tracking software used for managing production orders and record payroll hours}
+        \resumeItem{Implemented document repository system integrated with SytLine}
       \resumeItemListEnd
 
     \resumeSubheading
@@ -303,217 +316,239 @@
     \vspace{-5pt}
     \resumeSubHeadingListStart
       \resumeProjectHeading
-          {\textbf{QAD EE 2018 Implementation} $|$ \emph{QAD EE 2018, QXtend, OneStream Financials, Concur, Bank Drivers}}{January 2021}
+          {\textbf{BASH Consulting LLC} \emph{}}{}
           \resumeItemListStart
-            \resumeItem{Finance lead }
-          \resumeItemListEnd
+            \resumeItem{ERP Implementations} $|$ \emph{QAD EE 2018, QAD EE 2014} \hfill{2 projects}
+            \resumeItem{ERP Interface Design} $|$ \emph{QXtend, OneStream, Concur, Bank Drivers, Hyperion Financial Management} \hfill{4 projects}
+            \resumeItem{Cloud Application Design/Development} $|$ \emph{Custom Inventory Tracking Software} \hfill{1 project}
+            \resumeItem{Systems Management and Data Governance Design} $|$ \emph{RPM Telco, QuickBooks} \hfill{1 project}
+            \resumeItem{Accounting System Modeling and Configuration} $|$ \emph{QAD Entity Segmentation, QuickBooks} \hfill{2 projects}
+            \resumeItem{Web Design and Frontend Development}$|$ \emph{Jeykll, Ruby on Rails, Bootstrap, JQuery} \hfill{1 project}
+            \resumeItem{Business Intelligence Dashboard Development} $|$ \emph{Home Inspection Underwriting Platform} \hfill{1 project}
+            \resumeItemListEnd
           \vspace{-13pt}
-      \resumeProjectHeading
-          {\textbf{QAD EE 2018 Implementation} $|$ \emph{Java, Android Studio}}{November 2020}
+
+          \resumeProjectHeading
+          {\textbf{AsteelFlash} \emph{}}{}
           \resumeItemListStart
-            \resumeItem{Finance lead}
+            \resumeItem{ERP Implementations} $|$ \emph{QAD EE 2014, SAP, Canias} \hfill{5 projects}
+            \resumeItem{Accounting System Modeling and Configuration} $|$ \emph{QAD EE 2014, Hyperion Financial Management} \hfill{2 projects}
+            \resumeItemListEnd
+          \vspace{-13pt}
+
+        \resumeProjectHeading
+          {\textbf{Wolters Kluwer} \emph{}}{}
+          \resumeItemListStart
+          \resumeItem{Enterprise Performance Management Implementation} $|$ \emph{Tagetik EPM} \hfill{1 project}
+          \resumeItem{Lease Contract Management System Implementation} $|$ \emph{Tagetik Lease Management} \hfill{1 project}
           \resumeItemListEnd 
           \vspace{-13pt}
-      \resumeProjectHeading
-          {\textbf{Financial System Organizational modeling and implementation} $|$ \emph{Java, Eclipse, JavaFX}}{October 2020}
+          
+        \resumeProjectHeading
+          {\textbf{QAD Inc.} \emph{}}{}
           \resumeItemListStart
-            \resumeItem{QAD Entity split from single entity to multiple entities to support multiple financial systems.}
+          \resumeItem{ERP Implementations} $|$ \emph{QAD EE 2014-2018, QAD SE 2009-20012, eB2.1, Mfg/Pro} \hfill{15 projects}
+          \resumeItem{ERP Interface Design} $|$ \emph{ QXtend, Bank Driver Interface} \hfill{5 projects}
+          \resumeItem{Financial Management System Implementations} $|$ \emph{ Enterprise Asset Management, Fixed Asset Management}\hfill{2 projects}
           \resumeItemListEnd 
-      \resumeProjectHeading
-          {\textbf{SyteLine 8 Implementation} $|$ \emph{QAD EE 2018, QXtend, OneStream Financials, Concur, Bank Drivers}}{January 2021}
-          \resumeItemListStart
-            \resumeItem{automatic tracking of coffee intentory }
-          \resumeItemListEnd
           \vspace{-13pt}
+          
+        \resumeProjectHeading
+          {\textbf{Infor Global Solutions} \emph{}}{}
+          \resumeItemListStart
+          \resumeItem{ERP Implementations} $|$ \emph{SyteLine, Infor Industrial Cloud Suite, Avalara Tax } \hfill{6 projects}
+          \resumeItem{Production Reporting Software Implementation} $|$ \emph{Shop-Trak} \hfill{1 project}
+          \resumeItem{Inventory Barcoding Software Implementation} $|$ \emph{SyteLine, Bartender } \hfill{1 project}
+          \resumeItem{Documentation Repository Implementation} $|$ \emph{ Doc-Trak } \hfill{2 projects}
+          \resumeItemListEnd 
+          \vspace{-13pt}
+                   
+        \resumeProjectHeading
+          {\textbf{Navistar} \emph{}}{}
+          \resumeItemListStart
+          \resumeItem{ERP Implementation} $|$ \emph{Infor ERP LN } \hfill{1 project}
+          \resumeItem{EPM Implementation} $|$ \emph{ Hyperion Financial Management } \hfill{1 project}
+          \resumeItem{Business Intelligence Reporting } $|$ \emph{OBIEE Dashboards, Hyperion Reporting Studio, Teradata Warehousing } \hfill{3 projects}
+          \resumeItemListEnd 
+          \vspace{-13pt} 
     \resumeSubHeadingListEnd
-\vspace{+16pt}
+\vspace{+8pt}
 
 
 %-----------Technical SKILLS-----------
 \section{Technical / Skills}
  \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
+      \textbf{Enterprise Applications}{: QAD ERP, Mfg/Pro, QAD EAM, eB2, Infor Cloud Indistrial Suite, Infor ERP LN, Baan IV ERP, PeopleSoft Financials, HFM, Oracle Agile PLM, Tagetik EPM, Microsoft Office} \\
       \textbf{Databases}{: Microsoft SQL, Postgres, MySQL, Google Big Query, AWS DynamoDB, Progress DB, Oracle SQL, Teradata} \\
-      \textbf{DevOps}{: GitHub, UML notation, Continuous Integration, Server Management, Linux Package Managers} \\
-      \textbf{Languages}{: Bash, PowerShell, Python, Java, C, HTML, CSS, JavaScript, SQL, Progress 4GL, PHP, LaTeX} \\
-      \textbf{Developer Tools}{: VS Code, Eclipse, Google Cloud SDK, Android Studio, Atom, UI Path} \\
-      \textbf{Technologies/Frameworks}{: Linux, Jenkins, GitHub, JUnit, WordPress} \\
       \textbf{Operating Systems}{: Microsoft Server, RedHat Enterprise Linux, CentOS, Debian } \\
-      \textbf{IDEs}{: Eclipse, VS Code, Android Studio, Atom} \\
-      \textbf{Web and Integration Technologies}{: Q-Xtend, RESTful Web API's, HTML5, CSS3, XML, JSON, Kubernetes, Docker, Apache Tomcat} \\
-      \textbf{Cloud Apps}{: Microsoft Power Automate, Google Appsheet, Amazon Web Services, Google Cloud Platform, Azure, Zapier} \\
-      \textbf{Enterprise Applications}{: QAD ERP, Mfg/Pro, QAD EAM, Infor SyteLine, Infor ERP LN, Baan IV ERP, PeopleSoft Financials, HFM, Oracle Agile PLM} \\
-      \textbf{Mobile Apps}{: Android, iOS, React Native, Swift, Java, Kotlin} \\
-      \textbf{Cloud Services}{: AWS, Google Cloud Platform, Azure, Google Appsheet, Amazon Web Services, Google Cloud BigQuery,} \\
-      \textbf{Web UI Frameworks}{: Angular, React} \\
+      \textbf{Languages}{: Bash, PowerShell, Python, Java, C$\#$, HTML, CSS, JavaScript, SQL, Progress 4GL, PHP, LaTeX, Ruby} \\
+      \textbf{Technologies/Frameworks}{: Jekyll, Jenkins, GitHub, JUnit, WordPress} \\
+      \textbf{DevOps}{: Source Code Control, UML notation, Continuous Integration Pipelines, Server Orchestration}\\
+      \textbf{Developer Tools}{: VS Code, Eclipse, Google Cloud SDK, Android Studio, Atom, UI Path} \\
+      % \textbf{IDEs}{: Eclipse, VS Code, Android Studio, Atom, Visual Studio} \\
+      \textbf{Cloud Services}{: Google Cloud Platform, Azure, Amazon Web Services} \\
       \textbf{CI/CD Frameworks}{: TeamCity, Jenkins} \\
+      \textbf{Cloud Apps}{: Microsoft Power Automate, Google Appsheet, Zapier} \\
+      \textbf{Web and Integration Technologies}{: QXtend, RESTful Web API's, HTML5, CSS3, XML, JSON, Apache Tomcat} \\
+      \textbf{Web UI Frameworks}{: Angular, React, Ruby on Rails} \\
       \textbf{Containers}{: Kubernetes, Docker} \\
+      % \textbf{Mobile Apps}{: Android, iOS, React Native, Swift, Java, Kotlin} \\
 
     }}
   \end{itemize}
  \vspace{-16pt}
 
-%------Strenghs -------
+%------Strengths -------
 \section{Strengths}
 %\resumeSubHeadingListStart
     \begin{multicols}{4}
         \begin{itemize}[itemsep=-5pt, parsep=3pt]
-            \item\small Data Structures
-            \item Software Methodology
-            \item Algorithms Analysis
-            \item Database Management
-            \item Artificial Intelligence
-            \item Internet Technology
-            \item Systems Programming
-            \item Computer Architecture
-            \item Object Oriented Analysis and Design
+            \item Financial Data Modeling
+            \item Data Analytics 
+            \item Cost Accounting
+            \item Database Design
+            \item BI Reporting
+            \item IT System Design
+            \item Agile Methodology
+            \item Business Process Modeling
+            \item Accounting Governance
+            \item ERP System Design
+            \item IT Cloud Architecture
+            \item Project Management
         \end{itemize}
     \end{multicols}
     \vspace*{2.0\multicolsep}
+  
 %\resumeSubHeadingListEnd
 
-%------Certifications -------
-\section{Certifications}
-%\resumeSubHeadingListStart
-    \begin{multicols}{4}
-        \begin{itemize}[itemsep=-5pt, parsep=3pt]
-            \item\small Data Structures
-            \item Software Methodology
-            \item Algorithms Analysis
-            \item Database Management
-            \item Artificial Intelligence
-            \item Internet Technology
-            \item Systems Programming
-            \item Computer Architecture
-            \item Object Oriented Analysis and Design
-        \end{itemize}
-    \end{multicols}
-    \vspace*{2.0\multicolsep}
+%%------Certifications -------
+%\section{Certifications}
+%%\resumeSubHeadingListStart
+%    \begin{multicols}{4}
+%        \begin{itemize}[itemsep=-5pt, parsep=3pt]
+%            \item AWS Solutions Architect
+%            \item OCUP - OMG CERTIFIED UML PROFESSIONAL https://www.omg.org/uml-certification/Advanced.htm
+%            \item QAD EE Financials Certification
+%            \item Azure Solutions Architect
+%            \item GCP Solutions Architect
+%            \item PMP
+%            \item LPIC -101
+%            \item CompTIA Linxs+
+%            \item Microsoft certified solutions associate/expert (MCSA/MCSE)
+%            \item Certified ScrumMaster
+%        \end{itemize}
+%    \end{multicols}
+%    \vspace*{2.0\multicolsep}
 %\resumeSubHeadingListEnd\
 
 %-----------Porfolio---------------
-\section{IT Porfolio}
+%\section{IT Porfolio}
+%
+%    \resumeSubHeadingListStart
+%        \resumeSubheading{Knowledge Base Document Repository}{}{GitHub Pages}{}
+%            \resumeItemListStart
+%                \resumeItem{}
+%            \resumeItemListEnd
+%    \resumeSubHeadingListEnd
+%
+%    \resumeSubHeadingListStart
+%        \resumeSubheading{Graphic Design}{}{Ink Scape}{}
+%            \resumeItemListStart
+%                \resumeItem{}
+%            \resumeItemListEnd
+%    \resumeSubHeadingListEnd    
+%
+%    \resumeSubHeadingListStart
+%        \resumeSubheading{Blogging Site}{}{WordPress}{}
+%            \resumeItemListStart
+%                \resumeItem{}
+%            \resumeItemListEnd
+%    \resumeSubHeadingListEnd
+%
+%    \resumeSubHeadingListStart
+%        \resumeSubheading{Square Integration}{}{Zapier/Square}{}
+%            \resumeItemListStart
+%                \resumeItem{}
+%            \resumeItemListEnd
+%    \resumeSubHeadingListEnd  
+%    
+%    \resumeSubHeadingListStart
+%    \resumeSubheading{Progressive Web App / Single Page Apps}{}{}{}
+%        \resumeItemListStart
+%            \resumeItem{}
+%        \resumeItemListEnd
+%\resumeSubHeadingListEnd  o
 
-    \resumeSubHeadingListStart
-        \resumeSubheading{Knowledge Base Document Repository}{}{GitHub Pages}{}
-            \resumeItemListStart
-                \resumeItem{}
-            \resumeItemListEnd
-    \resumeSubHeadingListEnd
+% \section{White Papers}
+%     \vspace{-5pt}
+%     \resumeSubHeadingListStart
+%       \resumeProjectHeading
+%           {\textbf{} $|$ \emph{}}{January 2021}
+%           \resumeItemListStart
+%             \resumeItem{Finance lead }
+%           \resumeItemListEnd
+%           \vspace{-13pt}
+%           \vspace{-13pt}
+%     \resumeSubHeadingListEnd
+% \vspace{+16pt}
 
-    \resumeSubHeadingListStart
-        \resumeSubheading{Graphic Design}{}{Ink Scape}{}
-            \resumeItemListStart
-                \resumeItem{}
-            \resumeItemListEnd
-    \resumeSubHeadingListEnd    
+% \section{Publications}
+%     \vspace{-5pt}
+%     \resumeSubHeadingListStart
+%       \resumeProjectHeading
+%           {\textbf{QAD EE 2018 Implementation} $|$ \emph{QAD EE 2018, QXtend, OneStream Financials, Concur, Bank Drivers}}{January 2021}
+%           \resumeItemListStart
+%             \resumeItem{Finance lead }
+%           \resumeItemListEnd
+%           \vspace{-13pt}
+%       \resumeProjectHeading
+%           {\textbf{QAD EE 2018 Implementation} $|$ \emph{Java, Android Studio}}{November 2020}
+%           \resumeItemListStart
+%             \resumeItem{Finance lead}
+%           \resumeItemListEnd 
+%           \vspace{-13pt}
+%       \resumeProjectHeading
+%           {\textbf{Financial System Organizational modeling and implementation} $|$ \emph{Java, Eclipse, JavaFX}}{October 2020}
+%           \resumeItemListStart
+%             \resumeItem{QAD Entity split from single entity to multiple entities to support multiple financial systems.}
+%           \resumeItemListEnd 
+%       \resumeProjectHeading
+%           {\textbf{SyteLine 8 Implementation} $|$ \emph{QAD EE 2018, QXtend, OneStream Financials, Concur, Bank Drivers}}{January 2021}
+%           \resumeItemListStart
+%             \resumeItem{automatic tracking of coffee intentory }
+%           \resumeItemListEnd
+%           \vspace{-13pt}
+%     \resumeSubHeadingListEnd
+% \vspace{+16pt}
 
-    \resumeSubHeadingListStart
-        \resumeSubheading{Blogging Site}{}{WordPress}{}
-            \resumeItemListStart
-                \resumeItem{}
-            \resumeItemListEnd
-    \resumeSubHeadingListEnd
-
-    \resumeSubHeadingListStart
-        \resumeSubheading{Square Integration}{}{Zapier/Square}{}
-            \resumeItemListStart
-                \resumeItem{}
-            \resumeItemListEnd
-    \resumeSubHeadingListEnd  
-    
-    \resumeSubHeadingListStart
-    \resumeSubheading{Progressive Web App / Single Page Apps}{}{}{}
-        \resumeItemListStart
-            \resumeItem{}
-        \resumeItemListEnd
-\resumeSubHeadingListEnd  
-
-\section{White Papers}
-    \vspace{-5pt}
-    \resumeSubHeadingListStart
-      \resumeProjectHeading
-          {\textbf{QAD EE 2018 Implementation} $|$ \emph{QAD EE 2018, QXtend, OneStream Financials, Concur, Bank Drivers}}{January 2021}
-          \resumeItemListStart
-            \resumeItem{Finance lead }
-          \resumeItemListEnd
-          \vspace{-13pt}
-      \resumeProjectHeading
-          {\textbf{QAD EE 2018 Implementation} $|$ \emph{Java, Android Studio}}{November 2020}
-          \resumeItemListStart
-            \resumeItem{Finance lead}
-          \resumeItemListEnd 
-          \vspace{-13pt}
-      \resumeProjectHeading
-          {\textbf{Financial System Organizational modeling and implementation} $|$ \emph{Java, Eclipse, JavaFX}}{October 2020}
-          \resumeItemListStart
-            \resumeItem{QAD Entity split from single entity to multiple entities to support multiple financial systems.}
-          \resumeItemListEnd 
-      \resumeProjectHeading
-          {\textbf{SyteLine 8 Implementation} $|$ \emph{QAD EE 2018, QXtend, OneStream Financials, Concur, Bank Drivers}}{January 2021}
-          \resumeItemListStart
-            \resumeItem{automatic tracking of coffee intentory }
-          \resumeItemListEnd
-          \vspace{-13pt}
-    \resumeSubHeadingListEnd
-\vspace{+16pt}
-
-\section{Publications}
-    \vspace{-5pt}
-    \resumeSubHeadingListStart
-      \resumeProjectHeading
-          {\textbf{QAD EE 2018 Implementation} $|$ \emph{QAD EE 2018, QXtend, OneStream Financials, Concur, Bank Drivers}}{January 2021}
-          \resumeItemListStart
-            \resumeItem{Finance lead }
-          \resumeItemListEnd
-          \vspace{-13pt}
-      \resumeProjectHeading
-          {\textbf{QAD EE 2018 Implementation} $|$ \emph{Java, Android Studio}}{November 2020}
-          \resumeItemListStart
-            \resumeItem{Finance lead}
-          \resumeItemListEnd 
-          \vspace{-13pt}
-      \resumeProjectHeading
-          {\textbf{Financial System Organizational modeling and implementation} $|$ \emph{Java, Eclipse, JavaFX}}{October 2020}
-          \resumeItemListStart
-            \resumeItem{QAD Entity split from single entity to multiple entities to support multiple financial systems.}
-          \resumeItemListEnd 
-      \resumeProjectHeading
-          {\textbf{SyteLine 8 Implementation} $|$ \emph{QAD EE 2018, QXtend, OneStream Financials, Concur, Bank Drivers}}{January 2021}
-          \resumeItemListStart
-            \resumeItem{automatic tracking of coffee intentory }
-          \resumeItemListEnd
-          \vspace{-13pt}
-    \resumeSubHeadingListEnd
-\vspace{+16pt}
-
-\section{Books}
-    \vspace{-5pt}
-    \resumeSubHeadingListStart
-      \resumeProjectHeading
-          {\textbf{QAD EE 2018 Implementation} $|$ \emph{QAD EE 2018, QXtend, OneStream Financials, Concur, Bank Drivers}}{January 2021}
-          \resumeItemListStart
-            \resumeItem{Finance lead }
-          \resumeItemListEnd
-          \vspace{-13pt}
-      \resumeProjectHeading
-          {\textbf{QAD EE 2018 Implementation} $|$ \emph{Java, Android Studio}}{November 2020}
-          \resumeItemListStart
-            \resumeItem{Finance lead}
-          \resumeItemListEnd 
-          \vspace{-13pt}
-      \resumeProjectHeading
-          {\textbf{Financial System Organizational modeling and implementation} $|$ \emph{Java, Eclipse, JavaFX}}{October 2020}
-          \resumeItemListStart
-            \resumeItem{QAD Entity split from single entity to multiple entities to support multiple financial systems.}
-          \resumeItemListEnd 
-      \resumeProjectHeading
-          {\textbf{SyteLine 8 Implementation} $|$ \emph{QAD EE 2018, QXtend, OneStream Financials, Concur, Bank Drivers}}{January 2021}
-          \resumeItemListStart
-            \resumeItem{automatic tracking of coffee intentory }
-          \resumeItemListEnd
-          \vspace{-13pt}
-    \resumeSubHeadingListEnd
-\vspace{+16pt}
+% \section{Books}
+%     \vspace{-5pt}
+%     \resumeSubHeadingListStart
+%       \resumeProjectHeading
+%           {\textbf{QAD EE 2018 Implementation} $|$ \emph{QAD EE 2018, QXtend, OneStream Financials, Concur, Bank Drivers}}{January 2021}
+%           \resumeItemListStart
+%             \resumeItem{Finance lead }
+%           \resumeItemListEnd
+%           \vspace{-13pt}
+%       \resumeProjectHeading
+%           {\textbf{QAD EE 2018 Implementation} $|$ \emph{Java, Android Studio}}{November 2020}
+%           \resumeItemListStart
+%             \resumeItem{Finance lead}
+%           \resumeItemListEnd 
+%           \vspace{-13pt}
+%       \resumeProjectHeading
+%           {\textbf{Financial System Organizational modeling and implementation} $|$ \emph{Java, Eclipse, JavaFX}}{October 2020}
+%           \resumeItemListStart
+%             \resumeItem{QAD Entity split from single entity to multiple entities to support multiple financial systems.}
+%           \resumeItemListEnd 
+%       \resumeProjectHeading
+%           {\textbf{SyteLine 8 Implementation} $|$ \emph{QAD EE 2018, QXtend, OneStream Financials, Concur, Bank Drivers}}{January 2021}
+%           \resumeItemListStart
+%             \resumeItem{automatic tracking of coffee intentory }
+%           \resumeItemListEnd
+%           \vspace{-13pt}
+%     \resumeSubHeadingListEnd
+% \vspace{+16pt}
 
 \end{document}

@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.20)  26 AUG 2021 12:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.10) (preloaded format=pdflatex 2021.11.10)  10 NOV 2021 18:28
 entering extended mode
-**c:/Users/AmrAbdel-Motaleb/OneDrive/Documents/GitHub/it-journey/lvl_0000/cv/cv.tex
-(c:/Users/AmrAbdel-Motaleb/OneDrive/Documents/GitHub/it-journey/lvl_0000/cv/cv.tex
+**c:/Users/AmrAbdel-Motaleb/OneDrive/Documents/GitHub/cv/cv.tex
+(c:/Users/AmrAbdel-Motaleb/OneDrive/Documents/GitHub/cv/cv.tex
 LaTeX2e <2021-06-01> patch level 1
-L3 programming layer <2021-07-12> (C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+L3 programming layer <2021-10-18> (C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2021/02/12 v1.4n Standard LaTeX document class
 (C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/latex/base\size11.clo
 File: size11.clo 2021/02/12 v1.4n Standard LaTeX file (size option)
@@ -184,15 +184,12 @@ Package: fancyhdr 2021/01/28 v4.0.1 Extensive control of page headers and footer
 \f@nch@O@olf=\skip61
 \f@nch@O@orf=\skip62
 ) (C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
-Package: babel 2021/07/22 3.63 The Babel package
- (C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.def
-File: babel.def 2021/07/22 3.63 Babel common definitions
+Package: babel 2021/10/19 3.65 The Babel package
 \babel@savecnt=\count268
 \U@D=\dimen149
 \l@unhyphenated=\language79
  (C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def)
 \bbl@readstream=\read3
-)
 \bbl@dirlevel=\count269
 
 *************************************
@@ -228,17 +225,17 @@ Package: array 2021/04/20 v2.5e Tabular extension package (FMi)
 \TX@cols=\count270
 \TX@ftn=\toks23
 ) (C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/latex/fontawesome5\fontawesome5.sty (C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
-Package: expl3 2021-07-12 L3 programming layer (loader) 
+Package: expl3 2021-10-18 L3 programming layer (loader) 
  (C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
-File: l3backend-pdftex.def 2021-08-04 L3 backend support: PDF output (pdfTeX)
+File: l3backend-pdftex.def 2021-10-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count271
 \l__pdf_internal_box=\box54
 ))
 Package: fontawesome5 2020/03/24 v5.13.0 Font Awesome 5
  (C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/l3keys2e\l3keys2e.sty
-Package: l3keys2e 2021-08-04 LaTeX2e option processing using LaTeX3 keys
+Package: l3keys2e 2021-08-27 LaTeX2e option processing using LaTeX3 keys
 ) (C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xparse.sty
-Package: xparse 2021-08-04 L3 Experimental document command parser
+Package: xparse 2021-08-27 L3 Experimental document command parser
 ) (C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/latex/fontawesome5\fontawesome5-generic-helper.sty
 Package: fontawesome5-generic-helper 2020/03/24 v5.13.0 non-uTeX helper for fontawesome5
  (C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/latex/fontawesome5\fontawesome5-mapping.def))) (C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/latex/tools\multicol.sty
@@ -310,6 +307,19 @@ Package: multicol 2019/12/09 v1.8y multicolumn formatting (FMi)
 \mult@nat@firstbox=\box99
 \colbreak@box=\box100
 \mc@col@check@num=\count281
+) (C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
+Package: graphicx 2020/12/05 v1.2c Enhanced LaTeX Graphics (DPC,SPQR)
+ (C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
+Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
+ (C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+) (C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 107.
+)
+\Gin@req@height=\dimen166
+\Gin@req@width=\dimen167
 ) (C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/generic/pdftex\glyphtounicode.tex) (C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/latex/cormorantgaramond\CormorantGaramond.sty
 Package: CormorantGaramond 2020/04/12 (Bob Tennent and autoinst) Style file for Cormorant Garamond fonts.
  (C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifxetex.sty
@@ -375,17 +385,22 @@ LaTeX Font Info:    ... okay on input line 115.
  (C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count283
-\scratchdimen=\dimen166
+\scratchdimen=\dimen168
 \scratchbox=\box101
 \nofMPsegments=\count284
 \nofMParguments=\count285
 \everyMPshowfont=\toks26
 \MPscratchCnt=\count286
-\MPscratchDim=\dimen167
+\MPscratchDim=\dimen169
 \MPnumerator=\count287
 \makeMPintoPDFobject=\count288
 \everyMPtoPDFconversion=\toks27
-)
+) (C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+))
 Package hyperref Info: Link coloring OFF on input line 115.
  (C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -406,75 +421,84 @@ LaTeX Info: Redefining \nameref on input line 115.
 \c@mv@tabular=\count290
 \c@mv@boldtabular=\count291
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 120.
+(Font)              <10.95> on input line 121.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 120.
+(Font)              <8> on input line 121.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 120.
-LaTeX Font Info:    Trying to load font information for U+lasy on input line 120.
+(Font)              <6> on input line 121.
+LaTeX Font Info:    Trying to load font information for U+lasy on input line 121.
  (C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/latex/base\ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/b/n' aliased to
-(Font)              `OT1/CormorantGaramond-LF/bold/n' on input line 121.
-LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/bold/n' will be
-(Font)              scaled to size 10.95pt on input line 121.
-LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/b/n' aliased to
-(Font)              `OT1/CormorantGaramond-LF/bold/n' on input line 121.
-LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/bold/n' will be
-(Font)              scaled to size 14.4pt on input line 121.
+Underfull \hbox (badness 10000) in alignment at lines 121--124
+[][]
+ []
+
+<Amr-Headshot_v2.jpg, id=23, 4052.13875pt x 3334.4575pt>
+File: Amr-Headshot_v2.jpg Graphic file (type jpg)
+<use Amr-Headshot_v2.jpg>
+Package pdftex.def Info: Amr-Headshot_v2.jpg  used on input line 126.
+(pdftex.def)             Requested size: 83.36008pt x 68.58577pt.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/m/n' aliased to
-(Font)              `OT1/CormorantGaramond-LF/regular/n' on input line 127.
+(Font)              `OT1/CormorantGaramond-LF/regular/n' on input line 132.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/regular/n' will be
-(Font)              scaled to size 24.88pt on input line 127.
+(Font)              scaled to size 24.88pt on input line 132.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/m/sc' aliased to
-(Font)              `OT1/CormorantGaramond-LF/regular/sc' on input line 127.
+(Font)              `OT1/CormorantGaramond-LF/regular/sc' on input line 132.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/regular/sc' will be
-(Font)              scaled to size 24.88pt on input line 127.
+(Font)              scaled to size 24.88pt on input line 132.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/m/n' aliased to
-(Font)              `OT1/CormorantGaramond-LF/regular/n' on input line 129.
+(Font)              `OT1/CormorantGaramond-LF/regular/n' on input line 133.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/regular/n' will be
-(Font)              scaled to size 10.0pt on input line 129.
-LaTeX Font Info:    Trying to load font information for U+fontawesomefree2 on input line 129.
- (C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/latex/fontawesome5\ufontawesomefree2.fd)
-LaTeX Font Info:    Trying to load font information for U+fontawesomefree1 on input line 129.
+(Font)              scaled to size 14.4pt on input line 133.
+LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/m/n' aliased to
+(Font)              `OT1/CormorantGaramond-LF/regular/n' on input line 134.
+LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/regular/n' will be
+(Font)              scaled to size 10.0pt on input line 134.
+LaTeX Font Info:    Trying to load font information for U+fontawesomefree2 on input line 134.
+(C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/latex/fontawesome5\ufontawesomefree2.fd)
+LaTeX Font Info:    Trying to load font information for U+fontawesomefree1 on input line 134.
  (C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/latex/fontawesome5\ufontawesomefree1.fd)
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 129.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 129.
-LaTeX Font Info:    Trying to load font information for U+fontawesomebrands0 on input line 130.
+LaTeX Font Info:    Trying to load font information for U+fontawesomebrands0 on input line 135.
  (C:\Users\AmrAbdel-Motaleb\AppData\Local\Programs\MiKTeX\tex/latex/fontawesome5\ufontawesomebrands0.fd)
 LaTeX Font Info:    Font shape `U/fontawesomebrands0/solid/n' in size <10> not available
-(Font)              Font shape `U/fontawesomebrands0/regular/n' tried instead on input line 130.
+(Font)              Font shape `U/fontawesomebrands0/regular/n' tried instead on input line 135.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/m/sc' aliased to
-(Font)              `OT1/CormorantGaramond-LF/regular/sc' on input line 137.
+(Font)              `OT1/CormorantGaramond-LF/regular/sc' on input line 143.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/regular/sc' will be
-(Font)              scaled to size 10.95pt on input line 137.
-LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/m/sc' aliased to
-(Font)              `OT1/CormorantGaramond-LF/regular/sc' on input line 137.
-LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/regular/sc' will be
-(Font)              scaled to size 12.0pt on input line 137.
-LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/b/sc' aliased to
-(Font)              `OT1/CormorantGaramond-LF/bold/sc' on input line 137.
-LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/bold/sc' will be
-(Font)              scaled to size 12.0pt on input line 137.
-LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/b/n' aliased to
-(Font)              `OT1/CormorantGaramond-LF/bold/n' on input line 143.
-LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/bold/n' will be
-(Font)              scaled to size 10.0pt on input line 143.
-LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/m/it' aliased to
-(Font)              `OT1/CormorantGaramond-LF/regular/it' on input line 143.
-LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/regular/it' will be
 (Font)              scaled to size 10.95pt on input line 143.
+LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/m/sc' aliased to
+(Font)              `OT1/CormorantGaramond-LF/regular/sc' on input line 143.
+LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/regular/sc' will be
+(Font)              scaled to size 12.0pt on input line 143.
+LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/b/sc' aliased to
+(Font)              `OT1/CormorantGaramond-LF/bold/sc' on input line 143.
+LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/bold/sc' will be
+(Font)              scaled to size 12.0pt on input line 143.
+LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/b/n' aliased to
+(Font)              `OT1/CormorantGaramond-LF/bold/n' on input line 149.
+LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/bold/n' will be
+(Font)              scaled to size 10.95pt on input line 149.
+LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/b/n' aliased to
+(Font)              `OT1/CormorantGaramond-LF/bold/n' on input line 149.
+LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/bold/n' will be
+(Font)              scaled to size 10.0pt on input line 149.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/m/it' aliased to
-(Font)              `OT1/CormorantGaramond-LF/regular/it' on input line 143.
+(Font)              `OT1/CormorantGaramond-LF/regular/it' on input line 149.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/regular/it' will be
-(Font)              scaled to size 10.0pt on input line 143.
+(Font)              scaled to size 10.95pt on input line 149.
+LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/m/it' aliased to
+(Font)              `OT1/CormorantGaramond-LF/regular/it' on input line 149.
+LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/regular/it' will be
+(Font)              scaled to size 10.0pt on input line 149.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/m/n' aliased to
-(Font)              `OT1/CormorantGaramond-LF/regular/n' on input line 190.
+(Font)              `OT1/CormorantGaramond-LF/regular/n' on input line 200.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/regular/n' will be
-(Font)              scaled to size 6.0pt on input line 190.
+(Font)              scaled to size 6.0pt on input line 200.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 200.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 201.
 
 
 Package fancyhdr Warning: \footskip is too small (0.0pt): 
@@ -483,23 +507,8 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 
 [1
 
-{C:/Users/AmrAbdel-Motaleb/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]
-Overfull \hbox (0.55968pt too wide) in paragraph at lines 306--308
-[]  
- []
-
-
-Overfull \hbox (0.55968pt too wide) in paragraph at lines 312--314
-[]  
- []
-
-
-Overfull \hbox (0.55968pt too wide) in paragraph at lines 318--320
-[]  
- []
-
-
-Overfull \hbox (0.55968pt too wide) in paragraph at lines 323--325
+{C:/Users/AmrAbdel-Motaleb/AppData/Local/MiKTeX/pdftex/config/pdftex.map} <./Amr-Headshot_v2.jpg>]
+Overfull \hbox (0.55968pt too wide) in paragraph at lines 319--321
 []  
  []
 
@@ -509,7 +518,27 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                \setlength{\footskip}{4.08003pt}.
 
 [2]
-Overfull \hbox (0.55968pt too wide) in paragraph at lines 436--438
+Overfull \hbox (0.55968pt too wide) in paragraph at lines 332--334
+[]  
+ []
+
+
+Overfull \hbox (0.55968pt too wide) in paragraph at lines 340--342
+[]  
+ []
+
+
+Overfull \hbox (0.55968pt too wide) in paragraph at lines 348--350
+[]  
+ []
+
+
+Overfull \hbox (0.55968pt too wide) in paragraph at lines 357--359
+[]  
+ []
+
+
+Overfull \hbox (0.55968pt too wide) in paragraph at lines 367--369
 []  
  []
 
@@ -518,82 +547,22 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 4.08003pt, for example:
 (fancyhdr)                \setlength{\footskip}{4.08003pt}.
 
-[3]
-Overfull \hbox (0.55968pt too wide) in paragraph at lines 442--444
-[]  
- []
-
-
-Overfull \hbox (0.55968pt too wide) in paragraph at lines 448--450
-[]  
- []
-
-
-Overfull \hbox (0.55968pt too wide) in paragraph at lines 453--455
-[]  
- []
-
-
-Overfull \hbox (0.55968pt too wide) in paragraph at lines 465--467
-[]  
- []
-
-
-Overfull \hbox (0.55968pt too wide) in paragraph at lines 471--473
-[]  
- []
-
-
-Overfull \hbox (0.55968pt too wide) in paragraph at lines 477--479
-[]  
- []
-
-
-Overfull \hbox (0.55968pt too wide) in paragraph at lines 482--484
-[]  
- []
-
-
-Overfull \hbox (0.55968pt too wide) in paragraph at lines 494--496
-[]  
- []
-
-
-Overfull \hbox (0.55968pt too wide) in paragraph at lines 500--502
-[]  
- []
-
-
-Overfull \hbox (0.55968pt too wide) in paragraph at lines 506--508
-[]  
- []
-
-
-Overfull \hbox (0.55968pt too wide) in paragraph at lines 511--513
-[]  
- []
-
-
-Package fancyhdr Warning: \footskip is too small (0.0pt): 
-(fancyhdr)                Make it at least 4.08003pt, for example:
-(fancyhdr)                \setlength{\footskip}{4.08003pt}.
-
-[4] (cv.aux)
+[3] (cv.aux)
 Package rerunfilecheck Info: File `cv.out' has not changed.
-(rerunfilecheck)             Checksum: 5B7A9CB80B02C5A00686365F40220DEE;1166.
+(rerunfilecheck)             Checksum: AD406B7745FDBF8F1648C8DB239F5F21;673.
  ) 
 Here is how much of TeX's memory you used:
- 13885 strings out of 478868
- 238848 string characters out of 2843595
- 558209 words of memory out of 3000000
- 31596 multiletter control sequences out of 15000+600000
- 426333 words of font info for 60 fonts, out of 8000000 for 9000
+ 14198 strings out of 478907
+ 243931 string characters out of 2846677
+ 561084 words of memory out of 3000000
+ 31856 multiletter control sequences out of 15000+600000
+ 426363 words of font info for 60 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,11n,67p,370b,560s stack positions out of 5000i,500n,10000p,200000b,80000s
-{C:/Users/AmrAbdel-Motaleb/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/cormorantgaramond/cgrm_k54atz.enc}{C:/Users/AmrAbdel-Motaleb/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/cormorantgaramond/cgrm_ctw2ju.enc}{C:/Users/AmrAbdel-Motaleb/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/fontawesome5/fa5brands0.enc}{C:/Users/AmrAbdel-Motaleb/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/fontawesome5/fa5free1.enc}{C:/Users/AmrAbdel-Motaleb/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/fontawesome5/fa5free2.enc}{C:/Users/AmrAbdel-Motaleb/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/cormorantgaramond/cgrm_usix3v.enc}<C:/Users/AmrAbdel-Motaleb/AppData/Local/Programs/MiKTeX/fonts/type1/catharsis/cormorantgaramond/CormorantGaramond-Bold.pfb><C:/Users/AmrAbdel-Motaleb/AppData/Local/Programs/MiKTeX/fonts/type1/catharsis/cormorantgaramond/CormorantGaramond-Italic.pfb><C:/Users/AmrAbdel-Motaleb/AppData/Local/Programs/MiKTeX/fonts/type1/catharsis/cormorantgaramond/CormorantGaramond-Regular.pfb><C:/Users/AmrAbdel-Motaleb/AppData/Local/Programs/MiKTeX/fonts/type1/public/fontawesome5/FontAwesome5Brands-Regular.pfb><C:/Users/AmrAbdel-Motaleb/AppData/Local/Programs/MiKTeX/fonts/type1/public/fontawesome5/FontAwesome5Free-Solid.pfb><C:/Users/AmrAbdel-Motaleb/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/AmrAbdel-Motaleb/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb>
-Output written on cv.pdf (4 pages, 188074 bytes).
+ 60i,11n,67p,350b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
+{C:/Users/AmrAbdel-Motaleb/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/cormorantgaramond/cgrm_k54atz.enc}{C:/Users/AmrAbdel-Motaleb/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/cormorantgaramond/cgrm_usix3v.enc}{C:/Users/AmrAbdel-Motaleb/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/cormorantgaramond/cgrm_ctw2ju.enc}{C:/Users/AmrAbdel-Motaleb/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/fontawesome5/fa5brands0.enc}{C:/Users/AmrAbdel-Motaleb/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/fontawesome5/fa5free1.enc}{C:/Users/AmrAbdel-Motaleb/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/fontawesome5/fa5free2.enc}<C:/Users/AmrAbdel-Motaleb/AppData/Local/Programs/MiKTeX/fonts/type1/catharsis/cormorantgaramond/CormorantGaramond-Bold.pfb><C:/Users/AmrAbdel-Motaleb/AppData/Local/Programs/MiKTeX/fonts/type1/catharsis/cormorantgaramond/CormorantGaramond-Italic.pfb><C:/Users/AmrAbdel-Motaleb/AppData/Local/Programs/MiKTeX/fonts/type1/catharsis/cormorantgaramond/CormorantGaramond-Regular.pfb><C:/Users/AmrAbdel-Motaleb/AppData/Local/Programs/MiKTeX/fonts/type1/public/fontawesome5/FontAwesome5Brands-Regular.pfb><C:/Users/AmrAbdel-Motaleb/AppData/Local/Programs/MiKTeX/fonts/type1/public/fontawesome5/FontAwesome5Free-Solid.pfb><C:/Users/AmrAbdel-Motaleb/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/AmrAbdel-Motaleb/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/AmrAbdel-Motaleb/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb>
+Output written on cv.pdf (3 pages, 1249082 bytes).
 PDF statistics:
- 121 PDF objects out of 1000 (max. 8388607)
- 15 named destinations out of 1000 (max. 500000)
- 81 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 102 PDF objects out of 1000 (max. 8388607)
+ 9 named destinations out of 1000 (max. 500000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
