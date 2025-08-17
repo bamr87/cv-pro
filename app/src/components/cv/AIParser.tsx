@@ -8,14 +8,11 @@ import { CVData } from '@/types/cv';
 import { toast } from 'sonner';
 import * as pdfjsLib from 'pdfjs-dist';
 
-// Declare spark for this file
-declare const spark: {
-  llmPrompt: (strings: TemplateStringsArray, ...values: any[]) => string;
-  llm: (prompt: string, modelName?: string, jsonMode?: boolean) => Promise<string>;
-};
-
 // Configure PDF.js worker
-pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.js',
+  import.meta.url
+).toString();
 
 interface AIParserProps {
   onParsed: (data: CVData) => void;
