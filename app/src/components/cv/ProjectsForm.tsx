@@ -4,7 +4,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Plus, Trash2, X } from '@phosphor-icons/react';
+import { Plus, Trash, X } from '@phosphor-icons/react';
 import { Project } from '@/types/cv';
 
 interface ProjectsFormProps {
@@ -71,7 +71,7 @@ export function ProjectsForm({ data, onChange }: ProjectsFormProps) {
                 size="sm"
                 onClick={() => removeProject(project.id)}
               >
-                <Trash2 className="w-4 h-4" />
+                <Trash className="w-4 h-4" />
               </Button>
             </div>
             

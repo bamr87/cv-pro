@@ -4,7 +4,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Plus, Trash2 } from '@phosphor-icons/react';
+import { Plus, Trash } from '@phosphor-icons/react';
 import { Experience } from '@/types/cv';
 
 interface ExperienceFormProps {
@@ -75,7 +75,7 @@ export function ExperienceForm({ data, onChange }: ExperienceFormProps) {
                 size="sm"
                 onClick={() => removeExperience(exp.id)}
               >
-                <Trash2 className="w-4 h-4" />
+                <Trash className="w-4 h-4" />
               </Button>
             </div>
             
@@ -172,7 +172,7 @@ export function ExperienceForm({ data, onChange }: ExperienceFormProps) {
                       size="sm"
                       onClick={() => removeAchievement(exp.id, achIndex)}
                     >
-                      <Trash2 className="w-4 h-4" />
+                      <Trash className="w-4 h-4" />
                     </Button>
                   )}
                 </div>

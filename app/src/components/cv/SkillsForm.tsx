@@ -3,7 +3,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Plus, Trash2, X } from '@phosphor-icons/react';
+import { Plus, Trash, X } from '@phosphor-icons/react';
 import { Skill } from '@/types/cv';
 import { useState } from 'react';
 
@@ -97,7 +97,7 @@ export function SkillsForm({
                   size="sm"
                   onClick={() => removeSkillCategory(index)}
                 >
-                  <Trash2 className="w-4 h-4" />
+                  <Trash className="w-4 h-4" />
                 </Button>
               </div>
               

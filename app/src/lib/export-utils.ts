@@ -1,14 +1,14 @@
 import { CVData } from '../types/cv';
 
 export function exportToMarkdown(data: CVData): string {
-  const md = [];
+  const md: string[] = [];
   
   // Header
   md.push(`# ${data.personalInfo.fullName}`);
   md.push('');
   
   // Contact info
-  const contact = [];
+  const contact: string[] = [];
   if (data.personalInfo.email) contact.push(`📧 ${data.personalInfo.email}`);
   if (data.personalInfo.phone) contact.push(`📱 ${data.personalInfo.phone}`);
   if (data.personalInfo.location) contact.push(`📍 ${data.personalInfo.location}`);
@@ -110,7 +110,7 @@ export function exportToMarkdown(data: CVData): string {
 }
 
 export function exportToASCII(data: CVData): string {
-  const lines = [];
+  const lines: string[] = [];
   const width = 80;
   
   // Header

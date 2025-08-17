@@ -11,15 +11,18 @@ import { ProjectsForm } from './ProjectsForm';
 import { ExportSection } from './ExportSection';
 import { AIParser } from './AIParser';
 import { CVData, defaultCVData } from '@/types/cv';
-import { User, Briefcase, GraduationCap, Wrench, FolderOpen, DownloadSimple, Robot, Save } from '@phosphor-icons/react';
+import { User, Briefcase, GraduationCap, Wrench, FolderOpen, DownloadSimple, Robot, FloppyDisk } from '@phosphor-icons/react';
 import { toast } from 'sonner';
 
 export function CVBuilder() {
   const [cvData, setCvData, deleteCvData] = useKV<CVData>('cv-data', defaultCVData);
   const [activeTab, setActiveTab] = useState('personal');
 
+  // Ensure cvData is never undefined
+  const safeData = cvData || defaultCVData;
+
   const handleSave = () => {
-    setCvData(cvData);
+    setCvData(safeData);
     toast.success('CV data saved successfully!');
   };
 
@@ -50,7 +53,7 @@ export function CVBuilder() {
 
       <div className="flex justify-center">
         <Button onClick={handleSave} size="lg" className="gap-2">
-          <Save className="w-4 h-4" />
+          <FloppyDisk className="w-4 h-4" />
           Save Progress
         </Button>
       </div>
@@ -70,45 +73,45 @@ export function CVBuilder() {
 
         <TabsContent value="personal" className="space-y-6">
           <PersonalInfoForm
-            data={cvData.personalInfo}
-            onChange={(personalInfo) => setCvData({ ...cvData, personalInfo })}
+            data={safeData.personalInfo}
+            onChange={(personalInfo) => setCvData((current) => ({ ...(current || defaultCVData), personalInfo }))}
           />
         </TabsContent>
 
         <TabsContent value="experience" className="space-y-6">
           <ExperienceForm
-            data={cvData.experience}
-            onChange={(experience) => setCvData({ ...cvData, experience })}
+            data={safeData.experience}
+            onChange={(experience) => setCvData((current) => ({ ...(current || defaultCVData), experience }))}
           />
         </TabsContent>
 
         <TabsContent value="education" className="space-y-6">
           <EducationForm
-            data={cvData.education}
-            onChange={(education) => setCvData({ ...cvData, education })}
+            data={safeData.education}
+            onChange={(education) => setCvData((current) => ({ ...(current || defaultCVData), education }))}
           />
         </TabsContent>
 
         <TabsContent value="skills" className="space-y-6">
           <SkillsForm
-            data={cvData.skills}
-            onChange={(skills) => setCvData({ ...cvData, skills })}
-            certifications={cvData.certifications}
-            onCertificationsChange={(certifications) => setCvData({ ...cvData, certifications })}
-            languages={cvData.languages}
-            onLanguagesChange={(languages) => setCvData({ ...cvData, languages })}
+            data={safeData.skills}
+            onChange={(skills) => setCvData((current) => ({ ...(current || defaultCVData), skills }))}
+            certifications={safeData.certifications}
+            onCertificationsChange={(certifications) => setCvData((current) => ({ ...(current || defaultCVData), certifications }))}
+            languages={safeData.languages}
+            onLanguagesChange={(languages) => setCvData((current) => ({ ...(current || defaultCVData), languages }))}
           />
         </TabsContent>
 
         <TabsContent value="projects" className="space-y-6">
           <ProjectsForm
-            data={cvData.projects}
-            onChange={(projects) => setCvData({ ...cvData, projects })}
+            data={safeData.projects}
+            onChange={(projects) => setCvData((current) => ({ ...(current || defaultCVData), projects }))}
           />
         </TabsContent>
 
         <TabsContent value="export" className="space-y-6">
-          <ExportSection data={cvData} />
+          <ExportSection data={safeData} />
         </TabsContent>
 
         <TabsContent value="ai-parser" className="space-y-6">

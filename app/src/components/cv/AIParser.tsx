@@ -1,10 +1,17 @@
+/// <reference path="../../vite-end.d.ts" />
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
-import { Upload, FileText, Loader2 } from '@phosphor-icons/react';
+import { Upload, FileText, CircleNotch } from '@phosphor-icons/react';
 import { CVData } from '@/types/cv';
 import { toast } from 'sonner';
+
+// Declare spark for this file
+declare const spark: {
+  llmPrompt: (strings: TemplateStringsArray, ...values: any[]) => string;
+  llm: (prompt: string, modelName?: string, jsonMode?: boolean) => Promise<string>;
+};
 
 interface AIParserProps {
   onParsed: (data: CVData) => void;
@@ -207,7 +214,7 @@ export function AIParser({ onParsed }: AIParserProps) {
           >
             {isLoading ? (
               <>
-                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                <CircleNotch className="w-4 h-4 mr-2 animate-spin" />
                 Parsing with AI...
               </>
             ) : (
