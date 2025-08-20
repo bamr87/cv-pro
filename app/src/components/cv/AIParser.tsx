@@ -1,18 +1,22 @@
 /// <reference path="../../vite-end.d.ts" />
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { Upload, FileText, CircleNotch, FilePdf } from '@phosphor-icons/react';
 import { CVData } from '@/types/cv';
 import { toast } from 'sonner';
-import * as pdfjsLib from 'pdfjs-dist';
+import { useAuth } from '@/context/AuthContext';
+import { db, firebaseReady } from '@/lib/firebase';
+import { doc, getDoc } from 'firebase/firestore';
+import { extractTextFromPdf } from '@/lib/pdf';
+import { parseCvText, AISettings } from '@/lib/aiClient';
 
-// Configure PDF.js worker
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.js',
-  import.meta.url
-).toString();
+// Declare spark for this file
+declare const spark: {
+  llmPrompt: (strings: TemplateStringsArray, ...values: any[]) => string;
+  llm: (prompt: string, modelName?: string, jsonMode?: boolean) => Promise<string>;
+};
 
 interface AIParserProps {
   onParsed: (data: CVData) => void;
@@ -21,95 +25,47 @@ interface AIParserProps {
 export function AIParser({ onParsed }: AIParserProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [cvText, setCvText] = useState('');
+  const { user } = useAuth();
+  const [settings, setSettings] = useState<AISettings | null>(null);
 
-  const extractTextFromPDF = async (file: File): Promise<string> => {
-    try {
-      const arrayBuffer = await file.arrayBuffer();
-      const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-      let fullText = '';
-
-      for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-        const page = await pdf.getPage(pageNum);
-        const textContent = await page.getTextContent();
-        const pageText = textContent.items
-          .map((item: any) => item.str)
-          .join(' ');
-        fullText += pageText + '\n';
+  useEffect(() => {
+    const load = async () => {
+      if (!user || !firebaseReady || !db) { setSettings(null); return; }
+      try {
+        const ref = doc(db, 'users', user.uid, 'settings', 'ai');
+        const snap = await getDoc(ref);
+        if (snap.exists()) {
+          const data = snap.data() as any;
+          if (data?.apiKey && data?.provider) {
+            setSettings({ provider: data.provider, apiKey: data.apiKey });
+          } else {
+            setSettings(null);
+          }
+        } else {
+          setSettings(null);
+        }
+      } catch {
+        setSettings(null);
       }
-
-      return fullText.trim();
-    } catch (error) {
-      console.error('PDF extraction error:', error);
-      throw new Error('Failed to extract text from PDF');
-    }
-  };
+    };
+    load();
+  }, [user]);
 
   const parseWithAI = async (text: string) => {
     setIsLoading(true);
     try {
-      const prompt = spark.llmPrompt`
-        Extract CV/resume information from the following text and return it as a structured JSON object.
-        The JSON should match this TypeScript interface:
+      if (!user) {
+        toast.error('Sign in to use AI parsing');
+        return;
+      }
+      if (!settings) {
+        toast.error('Configure your AI provider and API key in Settings');
+        return;
+      }
 
-        interface CVData {
-          personalInfo: {
-            fullName: string;
-            email: string;
-            phone: string;
-            location: string;
-            website?: string;
-            linkedin?: string;
-            github?: string;
-            summary: string;
-          };
-          experience: Array<{
-            id: string;
-            company: string;
-            position: string;
-            startDate: string; // YYYY-MM format
-            endDate: string; // YYYY-MM format or empty if current
-            current: boolean;
-            description: string;
-            achievements: string[];
-          }>;
-          education: Array<{
-            id: string;
-            institution: string;
-            degree: string;
-            field: string;
-            startDate: string; // YYYY-MM format
-            endDate: string; // YYYY-MM format
-            gpa?: string;
-            honors?: string;
-          }>;
-          projects: Array<{
-            id: string;
-            name: string;
-            description: string;
-            technologies: string[];
-            url?: string;
-            github?: string;
-            startDate: string; // YYYY-MM format
-            endDate?: string; // YYYY-MM format
-          }>;
-          skills: Array<{
-            category: string;
-            skills: string[];
-          }>;
-          certifications: string[];
-          languages: string[];
-        }
-
-        CV Text:
-        ${text}
-
-        Return only valid JSON without any markdown formatting or additional text.
-      `;
-
-      const response = await spark.llm(prompt, 'gpt-4o', true);
-      
+      const jsonString = await parseCvText(settings, text);
       try {
-        const parsedData = JSON.parse(response);
+        const parsedData = JSON.parse(jsonString);
         
         // Add IDs if missing
         if (parsedData.experience) {
@@ -162,39 +118,25 @@ export function AIParser({ onParsed }: AIParserProps) {
     const file = event.target.files?.[0];
     if (!file) return;
 
-    setIsLoading(true);
-    
-    try {
-      let text = '';
-
-      if (file.type === 'text/plain') {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          text = e.target?.result as string;
-          parseWithAI(text);
-        };
-        reader.readAsText(file);
-        return; // Don't set loading false here since parseWithAI will handle it
-      } else if (file.type === 'application/pdf') {
-        toast.loading('Extracting text from PDF...', { id: 'pdf-extract' });
-        text = await extractTextFromPDF(file);
-        toast.dismiss('pdf-extract');
-        
-        if (!text.trim()) {
-          toast.error('No text found in PDF. Please ensure the PDF contains selectable text.');
-          setIsLoading(false);
-          return;
-        }
-        
+    if (file.type === 'text/plain') {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const text = e.target?.result as string;
+        parseWithAI(text);
+      };
+      reader.readAsText(file);
+    } else if (file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf')) {
+      try {
+        setIsLoading(true);
+        const text = await extractTextFromPdf(file);
         await parseWithAI(text);
-      } else {
-        toast.error('Please upload a text file (.txt) or PDF file (.pdf)');
+      } catch (e) {
+        toast.error('Failed to extract text from PDF');
+      } finally {
         setIsLoading(false);
       }
-    } catch (error) {
-      console.error('File processing error:', error);
-      toast.error('Failed to process file. Please try again.');
-      setIsLoading(false);
+    } else {
+      toast.error('Unsupported file type. Use .txt or .pdf');
     }
   };
 
@@ -284,6 +226,13 @@ export function AIParser({ onParsed }: AIParserProps) {
             )}
           </Button>
         </div>
+
+        {!user && (
+          <p className="text-xs text-muted-foreground text-center">Sign in to enable AI parsing.</p>
+        )}
+        {user && !settings && (
+          <p className="text-xs text-muted-foreground text-center">Add your AI API key in Settings to use this feature.</p>
+        )}
       </CardContent>
     </Card>
   );

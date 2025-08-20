@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useKV } from '@github/spark/hooks';
+import { usePersistedState } from '@/lib/usePersistedState';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -15,7 +15,7 @@ import { User, Briefcase, GraduationCap, Wrench, FolderOpen, DownloadSimple, Rob
 import { toast } from 'sonner';
 
 export function CVBuilder() {
-  const [cvData, setCvData, deleteCvData] = useKV<CVData>('cv-data', defaultCVData);
+  const [cvData, setCvData] = usePersistedState<CVData>('cv-data', defaultCVData);
   const [activeTab, setActiveTab] = useState('personal');
 
   // Ensure cvData is never undefined

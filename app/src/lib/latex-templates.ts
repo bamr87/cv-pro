@@ -159,6 +159,40 @@ export function generateLaTeX(template: LaTeXTemplate, data: any): string {
   // Use Function constructor to create a template function
   // This safely evaluates the template string with the provided data
   try {
+    // Normalize incoming CVData into the flat shape expected by the templates
+    const normalized = (() => {
+      const personal = data?.personalInfo ?? {};
+      const normalizedExperience = (data?.experience ?? []).map((exp: any) => ({
+        ...exp,
+        // Ensure properties referenced in templates exist
+        achievements: Array.isArray(exp?.achievements) ? exp.achievements : [],
+        location: exp?.location ?? '',
+      }));
+      const normalizedEducation = (data?.education ?? []).map((edu: any) => ({
+        ...edu,
+        location: edu?.location ?? '',
+      }));
+      const normalizedProjects = (data?.projects ?? []).map((proj: any) => ({
+        ...proj,
+        technologies: Array.isArray(proj?.technologies) ? proj.technologies : [],
+      }));
+
+      return {
+        fullName: personal.fullName ?? '',
+        phone: personal.phone ?? '',
+        email: personal.email ?? '',
+        linkedin: personal.linkedin ?? '',
+        github: personal.github ?? '',
+        website: personal.website ?? '',
+        location: personal.location ?? '',
+        summary: personal.summary ?? '',
+        experience: normalizedExperience,
+        education: normalizedEducation,
+        projects: normalizedProjects,
+        skills: Array.isArray(data?.skills) ? data.skills : [],
+      };
+    })();
+
     const templateFunction = new Function('data', `
       const {
         fullName = '', phone = '', email = '', linkedin = '', github = '', website = '',
@@ -166,8 +200,8 @@ export function generateLaTeX(template: LaTeXTemplate, data: any): string {
       } = data;
       return \`${template.template}\`;
     `);
-    
-    return templateFunction(data);
+
+    return templateFunction(normalized);
   } catch (error) {
     console.error('Error generating LaTeX:', error);
     return template.template; // Return raw template if evaluation fails
