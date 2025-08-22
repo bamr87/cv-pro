@@ -278,4 +278,5 @@ TSWLatexianTemp*
 *.synctex.gz
 *.log
 *.fdb_latexmk
-.aux
+*.aux
+*.fls
