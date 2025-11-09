@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.25)  25 OCT 2024 16:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.25)  17 AUG 2025 16:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -23,7 +23,9 @@ File: size11.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 \abovecaptionskip=\skip48
 \belowcaptionskip=\skip49
 \bibindent=\dimen140
-) (/usr/local/texlive/2024/texmf-dist/tex/latex/base/latexsym.sty
+) (./resume.sty
+Package: resume 2025/08/17 CV layout and macros
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/base/latexsym.sty
 Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
 \symlasy=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
@@ -324,7 +326,7 @@ Package graphics Info: Driver file: pdftex.def on input line 107.
 )
 \Gin@req@height=\dimen168
 \Gin@req@width=\dimen169
-) (/usr/local/texlive/2024/texmf-dist/tex/generic/pdftex/glyphtounicode.tex) (/usr/local/texlive/2024/texmf-dist/tex/latex/cormorantgaramond/CormorantGaramond.sty
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/cormorantgaramond/CormorantGaramond.sty
 Package: CormorantGaramond 2022/09/16 (Bob Tennent and autoinst) Style file for Cormorant Garamond fonts.
  (/usr/local/texlive/2024/texmf-dist/tex/generic/iftex/ifxetex.sty
 Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
@@ -356,36 +358,36 @@ LaTeX Info: Redefining \textssc on input line 48.
 LaTeX Info: Redefining \textulc on input line 49.
 )
 LaTeX Info: Redefining \oldstylenums on input line 123.
-)
-LaTeX Font Info:    Trying to load font information for OT1+CormorantGaramond-LF on input line 116.
+)) (/usr/local/texlive/2024/texmf-dist/tex/generic/pdftex/glyphtounicode.tex)
+LaTeX Font Info:    Trying to load font information for OT1+CormorantGaramond-LF on input line 31.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/cormorantgaramond/OT1CormorantGaramond-LF.fd
 File: OT1CormorantGaramond-LF.fd 2019/12/11 (autoinst) Font definitions for OT1/CormorantGaramond-LF.
 )
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/m/n' aliased to
-(Font)              `OT1/CormorantGaramond-LF/regular/n' on input line 116.
+(Font)              `OT1/CormorantGaramond-LF/regular/n' on input line 31.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/regular/n' will be
-(Font)              scaled to size 10.95pt on input line 116.
+(Font)              scaled to size 10.95pt on input line 31.
  (./cv.aux)
 \openout1 = `cv.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 116.
-LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
  (/usr/local/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count291
@@ -405,7 +407,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/local/texlive/2024/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring OFF on input line 116.
+Package hyperref Info: Link coloring OFF on input line 31.
  (./cv.out) (./cv.out)
 \@outlinefile=\write3
 \openout3 = `cv.out'.
@@ -413,145 +415,129 @@ Package hyperref Info: Link coloring OFF on input line 116.
 \c@mv@tabular=\count297
 \c@mv@boldtabular=\count298
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 122.
+(Font)              <10.95> on input line 37.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 122.
+(Font)              <8> on input line 37.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 122.
-LaTeX Font Info:    Trying to load font information for U+lasy on input line 122.
+(Font)              <6> on input line 37.
+LaTeX Font Info:    Trying to load font information for U+lasy on input line 37.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-Underfull \hbox (badness 10000) in alignment at lines 122--125
+Underfull \hbox (badness 10000) in alignment at lines 37--40
 [][]
  []
 
 <Amr-Headshot_v3.jpg, id=24, 649.4664pt x 657.1752pt>
 File: Amr-Headshot_v3.jpg Graphic file (type jpg)
 <use Amr-Headshot_v3.jpg>
-Package pdftex.def Info: Amr-Headshot_v3.jpg  used on input line 127.
+Package pdftex.def Info: Amr-Headshot_v3.jpg  used on input line 42.
 (pdftex.def)             Requested size: 83.36008pt x 84.34276pt.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/m/n' aliased to
-(Font)              `OT1/CormorantGaramond-LF/regular/n' on input line 133.
+(Font)              `OT1/CormorantGaramond-LF/regular/n' on input line 48.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/regular/n' will be
-(Font)              scaled to size 24.88pt on input line 133.
+(Font)              scaled to size 24.88pt on input line 48.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/m/sc' aliased to
-(Font)              `OT1/CormorantGaramond-LF/regular/sc' on input line 133.
+(Font)              `OT1/CormorantGaramond-LF/regular/sc' on input line 48.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/regular/sc' will be
-(Font)              scaled to size 24.88pt on input line 133.
+(Font)              scaled to size 24.88pt on input line 48.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/m/n' aliased to
-(Font)              `OT1/CormorantGaramond-LF/regular/n' on input line 134.
+(Font)              `OT1/CormorantGaramond-LF/regular/n' on input line 49.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/regular/n' will be
-(Font)              scaled to size 14.4pt on input line 134.
+(Font)              scaled to size 14.4pt on input line 49.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/m/n' aliased to
-(Font)              `OT1/CormorantGaramond-LF/regular/n' on input line 135.
+(Font)              `OT1/CormorantGaramond-LF/regular/n' on input line 50.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/regular/n' will be
-(Font)              scaled to size 10.0pt on input line 135.
-LaTeX Font Info:    Trying to load font information for U+fontawesomefree2 on input line 135.
+(Font)              scaled to size 10.0pt on input line 50.
+LaTeX Font Info:    Trying to load font information for U+fontawesomefree2 on input line 50.
 (/usr/local/texlive/2024/texmf-dist/tex/latex/fontawesome5/ufontawesomefree2.fd)
-LaTeX Font Info:    Trying to load font information for U+fontawesomefree1 on input line 135.
+LaTeX Font Info:    Trying to load font information for U+fontawesomefree1 on input line 50.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/fontawesome5/ufontawesomefree1.fd)
-LaTeX Font Info:    Trying to load font information for U+fontawesomebrands0 on input line 136.
+LaTeX Font Info:    Trying to load font information for U+fontawesomebrands0 on input line 51.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/fontawesome5/ufontawesomebrands0.fd)
 LaTeX Font Info:    Font shape `U/fontawesomebrands0/solid/n' in size <10> not available
-(Font)              Font shape `U/fontawesomebrands0/regular/n' tried instead on input line 136.
+(Font)              Font shape `U/fontawesomebrands0/regular/n' tried instead on input line 51.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/m/sc' aliased to
-(Font)              `OT1/CormorantGaramond-LF/regular/sc' on input line 144.
+(Font)              `OT1/CormorantGaramond-LF/regular/sc' on input line 59.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/regular/sc' will be
-(Font)              scaled to size 10.95pt on input line 144.
+(Font)              scaled to size 10.95pt on input line 59.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/m/sc' aliased to
-(Font)              `OT1/CormorantGaramond-LF/regular/sc' on input line 144.
+(Font)              `OT1/CormorantGaramond-LF/regular/sc' on input line 59.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/regular/sc' will be
-(Font)              scaled to size 12.0pt on input line 144.
+(Font)              scaled to size 12.0pt on input line 59.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/b/sc' aliased to
-(Font)              `OT1/CormorantGaramond-LF/bold/sc' on input line 144.
+(Font)              `OT1/CormorantGaramond-LF/bold/sc' on input line 59.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/bold/sc' will be
-(Font)              scaled to size 12.0pt on input line 144.
+(Font)              scaled to size 12.0pt on input line 59.
+ (./sections/education.tex
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/b/n' aliased to
-(Font)              `OT1/CormorantGaramond-LF/bold/n' on input line 150.
+(Font)              `OT1/CormorantGaramond-LF/bold/n' on input line 10.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/bold/n' will be
-(Font)              scaled to size 10.95pt on input line 150.
+(Font)              scaled to size 10.95pt on input line 10.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/b/n' aliased to
-(Font)              `OT1/CormorantGaramond-LF/bold/n' on input line 150.
+(Font)              `OT1/CormorantGaramond-LF/bold/n' on input line 10.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/bold/n' will be
-(Font)              scaled to size 10.0pt on input line 150.
+(Font)              scaled to size 10.0pt on input line 10.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/m/it' aliased to
-(Font)              `OT1/CormorantGaramond-LF/regular/it' on input line 150.
+(Font)              `OT1/CormorantGaramond-LF/regular/it' on input line 10.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/regular/it' will be
-(Font)              scaled to size 10.95pt on input line 150.
+(Font)              scaled to size 10.95pt on input line 10.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/m/it' aliased to
-(Font)              `OT1/CormorantGaramond-LF/regular/it' on input line 150.
+(Font)              `OT1/CormorantGaramond-LF/regular/it' on input line 10.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/regular/it' will be
-(Font)              scaled to size 10.0pt on input line 150.
+(Font)              scaled to size 10.0pt on input line 10.
+) (./sections/experience.tex
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 23.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 23.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/m/n' aliased to
-(Font)              `OT1/CormorantGaramond-LF/regular/n' on input line 202.
+(Font)              `OT1/CormorantGaramond-LF/regular/n' on input line 23.
 LaTeX Font Info:    Font shape `OT1/CormorantGaramond-LF/regular/n' will be
-(Font)              scaled to size 6.0pt on input line 202.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 202.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 203.
+(Font)              scaled to size 6.0pt on input line 23.
+ [1
 
-
-Package fancyhdr Warning: \footskip is too small (0.0pt): 
-(fancyhdr)                Make it at least 4.08003pt, for example:
-(fancyhdr)                \setlength{\footskip}{4.08003pt}.
-
-[1
-
-{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cormorantgaramond/cgrm_ctw2ju.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cormorantgaramond/cgrm_usix3v.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free2.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free1.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/fontawesome5/fa5brands0.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cormorantgaramond/cgrm_k54atz.enc} <./Amr-Headshot_v3.jpg>]
-
-Package fancyhdr Warning: \footskip is too small (0.0pt): 
-(fancyhdr)                Make it at least 4.08003pt, for example:
-(fancyhdr)                \setlength{\footskip}{4.08003pt}.
-
-[2]
-
-Package fancyhdr Warning: \footskip is too small (0.0pt): 
-(fancyhdr)                Make it at least 4.08003pt, for example:
-(fancyhdr)                \setlength{\footskip}{4.08003pt}.
-
-[3]
-Overfull \hbox (0.55968pt too wide) in paragraph at lines 429--431
+{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cormorantgaramond/cgrm_ctw2ju.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cormorantgaramond/cgrm_usix3v.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free2.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free1.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/fontawesome5/fa5brands0.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cormorantgaramond/cgrm_k54atz.enc} <./Amr-Headshot_v3.jpg>] [2]) [3] (./sections/projects.tex
+Overfull \hbox (0.55968pt too wide) in paragraph at lines 9--9
 []  
  []
 
 
-Overfull \hbox (0.55968pt too wide) in paragraph at lines 441--443
+Overfull \hbox (0.55968pt too wide) in paragraph at lines 14--14
 []  
  []
 
 
-Overfull \hbox (0.55968pt too wide) in paragraph at lines 452--454
+Overfull \hbox (0.55968pt too wide) in paragraph at lines 22--22
 []  
  []
 
 
-Overfull \hbox (0.55968pt too wide) in paragraph at lines 460--462
+Overfull \hbox (0.55968pt too wide) in paragraph at lines 27--27
 []  
  []
 
 
-Overfull \hbox (0.55968pt too wide) in paragraph at lines 468--470
+Overfull \hbox (0.55968pt too wide) in paragraph at lines 33--33
 []  
  []
 
 
-Overfull \hbox (0.55968pt too wide) in paragraph at lines 477--479
+Overfull \hbox (0.55968pt too wide) in paragraph at lines 39--39
 []  
  []
 
 
-Overfull \hbox (0.55968pt too wide) in paragraph at lines 487--489
+Overfull \hbox (0.55968pt too wide) in paragraph at lines 45--45
 []  
  []
 
 
-Package fancyhdr Warning: \footskip is too small (0.0pt): 
-(fancyhdr)                Make it at least 4.08003pt, for example:
-(fancyhdr)                \setlength{\footskip}{4.08003pt}.
+Overfull \hbox (0.55968pt too wide) in paragraph at lines 51--51
+[]  
+ []
 
-[4] (./cv.aux)
+) (./sections/skills.tex) (./sections/strengths.tex [4]) [5] (./cv.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -560,18 +546,18 @@ Package rerunfilecheck Info: File `cv.out' has not changed.
 (rerunfilecheck)             Checksum: AD406B7745FDBF8F1648C8DB239F5F21;673.
  ) 
 Here is how much of TeX's memory you used:
- 15095 strings out of 474116
- 263173 string characters out of 5743681
- 1959187 words of memory out of 5000000
- 37236 multiletter control sequences out of 15000+600000
+ 15174 strings out of 474116
+ 264854 string characters out of 5743681
+ 1953187 words of memory out of 5000000
+ 37295 multiletter control sequences out of 15000+600000
  581002 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,11n,79p,320b,738s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,12n,93p,356b,804s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/catharsis/cormorantgaramond/CormorantGaramond-Bold.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/catharsis/cormorantgaramond/CormorantGaramond-Italic.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/catharsis/cormorantgaramond/CormorantGaramond-Regular.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/fontawesome5/FontAwesome5Brands-Regular.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/fontawesome5/FontAwesome5Free-Solid.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb>
-Output written on cv.pdf (4 pages, 2073501 bytes).
+Output written on cv.pdf (5 pages, 2072204 bytes).
 PDF statistics:
- 108 PDF objects out of 1000 (max. 8388607)
- 81 compressed objects within 1 object stream
- 10 named destinations out of 1000 (max. 500000)
+ 112 PDF objects out of 1000 (max. 8388607)
+ 84 compressed objects within 1 object stream
+ 11 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

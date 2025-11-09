@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1729894914.55859 "/Users/bamr87/github/cv/cv.tex" "cv.pdf" "cv" 1729894915.18 0
-  "/Users/bamr87/github/cv/cv.tex" 1729874265.33758 29109 c4962a95e31914ddcc5dec9cac50b752 ""
+["pdflatex"] 1755469758.25759 "/Users/bamr87/github/cv/cv.tex" "cv.pdf" "cv" 1755469758.85554 0
+  "/Users/bamr87/github/cv/cv.tex" 1755467397.22177 5163 b2a459aeda1d63c82c01844d3ea49f26 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cormorantgaramond/cgrm_ctw2ju.enc" 1576187832 3273 2aff4b6bc29b65b8c6d853fea5d027fd ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cormorantgaramond/cgrm_k54atz.enc" 1576187832 3127 55698867f18ea6e28e96edb4579db7fa ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cormorantgaramond/cgrm_usix3v.enc" 1576187832 3107 f6bea6cb8c68940eb972e1222caa6b17 ""
@@ -128,9 +128,15 @@
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1729893951 8221428 b23102476824af9a326d0c275c9d46e3 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
   "Amr-Headshot_v3.jpg" 1729873353.1092 1883725 15a9751826f22e9666963f07f889364f ""
-  "cv.aux" 1729894915.08965 815 2f45f990bc13155f6f0378ceb7cfb7c6 "pdflatex"
-  "cv.out" 1729894915.09025 673 ad406b7745fdbf8f1648c8db239f5f21 "pdflatex"
-  "cv.tex" 1729874265.33758 29109 c4962a95e31914ddcc5dec9cac50b752 ""
+  "cv.aux" 1755469758.74269 815 74de1e7d854a6a5c5e0c558e95248177 "pdflatex"
+  "cv.out" 1755469758.74335 673 ad406b7745fdbf8f1648c8db239f5f21 "pdflatex"
+  "cv.tex" 1755467397.22177 5163 b2a459aeda1d63c82c01844d3ea49f26 ""
+  "resume.sty" 1755467353.75046 3879 00b53a77febde7e0bae99babc4f6fe7d ""
+  "sections/education.tex" 1755468204.63598 657 8196b6ac32d251a8653cc7e619391dde ""
+  "sections/experience.tex" 1755468219.50843 7639 c9b065771b6207dc4af67ddc9dfd501f ""
+  "sections/projects.tex" 1755468213.73746 3219 4e1e241bfaf77e9033ddfda5c2b6fc08 ""
+  "sections/skills.tex" 1755467185.47089 1198 6a5a0a01f8ac98770b66c62a9a0cddfc ""
+  "sections/strengths.tex" 1755467189.59999 501 43f7e8d9caeeebf5977bc791efa2dfbd ""
   (generated)
   "cv.aux"
   "cv.log"
