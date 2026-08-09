@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { DownloadSimple, FilePdf, FileText, Code } from '@phosphor-icons/react';
+import { DownloadSimple, FileText, Code } from '@phosphor-icons/react';
 import { CVData } from '@/types/cv';
 import { exportToMarkdown, exportToASCII, downloadFile } from '@/lib/export-utils';
 import { latexTemplates, generateLaTeX } from '@/lib/latex-templates';
@@ -23,19 +23,21 @@ export function ExportSection({ data }: ExportSectionProps) {
     
     try {
       switch (selectedFormat) {
-        case 'markdown':
+        case 'markdown': {
           const markdown = exportToMarkdown(data);
           downloadFile(markdown, `${fileName}.md`, 'text/markdown');
           toast.success('CV exported as Markdown');
           break;
-          
-        case 'ascii':
+        }
+
+        case 'ascii': {
           const ascii = exportToASCII(data);
           downloadFile(ascii, `${fileName}.txt`, 'text/plain');
           toast.success('CV exported as ASCII text');
           break;
-          
-        case 'latex':
+        }
+
+        case 'latex': {
           const template = latexTemplates.find(t => t.id === selectedTemplate);
           if (template) {
             const latex = generateLaTeX(template, data);
@@ -43,6 +45,7 @@ export function ExportSection({ data }: ExportSectionProps) {
             toast.success('CV exported as LaTeX');
           }
           break;
+        }
       }
     } catch (error) {
       console.error('Export failed:', error);

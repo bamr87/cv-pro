@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { usePersistedState } from '@/lib/usePersistedState';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { PersonalInfoForm } from './PersonalInfoForm';
 import { ExperienceForm } from './ExperienceForm';
 import { EducationForm } from './EducationForm';
