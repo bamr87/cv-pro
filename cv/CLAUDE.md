@@ -2,18 +2,34 @@
 
 Guidance for AI coding agents (Claude Code, Copilot, Cursor) working in **cv**.
 
-<!-- TODO: one paragraph — what this project is, who it serves, and what "done" looks like here. -->
+## What this is
+
+The CV of Amr Abdel-Motaleb run as a build machine: `data/cv.json` (canonical CVData, schema shared with [bamr87/cv-builder-pro](https://github.com/bamr87/cv-builder-pro)) is rendered by the TypeScript engine in `builder/` into Markdown (`CV.md`, committed + sync-gated), ASCII, generated LaTeX, and the HTML Pages site, while the hand-tuned LaTeX lane (`cv.tex` + `resume.sty` + `sections/*.tex`) produces `cv.pdf`. See `README.md` for the full architecture.
 
 ## Stack & commands
 
-<!-- TODO: fill in the real commands; delete rows that don't apply. -->
-
 ```bash
 # install dependencies:
-# run the dev server / build:
-# run tests:
-# lint:
+npm install
+# run the build (data/cv.json -> CV.md + dist/):
+npm run build
+# run tests (data contract + CV.md sync gate + generator invariants):
+npm test
+# lint (typecheck):
+npm run lint
+# verify CV.md is in sync without writing:
+npm run check
+# artisanal PDF (optional locally; CI compiles it in publish/latex-preview):
+latexmk -pdf cv.tex
 ```
+
+## Rules of the machine
+
+- **`data/cv.json` is the single source of truth.** Content changes start there. Never edit `CV.md` by hand (generated; `npm test` fails on drift — always run `npm run build` and commit `CV.md` together with the data change).
+- **Two LaTeX lanes.** `dist/cv-*.tex` is generated — never hand-edit. `cv.tex`/`sections/*.tex` is artisanal — edit deliberately, and mirror substantive data changes into it (CI cannot check tex ↔ json sync; you must).
+- **The CVData contract is shared** with cv-builder-pro (`src/types/cv.ts` there, `builder/types.ts` + `data/cv.schema.json` here). Schema changes must land in both repos, backward-compatibly.
+- **This is real personal data.** Transcribe, reorder, and reformat — never invent facts, dates, employers, or credentials. Tailored variants (from the `jd/` loop) go in `jd/*.tailored.json`, not in `data/cv.json`.
+- Generated PDFs/renders belong in releases and Pages, not the working tree (`cv.pdf` is the one committed render; the publish workflow recompiles it).
 
 ## Conventions
 
@@ -23,6 +39,8 @@ Guidance for AI coding agents (Claude Code, Copilot, Cursor) working in **cv**.
   directory, and update it after.
 - Don't suppress type errors (`as any`, `@ts-ignore`, `# type: ignore`) or
   leave empty exception handlers.
+- Markdown prose is one paragraph per line (`markdown-oneline` gate; fix with `python3 tools/unwrap-prose.py --write`).
+- Dependencies follow the fleet's always-latest policy: `"*"` ranges, no lockfiles committed.
 
 ## Fleet context
 

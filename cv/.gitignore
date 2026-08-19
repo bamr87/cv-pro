@@ -280,3 +280,18 @@ TSWLatexianTemp*
 *.fdb_latexmk
 *.aux
 *.fls
+
+# --- CV machine (node engine) ---
+node_modules/
+dist/
+
+# --- always-latest dependency policy: lockfiles are local ephemera (bamr87/bamr87 docs/DEPENDENCIES.md) ---
+package-lock.json
+npm-shrinkwrap.json
+pnpm-lock.yaml
+yarn.lock
+Gemfile.lock
+poetry.lock
+Pipfile.lock
+uv.lock
+composer.lock

@@ -1,0 +1,459 @@
+{
+  "$schema": "./cv.schema.json",
+  "personalInfo": {
+    "fullName": "Amr Abdel-Motaleb",
+    "email": "amr.abdel@gmail.com",
+    "phone": "+1 (720) 352-4641",
+    "location": "Denver, CO 80206",
+    "website": "https://bashconsultants.com",
+    "linkedin": "https://linkedin.com/in/amrabdel",
+    "github": "https://github.com/bamr87",
+    "summary": "Solutions architect at the intersection of IT and finance with 15+ years across ERP, EPM, and financial systems — implementing and integrating QAD, Infor, Oracle/Hyperion, OneStream, and Tagetik for manufacturers worldwide, and building fullstack web applications, BI/data platforms, and AI-assisted tooling as an independent consultant."
+  },
+  "experience": [
+    {
+      "id": "bash-consulting",
+      "company": "BASH Consulting LLC",
+      "position": "Solutions Architect – IT/Finance",
+      "startDate": "2020-01",
+      "endDate": "",
+      "current": true,
+      "description": "Independent IT/finance consulting practice. Industry: FinTech · Scope: North America.",
+      "achievements": [
+        "Technical/functional consulting in enterprise software (QAD, Infor LN, Infor Cloud Suite, HFM, OneStream)",
+        "Fullstack development of custom web applications using Django, Ruby on Rails, and Angular",
+        "Development of content management systems with AI integrations",
+        "CI/CD pipeline design and implementation with automated testing",
+        "Small business application development (inventory management systems)",
+        "Design and develop cloud eCommerce software integrations",
+        "Technology advisory of Cloud applications and data governance",
+        "Financial business modeling and analysis",
+        "BI Dashboard and operational reporting development",
+        "AWS, GCP, Azure architecture and management",
+        "Accounting Information System design and configuration",
+        "CRM design, configuration, integration, and deployment"
+      ],
+      "location": "Denver, CO"
+    },
+    {
+      "id": "aesse-investments",
+      "company": "AESSE Investments",
+      "position": "ERP Architect",
+      "startDate": "2025-04",
+      "endDate": "",
+      "current": true,
+      "description": "Industry: Polymers and Automotive · Scope: North America.",
+      "achievements": [
+        "Collaborate with stakeholders to gather requirements and develop roadmaps for ERP solutions aligned with organizational goals",
+        "Provide technical direction and architectural oversight for high-quality design and implementation of ERP modules and integrations",
+        "Lead end-to-end design and configuration of ERP functionalities ensuring seamless integration with existing systems and third-party applications",
+        "Serve as subject matter expert for ERP best practices, emerging technologies, and industry trends",
+        "Define, implement, and enforce ERP governance frameworks, policies, and procedures",
+        "Ensure compliance with data privacy, security standards, and regulatory requirements",
+        "Communicate system changes and updates effectively to business and technical stakeholders"
+      ],
+      "location": "Denver, CO"
+    },
+    {
+      "id": "valmont",
+      "company": "Valmont Industries",
+      "position": "Sr. Manager, Accounting Systems & IT Business Partner",
+      "startDate": "2022-01",
+      "endDate": "2023-11",
+      "current": false,
+      "description": "Industry: Agriculture & Infrastructure Manufacturing · Scope: Worldwide.",
+      "achievements": [
+        "Partnered with IT and corporate accounting to analyze and solve complex financial system problems",
+        "Collaborated with IT to design integration solutions with IFS to ensure Mexico localization compliance"
+      ],
+      "location": "Denver, CO"
+    },
+    {
+      "id": "asteelflash",
+      "company": "AsteelFlash",
+      "position": "Global Business Analyst & Business Process Owner – Finance",
+      "startDate": "2018-03",
+      "endDate": "2020-01",
+      "current": false,
+      "description": "Department: IT/Finance · Industry: Electronics Manufacturing Services · Scope: Worldwide.",
+      "achievements": [
+        "Manage IT-Finance projects worldwide and report progress to executive management",
+        "Define/Manage data control methodology and governance related to finance"
+      ],
+      "location": "Denver, CO"
+    },
+    {
+      "id": "wolters-kluwer",
+      "company": "Wolters Kluwer",
+      "position": "Senior Business Consultant",
+      "startDate": "2017-11",
+      "endDate": "2018-03",
+      "current": false,
+      "description": "Division: CCH Tagetik · Industry: Enterprise Performance Management Software · Scope: North America.",
+      "achievements": [
+        "Advised and assisted clients with the implementation of Tagetik CPM",
+        "Supported the configuration, build, and setup of all features and functions to meet business/regulatory requirements"
+      ],
+      "location": "New York, NY"
+    },
+    {
+      "id": "qad",
+      "company": "QAD Inc.",
+      "position": "Finance IT Business Consultant",
+      "startDate": "2014-10",
+      "endDate": "2017-11",
+      "current": false,
+      "description": "Department: Professional Consulting Services · Industry: Enterprise Resource Planning Software · Scope: Worldwide.",
+      "achievements": [
+        "Facilitated the upgrade process from Mfg/Pro to QAD Enterprise Edition at client sites, domestically and internationally",
+        "Trained users on advanced finance functionality in QAD"
+      ],
+      "location": "Denver, CO"
+    },
+    {
+      "id": "infor",
+      "company": "Infor Global Solutions",
+      "position": "Applications Consultant",
+      "startDate": "2012-11",
+      "endDate": "2014-10",
+      "current": false,
+      "description": "Department: Professional Consulting Services · Industry: Enterprise Resource Planning Software · Scope: North America.",
+      "achievements": [
+        "Implementation lead for various SyteLine ERP projects (design solution, perform testing, conduct training, analyze business processes)",
+        "Implemented document repository system integrated with SyteLine"
+      ],
+      "location": "Denver, CO"
+    },
+    {
+      "id": "navistar-erp",
+      "company": "Navistar International",
+      "position": "ERP/Baan Specialist",
+      "startDate": "2012-01",
+      "endDate": "2012-11",
+      "current": false,
+      "description": "Department: Global Manufacturing Systems · Industry: Automotive Manufacturing · Scope: Worldwide.",
+      "achievements": [
+        "Led the finance implementation of Infor ERP LN for the SST Truck Modification Center",
+        "Designed and published standard reports out of OBIEE Dashboards to support the Truck Modification Center operations",
+        "Developed Financial Reports using HFM Reporting Studio to support Truck Operations FP&A",
+        "Assisted in the transition to Hyperion Financial Management and PeopleSoft Corporate Financial System"
+      ],
+      "location": "Chicago, IL"
+    },
+    {
+      "id": "navistar-faldp-engine",
+      "company": "Navistar International",
+      "position": "Financial Analyst (Finance & Accounting Leadership Development Program)",
+      "startDate": "2011-07",
+      "endDate": "2011-12",
+      "current": false,
+      "description": "Division: Engine Purchasing and Logistics · Industry: Engine Manufacturing · Scope: North America.",
+      "achievements": [
+        "Constructed financial and Total Cost of Ownership (TCO) analyses of diesel engine components to support sourcing decisions",
+        "Developed and streamlined new reporting processes that utilized Teradata Warehousing to report operational and performance metrics",
+        "Participated in Pricing negotiations and developed complex analytics to support negotiations"
+      ],
+      "location": "Melrose Park, IL"
+    },
+    {
+      "id": "navistar-faldp-truck",
+      "company": "Navistar International",
+      "position": "Financial Analyst (Finance & Accounting Leadership Development Program)",
+      "startDate": "2010-06",
+      "endDate": "2011-07",
+      "current": false,
+      "description": "Site: SST Truck Assembly Plant · Industry: Truck Manufacturing · Scope: North America.",
+      "achievements": [
+        "Responsible for monthly accounting close and financial reporting",
+        "Produced weekly financial and operational analytics of the truck assembly plant",
+        "Supported the annual Standard Product Costing and analyses for the operational plan",
+        "Provided ad hoc assistance and financial analyses to support daily operational decisions"
+      ],
+      "location": "Garland, TX"
+    },
+    {
+      "id": "navistar-faldp-financial",
+      "company": "Navistar International",
+      "position": "Financial Analyst (Finance & Accounting Leadership Development Program)",
+      "startDate": "2010-01",
+      "endDate": "2010-06",
+      "current": false,
+      "description": "Division: Navistar Financial Corporation · Industry: Banking and Lending · Scope: Worldwide.",
+      "achievements": [
+        "Produced monthly updates and analyses of the retail and wholesale product pricing model for operational guidance",
+        "Organized and reported results of the competitive market and economic outlook of the Class 4-8 Truck Industry",
+        "Assisted the Finance Transformation team with data conversion validation and COA mapping analyses for all of Navistar's sub entities"
+      ],
+      "location": "Schaumburg, IL"
+    },
+    {
+      "id": "navistar-intern",
+      "company": "Navistar International",
+      "position": "Financial Analyst Intern",
+      "startDate": "2009-05",
+      "endDate": "2009-08",
+      "current": false,
+      "description": "Division: Parts Group · Industry: Automotive Parts Distribution · Scope: Worldwide.",
+      "achievements": [
+        "Analyzed, organized, and consolidated financial models and supplemental materials for the Parts Group 5-year Strategic Plan",
+        "Assisted with business development related projects and performed ad hoc financial modeling",
+        "Analyzed global subsidiaries and designed financial models for various economic scenarios and forecasts",
+        "Researched and presented the competitive landscape of the automotive parts industry and pricing structures"
+      ],
+      "location": "Warrenville, IL"
+    }
+  ],
+  "education": [
+    {
+      "id": "cu-denver-msis",
+      "institution": "University of Colorado Denver",
+      "degree": "Master of Science",
+      "field": "Information Systems",
+      "startDate": "2015-08",
+      "endDate": "2017-07",
+      "gpa": "3.9",
+      "honors": "Emphasis: Mobile Computing",
+      "location": "Denver, CO"
+    },
+    {
+      "id": "niu-bs-finance",
+      "institution": "Northern Illinois University",
+      "degree": "Bachelor of Science",
+      "field": "Finance",
+      "startDate": "2005-08",
+      "endDate": "2009-12",
+      "gpa": "3.5",
+      "honors": "Cum Laude · Emphasis: Corporate Finance and Accounting",
+      "location": "Dekalb, IL"
+    },
+    {
+      "id": "auc-study-abroad",
+      "institution": "American University in Cairo",
+      "degree": "Study Abroad",
+      "field": "Arabic and Cultural Studies",
+      "startDate": "2008-01",
+      "endDate": "2008-06",
+      "location": "Cairo, Egypt"
+    }
+  ],
+  "projects": [
+    {
+      "id": "bash-portfolio",
+      "name": "Engagement Portfolio — BASH Consulting LLC",
+      "description": "10 engagements: enterprise systems consulting (4), accounting system modeling & configuration (2), systems management & data governance design (1), software design & development (3).",
+      "technologies": [
+        "QAD EE 2014–18",
+        "ERP Integrations",
+        "Banking Interfaces",
+        "OneStream",
+        "HFM",
+        "QAD Entity Segmentation",
+        "QuickBooks",
+        "RPM Telco",
+        "Inventory Tracking Software",
+        "Home Inspection Platform",
+        "Ruby",
+        "JavaScript"
+      ],
+      "url": "https://bashconsultants.com",
+      "startDate": "2020-01"
+    },
+    {
+      "id": "aesse-portfolio",
+      "name": "Engagement Portfolio — AESSE Investments LLC",
+      "description": "2 engagements: QAD/AUX 2024 ERP upgrade (1), SDLC governance & change management program (1).",
+      "technologies": ["QAD AUX 2024", "SDLC Governance", "Change Management"],
+      "startDate": "2025-04"
+    },
+    {
+      "id": "valmont-portfolio",
+      "name": "Engagement Portfolio — Valmont Industries",
+      "description": "18 projects: finance centralization (3), ERP interface design (4), data & analytics infomarts (4), BI & reporting (2), systems management & data governance (5).",
+      "technologies": [
+        "BlackLine Cash Application",
+        "BlackLine GL & Account Recons",
+        "SAP Concur Travel & Expense",
+        "OneStream Direct Connect",
+        "Supplier Portal & Invoicing Automation",
+        "IFS Revenue Recognition Infomart",
+        "GL/AR Infomarts (QAD & IFS)",
+        "Centralized COA Reporting",
+        "SAGE"
+      ],
+      "startDate": "2022-01",
+      "endDate": "2023-11"
+    },
+    {
+      "id": "asteelflash-portfolio",
+      "name": "Engagement Portfolio — AsteelFlash",
+      "description": "7 projects: ERP implementations across North America, Germany, and France (5); accounting system modeling & configuration (2).",
+      "technologies": ["QAD EE 2014", "SAP", "Canias", "Hyperion Financial Management"],
+      "startDate": "2018-03",
+      "endDate": "2020-01"
+    },
+    {
+      "id": "wolters-kluwer-portfolio",
+      "name": "Engagement Portfolio — Wolters Kluwer (CCH Tagetik)",
+      "description": "2 implementations: Tagetik EPM (1), Tagetik lease contract management (1).",
+      "technologies": ["Tagetik EPM", "Tagetik Lease Management"],
+      "startDate": "2017-11",
+      "endDate": "2018-03"
+    },
+    {
+      "id": "qad-portfolio",
+      "name": "Engagement Portfolio — QAD Inc.",
+      "description": "22 projects: ERP implementations (15), ERP interface design (5), financial management system implementations (2).",
+      "technologies": [
+        "QAD EE 2014–2018",
+        "QAD SE 2009–2012",
+        "eB2.1",
+        "Mfg/Pro",
+        "QXtend",
+        "Bank Driver Interface",
+        "Enterprise Asset Management",
+        "Fixed Asset Management"
+      ],
+      "startDate": "2014-10",
+      "endDate": "2017-11"
+    },
+    {
+      "id": "infor-portfolio",
+      "name": "Engagement Portfolio — Infor Global Solutions",
+      "description": "9 projects: ERP implementations (6), inventory & production reporting software (1), documentation repository (2).",
+      "technologies": [
+        "SyteLine",
+        "Infor Industrial Cloud Suite",
+        "Avalara Tax",
+        "Shop-Trak",
+        "Bartender",
+        "Doc-Trak"
+      ],
+      "startDate": "2012-11",
+      "endDate": "2014-10"
+    },
+    {
+      "id": "navistar-portfolio",
+      "name": "Engagement Portfolio — Navistar",
+      "description": "5 projects: Infor ERP LN implementation (1), Hyperion Financial Management implementation (1), business intelligence reporting (3).",
+      "technologies": [
+        "Infor ERP LN",
+        "Hyperion Financial Management",
+        "OBIEE Dashboards",
+        "Hyperion Reporting Studio",
+        "Teradata Warehousing"
+      ],
+      "startDate": "2012-01",
+      "endDate": "2012-11"
+    }
+  ],
+  "skills": [
+    {
+      "category": "Enterprise Applications",
+      "skills": [
+        "QAD ERP (SE, EE, Mfg/Pro, eB2, AUX)",
+        "QAD EAM",
+        "Infor CloudSuite Industrial (SyteLine)",
+        "Infor ERP LN",
+        "Baan IV ERP",
+        "Oracle PeopleSoft Financials",
+        "Hyperion Financial Management",
+        "Oracle Agile PLM",
+        "Tagetik EPM",
+        "OneStream"
+      ]
+    },
+    {
+      "category": "Programming Languages",
+      "skills": [
+        "Bash",
+        "PowerShell",
+        "Python",
+        "C#",
+        "Visual Basic",
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "SQL",
+        "MDX",
+        "DAX",
+        "Progress 4GL",
+        "PHP",
+        "LaTeX",
+        "Ruby"
+      ]
+    },
+    {
+      "category": "Databases",
+      "skills": [
+        "Databricks",
+        "Microsoft SQL Server",
+        "PostgreSQL",
+        "MySQL",
+        "Google BigQuery",
+        "AWS DynamoDB",
+        "Progress DB",
+        "Oracle SQL",
+        "Teradata"
+      ]
+    },
+    {
+      "category": "Data & Analytics",
+      "skills": ["Power BI", "Alteryx", "Python", "SQL", "DAX", "MDX"]
+    },
+    {
+      "category": "DevOps",
+      "skills": [
+        "Git",
+        "UML Notation",
+        "Continuous Integration Pipelines",
+        "Automated Testing",
+        "Server Orchestration"
+      ]
+    },
+    {
+      "category": "Cloud Services",
+      "skills": [
+        "Google Cloud Platform",
+        "Azure",
+        "Amazon Web Services",
+        "Microsoft Power Automate"
+      ]
+    },
+    {
+      "category": "Web & Integration",
+      "skills": [
+        "QXtend",
+        "RESTful Web APIs",
+        "SOAP",
+        "HTML5",
+        "CSS3",
+        "XML",
+        "JSON",
+        "Apache Tomcat"
+      ]
+    },
+    {
+      "category": "AI Engineering",
+      "skills": ["AI Agent Platform Development", "Prompt Engineering"]
+    },
+    {
+      "category": "Core Strengths",
+      "skills": [
+        "Financial Data Modeling",
+        "Fullstack Development",
+        "AI Engineering",
+        "Data Warehouse Design",
+        "BI Reporting",
+        "System Integrations",
+        "DevOps",
+        "Business Process Modeling",
+        "Financial System Design",
+        "ERP System Design",
+        "ERP Implementations",
+        "IT Cloud Architecture"
+      ]
+    }
+  ],
+  "certifications": [],
+  "languages": []
+}
