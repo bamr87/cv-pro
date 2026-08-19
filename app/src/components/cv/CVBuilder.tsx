@@ -31,6 +31,11 @@ export function CVBuilder() {
     toast.success('CV data imported from AI parsing!');
   };
 
+  const handleImported = (importedData: CVData) => {
+    setCvData(importedData);
+    setActiveTab('personal');
+  };
+
   const tabs = [
     { id: 'personal', label: 'Personal', icon: User },
     { id: 'experience', label: 'Experience', icon: Briefcase },
@@ -110,7 +115,7 @@ export function CVBuilder() {
         </TabsContent>
 
         <TabsContent value="export" className="space-y-6">
-          <ExportSection data={safeData} />
+          <ExportSection data={safeData} onImport={handleImported} />
         </TabsContent>
 
         <TabsContent value="ai-parser" className="space-y-6">

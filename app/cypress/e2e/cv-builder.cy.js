@@ -27,4 +27,18 @@ describe('CV Builder End-to-End Test', () => {
     // Basic assertion - check if toast appears
     cy.get('.sonner-toast').should('be.visible').contains('CV exported as Markdown');
   });
+
+  it('should import a cv.json data file (bamr87/cv round-trip)', () => {
+    cy.contains('Export').click();
+    cy.get('[data-testid="import-cv-json"]').selectFile('cypress/fixtures/cv.json', { force: true });
+
+    // Import lands back on the Personal tab with the fixture's data loaded
+    cy.get('input[id="fullName"]').should('have.value', 'Roundtrip Tester');
+    cy.get('input[id="email"]').should('have.value', 'roundtrip@example.com');
+
+    // The experience entry (including the location extension) came through
+    cy.contains('Experience').click();
+    cy.get('input[placeholder="Company Name"]').should('have.value', 'Fixture Corp');
+    cy.get('input[placeholder="City, State"]').first().should('have.value', 'Denver, CO');
+  });
 });

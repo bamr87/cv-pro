@@ -5,7 +5,8 @@ AI-powered CV/Resume builder with LaTeX templates, multiple export formats, and 
 ### Key Features
 - Personal, Experience, Education, Skills, Projects sections with validation
 - Persistent local storage for CV data (no account required)
-- Exports: Markdown (.md), ASCII Text (.txt), LaTeX source (.tex) with selectable templates
+- Exports: Markdown (.md), ASCII Text (.txt), LaTeX source (.tex) with selectable templates, and canonical CV data (cv.json)
+- Imports: cv.json (round-trips with the [bamr87/cv](https://github.com/bamr87/cv) build machine)
 - Optional AI CV parsing from pasted text or PDF (requires sign-in + API key)
 - Minimal auth layer using Firebase (email/password) to store AI settings
 
@@ -46,9 +47,17 @@ Open the URL printed by Vite.
 
 ### Export
 - Go to the Export tab
-- Choose format: Markdown, ASCII, or LaTeX (.tex)
+- Choose format: Markdown, ASCII, LaTeX (.tex), or CV Data (cv.json)
 - For LaTeX, pick a template (Minimal Professional or Academic Scholar)
 - Use Quick actions for one-click common exports
+
+### Round-trip with bamr87/cv (the build machine)
+[bamr87/cv](https://github.com/bamr87/cv) keeps the CV of record as `data/cv.json` — the exact shape this app edits — and runs the automation this app doesn't: CI-validated builds to Markdown/ASCII/LaTeX/HTML, a compiled PDF, GitHub Pages publishing, snapshot releases, and freshness reminders. The loop:
+1. **Import cv.json** (Export tab → Data File) to load that repo's `data/cv.json` into the forms
+2. Edit visually here (or parse a resume/PDF with the AI Parser)
+3. **Export cv.json** and commit it back as `data/cv.json`; the machine regenerates and publishes everything else
+
+The generation engine in that repo (`builder/`) is a Node port of this app's exporters (`src/lib/export-utils.ts`, `src/lib/latex-templates.ts`) over the shared `CVData` contract (`src/types/cv.ts`) — schema changes must land in both repos, backward-compatibly.
 
 ### AI Parser (optional)
 AI parsing extracts structured CV data from pasted text or PDF.
@@ -91,6 +100,7 @@ export interface CVData {
     current: boolean;
     description: string;
     achievements: string[];
+    location?: string;
   }>;
   education: Array<{
     id: string;
@@ -101,6 +111,7 @@ export interface CVData {
     endDate: string;
     gpa?: string;
     honors?: string;
+    location?: string;
   }>;
   projects: Array<{
     id: string;
