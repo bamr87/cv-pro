@@ -18,7 +18,7 @@
       "startDate": "2020-01",
       "endDate": "",
       "current": true,
-      "description": "Independent IT/finance consulting practice. Industry: FinTech · Scope: North America.",
+      "description": "Independent IT/finance consulting practice · Industry: FinTech · Scope: North America",
       "achievements": [
         "Technical/functional consulting in enterprise software (QAD, Infor LN, Infor Cloud Suite, HFM, OneStream)",
         "Fullstack development of custom web applications using Django, Ruby on Rails, and Angular",
@@ -42,7 +42,7 @@
       "startDate": "2025-04",
       "endDate": "",
       "current": true,
-      "description": "Industry: Polymers and Automotive · Scope: North America.",
+      "description": "Industry: Polymers and Automotive · Scope: North America",
       "achievements": [
         "Collaborate with stakeholders to gather requirements and develop roadmaps for ERP solutions aligned with organizational goals",
         "Provide technical direction and architectural oversight for high-quality design and implementation of ERP modules and integrations",
@@ -61,7 +61,7 @@
       "startDate": "2022-01",
       "endDate": "2023-11",
       "current": false,
-      "description": "Industry: Agriculture & Infrastructure Manufacturing · Scope: Worldwide.",
+      "description": "Industry: Agriculture & Infrastructure Manufacturing · Scope: Worldwide",
       "achievements": [
         "Partnered with IT and corporate accounting to analyze and solve complex financial system problems",
         "Collaborated with IT to design integration solutions with IFS to ensure Mexico localization compliance"
@@ -75,7 +75,7 @@
       "startDate": "2018-03",
       "endDate": "2020-01",
       "current": false,
-      "description": "Department: IT/Finance · Industry: Electronics Manufacturing Services · Scope: Worldwide.",
+      "description": "Department: IT/Finance · Industry: Electronics Manufacturing Services · Scope: Worldwide",
       "achievements": [
         "Manage IT-Finance projects worldwide and report progress to executive management",
         "Define/Manage data control methodology and governance related to finance"
@@ -89,7 +89,7 @@
       "startDate": "2017-11",
       "endDate": "2018-03",
       "current": false,
-      "description": "Division: CCH Tagetik · Industry: Enterprise Performance Management Software · Scope: North America.",
+      "description": "Division: CCH Tagetik · Industry: Enterprise Performance Management Software · Scope: North America",
       "achievements": [
         "Advised and assisted clients with the implementation of Tagetik CPM",
         "Supported the configuration, build, and setup of all features and functions to meet business/regulatory requirements"
@@ -103,7 +103,7 @@
       "startDate": "2014-10",
       "endDate": "2017-11",
       "current": false,
-      "description": "Department: Professional Consulting Services · Industry: Enterprise Resource Planning Software · Scope: Worldwide.",
+      "description": "Department: Professional Consulting Services · Industry: Enterprise Resource Planning Software · Scope: Worldwide",
       "achievements": [
         "Facilitated the upgrade process from Mfg/Pro to QAD Enterprise Edition at client sites, domestically and internationally",
         "Trained users on advanced finance functionality in QAD"
@@ -117,7 +117,7 @@
       "startDate": "2012-11",
       "endDate": "2014-10",
       "current": false,
-      "description": "Department: Professional Consulting Services · Industry: Enterprise Resource Planning Software · Scope: North America.",
+      "description": "Department: Professional Consulting Services · Industry: Enterprise Resource Planning Software · Scope: North America",
       "achievements": [
         "Implementation lead for various SyteLine ERP projects (design solution, perform testing, conduct training, analyze business processes)",
         "Implemented document repository system integrated with SyteLine"
@@ -131,7 +131,7 @@
       "startDate": "2012-01",
       "endDate": "2012-11",
       "current": false,
-      "description": "Department: Global Manufacturing Systems · Industry: Automotive Manufacturing · Scope: Worldwide.",
+      "description": "Department: Global Manufacturing Systems · Industry: Automotive Manufacturing · Scope: Worldwide",
       "achievements": [
         "Led the finance implementation of Infor ERP LN for the SST Truck Modification Center",
         "Designed and published standard reports out of OBIEE Dashboards to support the Truck Modification Center operations",
@@ -147,7 +147,7 @@
       "startDate": "2011-07",
       "endDate": "2011-12",
       "current": false,
-      "description": "Division: Engine Purchasing and Logistics · Industry: Engine Manufacturing · Scope: North America.",
+      "description": "Division: Engine Purchasing and Logistics · Industry: Engine Manufacturing · Scope: North America",
       "achievements": [
         "Constructed financial and Total Cost of Ownership (TCO) analyses of diesel engine components to support sourcing decisions",
         "Developed and streamlined new reporting processes that utilized Teradata Warehousing to report operational and performance metrics",
@@ -162,7 +162,7 @@
       "startDate": "2010-06",
       "endDate": "2011-07",
       "current": false,
-      "description": "Site: SST Truck Assembly Plant · Industry: Truck Manufacturing · Scope: North America.",
+      "description": "Site: SST Truck Assembly Plant · Industry: Truck Manufacturing · Scope: North America",
       "achievements": [
         "Responsible for monthly accounting close and financial reporting",
         "Produced weekly financial and operational analytics of the truck assembly plant",
@@ -178,7 +178,7 @@
       "startDate": "2010-01",
       "endDate": "2010-06",
       "current": false,
-      "description": "Division: Navistar Financial Corporation · Industry: Banking and Lending · Scope: Worldwide.",
+      "description": "Division: Navistar Financial Corporation · Industry: Banking and Lending · Scope: Worldwide",
       "achievements": [
         "Produced monthly updates and analyses of the retail and wholesale product pricing model for operational guidance",
         "Organized and reported results of the competitive market and economic outlook of the Class 4-8 Truck Industry",
@@ -193,7 +193,7 @@
       "startDate": "2009-05",
       "endDate": "2009-08",
       "current": false,
-      "description": "Division: Parts Group · Industry: Automotive Parts Distribution · Scope: Worldwide.",
+      "description": "Division: Parts Group · Industry: Automotive Parts Distribution · Scope: Worldwide",
       "achievements": [
         "Analyzed, organized, and consolidated financial models and supplemental materials for the Parts Group 5-year Strategic Plan",
         "Assisted with business development related projects and performed ad hoc financial modeling",
@@ -262,7 +262,11 @@
       "id": "aesse-portfolio",
       "name": "Engagement Portfolio — AESSE Investments LLC",
       "description": "2 engagements: QAD/AUX 2024 ERP upgrade (1), SDLC governance & change management program (1).",
-      "technologies": ["QAD AUX 2024", "SDLC Governance", "Change Management"],
+      "technologies": [
+        "QAD AUX 2024",
+        "SDLC Governance",
+        "Change Management"
+      ],
       "startDate": "2025-04"
     },
     {
@@ -287,7 +291,12 @@
       "id": "asteelflash-portfolio",
       "name": "Engagement Portfolio — AsteelFlash",
       "description": "7 projects: ERP implementations across North America, Germany, and France (5); accounting system modeling & configuration (2).",
-      "technologies": ["QAD EE 2014", "SAP", "Canias", "Hyperion Financial Management"],
+      "technologies": [
+        "QAD EE 2014",
+        "SAP",
+        "Canias",
+        "Hyperion Financial Management"
+      ],
       "startDate": "2018-03",
       "endDate": "2020-01"
     },
@@ -295,7 +304,10 @@
       "id": "wolters-kluwer-portfolio",
       "name": "Engagement Portfolio — Wolters Kluwer (CCH Tagetik)",
       "description": "2 implementations: Tagetik EPM (1), Tagetik lease contract management (1).",
-      "technologies": ["Tagetik EPM", "Tagetik Lease Management"],
+      "technologies": [
+        "Tagetik EPM",
+        "Tagetik Lease Management"
+      ],
       "startDate": "2017-11",
       "endDate": "2018-03"
     },
@@ -398,7 +410,14 @@
     },
     {
       "category": "Data & Analytics",
-      "skills": ["Power BI", "Alteryx", "Python", "SQL", "DAX", "MDX"]
+      "skills": [
+        "Power BI",
+        "Alteryx",
+        "Python",
+        "SQL",
+        "DAX",
+        "MDX"
+      ]
     },
     {
       "category": "DevOps",
@@ -434,7 +453,10 @@
     },
     {
       "category": "AI Engineering",
-      "skills": ["AI Agent Platform Development", "Prompt Engineering"]
+      "skills": [
+        "AI Agent Platform Development",
+        "Prompt Engineering"
+      ]
     },
     {
       "category": "Core Strengths",

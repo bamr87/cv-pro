@@ -17,12 +17,15 @@ import { exportToMarkdown } from './markdown.ts';
 import { exportToASCII } from './ascii.ts';
 import { latexTemplates } from './latex.ts';
 import { exportToHTML } from './html.ts';
+import { renderTexSections } from './tex.ts';
 
 export const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 export const DATA_FILE = join(ROOT, 'data', 'cv.json');
 export const CV_MD = join(ROOT, 'CV.md');
 export const DIST = join(ROOT, 'dist');
-export const HEADSHOT = join(ROOT, 'Amr-Headshot_v3.jpg');
+export const SECTIONS_DIR = join(ROOT, 'sections');
+export const HEADSHOT_NAME = 'Amr-Headshot_v3.jpg';
+export const HEADSHOT = join(ROOT, HEADSHOT_NAME);
 
 export const SOURCE_URL = 'https://github.com/bamr87/cv';
 export const EDIT_URL = 'https://github.com/bamr87/cv-builder-pro';
@@ -62,22 +65,42 @@ export function renderCvMd(data: CVData): string {
   return GENERATED_BANNER + '\n' + exportToMarkdown(data);
 }
 
+// Everything committed-and-generated, as { absolute path -> expected content }.
+// The build writes these; --check (and the test suite) diffs them so content
+// can never drift from data/cv.json on any committed surface — Markdown and
+// the LaTeX sections alike.
+export function committedSurfaces(data: CVData): Map<string, string> {
+  const surfaces = new Map<string, string>();
+  surfaces.set(CV_MD, renderCvMd(data));
+  const sections = renderTexSections(data, existsSync(HEADSHOT) ? HEADSHOT_NAME : null);
+  for (const [filename, content] of Object.entries(sections)) {
+    surfaces.set(join(SECTIONS_DIR, filename), content);
+  }
+  return surfaces;
+}
+
 function main(): void {
   const check = process.argv.includes('--check');
   const data = loadData();
-  const cvMd = renderCvMd(data);
+  const surfaces = committedSurfaces(data);
 
   if (check) {
-    const committed = existsSync(CV_MD) ? readFileSync(CV_MD, 'utf8') : '';
-    if (committed !== cvMd) {
-      console.error('error: CV.md is out of sync with data/cv.json — run `npm run build` and commit the result');
+    const stale: string[] = [];
+    for (const [path, expected] of surfaces) {
+      const committed = existsSync(path) ? readFileSync(path, 'utf8') : '';
+      if (committed !== expected) stale.push(path.slice(ROOT.length + 1));
+    }
+    if (stale.length > 0) {
+      console.error(
+        `error: generated surfaces out of sync with data/cv.json (${stale.join(', ')}) — run \`npm run build\` and commit the result`
+      );
       process.exit(1);
     }
-    console.log('CV.md is in sync with data/cv.json');
+    console.log('CV.md and sections/*.tex are in sync with data/cv.json');
     return;
   }
 
-  writeFileSync(CV_MD, cvMd);
+  for (const [path, content] of surfaces) writeFileSync(path, content);
 
   mkdirSync(join(DIST, 'assets'), { recursive: true });
   const hasPhoto = existsSync(HEADSHOT);
@@ -111,7 +134,9 @@ function main(): void {
     })
   );
 
-  console.log(`built: CV.md + dist/{index.html, cv.md, cv.txt, ${latexTemplates.map((t) => `cv-${t.id}.tex`).join(', ')}, cv.json}`);
+  console.log(
+    `built: CV.md + sections/*.tex + dist/{index.html, cv.md, cv.txt, ${latexTemplates.map((t) => `cv-${t.id}.tex`).join(', ')}, cv.json}`
+  );
 }
 
 const isDirectRun = process.argv[1] !== undefined && fileURLToPath(import.meta.url) === process.argv[1];

@@ -1,0 +1,57 @@
+{
+  // data/cv.json is the single source of truth — the schema gives completion,
+  // hover docs, and red squiggles while editing (also declared via $schema).
+  "json.schemas": [
+    {
+      "fileMatch": ["/data/cv.json", "/jd/*.tailored.json"],
+      "url": "./data/cv.schema.json"
+    }
+  ],
+
+  // Generated files: visible (they're committed and reviewed) but read-only in
+  // the editor so content edits are forced back to data/cv.json.
+  "files.readonlyInclude": {
+    "CV.md": true,
+    "sections/*.tex": true,
+    "dist/**": true
+  },
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/dist/**": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "dist": true
+  },
+
+  // LaTeX Workshop: latexmk drives cv.tex, artifacts stay out of the tree root
+  // clutter (aux files are gitignored anyway), preview in-editor.
+  "latex-workshop.latex.recipe.default": "latexmk",
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.view.pdf.viewer": "tab",
+
+  // CV prose runs through the spell checker; tech vocabulary lives here.
+  "cSpell.words": [
+    "Abdel",
+    "Motaleb",
+    "AESSE",
+    "Alteryx",
+    "AsteelFlash",
+    "Baan",
+    "bamr",
+    "BlackLine",
+    "Canias",
+    "Databricks",
+    "Infomart",
+    "Infomarts",
+    "Infor",
+    "latexmk",
+    "OneStream",
+    "QXtend",
+    "SyteLine",
+    "Tagetik",
+    "Teradata",
+    "texlive",
+    "Valmont"
+  ]
+}

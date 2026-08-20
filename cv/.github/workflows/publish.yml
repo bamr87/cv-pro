@@ -70,18 +70,43 @@ jobs:
       - name: Generate publishing bundle
         run: npm run build
 
+      # GITHUB_TOKEN can read but not CREATE the Pages site, and private-repo
+      # Pages needs a plan that includes it — so site creation is a one-time
+      # human act (Settings -> Pages -> Source: GitHub Actions). Until then
+      # this step fails; we degrade to a run artifact instead of a red run,
+      # and deploys switch on automatically once the site exists.
       - name: Configure Pages
+        id: pages
+        continue-on-error: true
         uses: actions/configure-pages@v5
         with:
           enablement: true
 
       - name: Upload Pages artifact
+        if: steps.pages.outcome == 'success'
         uses: actions/upload-pages-artifact@v4
         with:
           path: dist
 
+      - name: Pages unavailable — ship the bundle as a run artifact
+        if: steps.pages.outcome != 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: cv-publish-bundle
+          path: dist
+          retention-days: 30
+
+      - name: Pages unavailable — say so
+        if: steps.pages.outcome != 'success'
+        run: |
+          echo "::warning title=GitHub Pages not enabled::Configure Pages failed. GITHUB_TOKEN cannot create the Pages site, and a private repo needs a plan with Pages. One-time fix: Settings -> Pages -> Source: GitHub Actions (make the repo public if the plan requires it). Until then every publish ships the full bundle as this run's 'cv-publish-bundle' artifact, and releases still work."
+
+    outputs:
+      pages_ready: ${{ steps.pages.outcome == 'success' }}
+
   deploy:
     needs: build
+    if: needs.build.outputs.pages_ready == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:

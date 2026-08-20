@@ -14,7 +14,7 @@ Solutions architect at the intersection of IT and finance with 15+ years across 
 ### Solutions Architect – IT/Finance at BASH Consulting LLC
 *Jan 2020 – Present | Denver, CO*
 
-Independent IT/finance consulting practice. Industry: FinTech · Scope: North America.
+Independent IT/finance consulting practice · Industry: FinTech · Scope: North America
 
 - Technical/functional consulting in enterprise software (QAD, Infor LN, Infor Cloud Suite, HFM, OneStream)
 - Fullstack development of custom web applications using Django, Ruby on Rails, and Angular
@@ -32,7 +32,7 @@ Independent IT/finance consulting practice. Industry: FinTech · Scope: North Am
 ### ERP Architect at AESSE Investments
 *Apr 2025 – Present | Denver, CO*
 
-Industry: Polymers and Automotive · Scope: North America.
+Industry: Polymers and Automotive · Scope: North America
 
 - Collaborate with stakeholders to gather requirements and develop roadmaps for ERP solutions aligned with organizational goals
 - Provide technical direction and architectural oversight for high-quality design and implementation of ERP modules and integrations
@@ -45,7 +45,7 @@ Industry: Polymers and Automotive · Scope: North America.
 ### Sr. Manager, Accounting Systems & IT Business Partner at Valmont Industries
 *Jan 2022 – Nov 2023 | Denver, CO*
 
-Industry: Agriculture & Infrastructure Manufacturing · Scope: Worldwide.
+Industry: Agriculture & Infrastructure Manufacturing · Scope: Worldwide
 
 - Partnered with IT and corporate accounting to analyze and solve complex financial system problems
 - Collaborated with IT to design integration solutions with IFS to ensure Mexico localization compliance
@@ -53,7 +53,7 @@ Industry: Agriculture & Infrastructure Manufacturing · Scope: Worldwide.
 ### Global Business Analyst & Business Process Owner – Finance at AsteelFlash
 *Mar 2018 – Jan 2020 | Denver, CO*
 
-Department: IT/Finance · Industry: Electronics Manufacturing Services · Scope: Worldwide.
+Department: IT/Finance · Industry: Electronics Manufacturing Services · Scope: Worldwide
 
 - Manage IT-Finance projects worldwide and report progress to executive management
 - Define/Manage data control methodology and governance related to finance
@@ -61,7 +61,7 @@ Department: IT/Finance · Industry: Electronics Manufacturing Services · Scope:
 ### Senior Business Consultant at Wolters Kluwer
 *Nov 2017 – Mar 2018 | New York, NY*
 
-Division: CCH Tagetik · Industry: Enterprise Performance Management Software · Scope: North America.
+Division: CCH Tagetik · Industry: Enterprise Performance Management Software · Scope: North America
 
 - Advised and assisted clients with the implementation of Tagetik CPM
 - Supported the configuration, build, and setup of all features and functions to meet business/regulatory requirements
@@ -69,7 +69,7 @@ Division: CCH Tagetik · Industry: Enterprise Performance Management Software ·
 ### Finance IT Business Consultant at QAD Inc.
 *Oct 2014 – Nov 2017 | Denver, CO*
 
-Department: Professional Consulting Services · Industry: Enterprise Resource Planning Software · Scope: Worldwide.
+Department: Professional Consulting Services · Industry: Enterprise Resource Planning Software · Scope: Worldwide
 
 - Facilitated the upgrade process from Mfg/Pro to QAD Enterprise Edition at client sites, domestically and internationally
 - Trained users on advanced finance functionality in QAD
@@ -77,7 +77,7 @@ Department: Professional Consulting Services · Industry: Enterprise Resource Pl
 ### Applications Consultant at Infor Global Solutions
 *Nov 2012 – Oct 2014 | Denver, CO*
 
-Department: Professional Consulting Services · Industry: Enterprise Resource Planning Software · Scope: North America.
+Department: Professional Consulting Services · Industry: Enterprise Resource Planning Software · Scope: North America
 
 - Implementation lead for various SyteLine ERP projects (design solution, perform testing, conduct training, analyze business processes)
 - Implemented document repository system integrated with SyteLine
@@ -85,7 +85,7 @@ Department: Professional Consulting Services · Industry: Enterprise Resource Pl
 ### ERP/Baan Specialist at Navistar International
 *Jan 2012 – Nov 2012 | Chicago, IL*
 
-Department: Global Manufacturing Systems · Industry: Automotive Manufacturing · Scope: Worldwide.
+Department: Global Manufacturing Systems · Industry: Automotive Manufacturing · Scope: Worldwide
 
 - Led the finance implementation of Infor ERP LN for the SST Truck Modification Center
 - Designed and published standard reports out of OBIEE Dashboards to support the Truck Modification Center operations
@@ -95,7 +95,7 @@ Department: Global Manufacturing Systems · Industry: Automotive Manufacturing �
 ### Financial Analyst (Finance & Accounting Leadership Development Program) at Navistar International
 *Jul 2011 – Dec 2011 | Melrose Park, IL*
 
-Division: Engine Purchasing and Logistics · Industry: Engine Manufacturing · Scope: North America.
+Division: Engine Purchasing and Logistics · Industry: Engine Manufacturing · Scope: North America
 
 - Constructed financial and Total Cost of Ownership (TCO) analyses of diesel engine components to support sourcing decisions
 - Developed and streamlined new reporting processes that utilized Teradata Warehousing to report operational and performance metrics
@@ -104,7 +104,7 @@ Division: Engine Purchasing and Logistics · Industry: Engine Manufacturing · S
 ### Financial Analyst (Finance & Accounting Leadership Development Program) at Navistar International
 *Jun 2010 – Jul 2011 | Garland, TX*
 
-Site: SST Truck Assembly Plant · Industry: Truck Manufacturing · Scope: North America.
+Site: SST Truck Assembly Plant · Industry: Truck Manufacturing · Scope: North America
 
 - Responsible for monthly accounting close and financial reporting
 - Produced weekly financial and operational analytics of the truck assembly plant
@@ -114,7 +114,7 @@ Site: SST Truck Assembly Plant · Industry: Truck Manufacturing · Scope: North 
 ### Financial Analyst (Finance & Accounting Leadership Development Program) at Navistar International
 *Jan 2010 – Jun 2010 | Schaumburg, IL*
 
-Division: Navistar Financial Corporation · Industry: Banking and Lending · Scope: Worldwide.
+Division: Navistar Financial Corporation · Industry: Banking and Lending · Scope: Worldwide
 
 - Produced monthly updates and analyses of the retail and wholesale product pricing model for operational guidance
 - Organized and reported results of the competitive market and economic outlook of the Class 4-8 Truck Industry
@@ -123,7 +123,7 @@ Division: Navistar Financial Corporation · Industry: Banking and Lending · Sco
 ### Financial Analyst Intern at Navistar International
 *May 2009 – Aug 2009 | Warrenville, IL*
 
-Division: Parts Group · Industry: Automotive Parts Distribution · Scope: Worldwide.
+Division: Parts Group · Industry: Automotive Parts Distribution · Scope: Worldwide
 
 - Analyzed, organized, and consolidated financial models and supplemental materials for the Parts Group 5-year Strategic Plan
 - Assisted with business development related projects and performed ad hoc financial modeling

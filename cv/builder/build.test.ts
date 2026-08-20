@@ -12,7 +12,8 @@ import { exportToMarkdown } from './markdown.ts';
 import { exportToASCII } from './ascii.ts';
 import { escapeLatex, generateLaTeX, latexTemplates } from './latex.ts';
 import { exportToHTML } from './html.ts';
-import { CV_MD, loadData, renderCvMd } from './build.ts';
+import { texText, renderTexSections } from './tex.ts';
+import { committedSurfaces, loadData, ROOT } from './build.ts';
 
 const data: CVData = loadData();
 
@@ -40,10 +41,33 @@ test('validator rejects broken data', () => {
   assert.ok(errors.some((e) => e.startsWith('languages')), 'flags non-array languages');
 });
 
-test('committed CV.md is in sync with data/cv.json', () => {
-  assert.ok(existsSync(CV_MD), 'CV.md exists — run `npm run build`');
-  const committed = readFileSync(CV_MD, 'utf8');
-  assert.equal(committed, renderCvMd(data), 'CV.md drifted from data/cv.json — run `npm run build` and commit the result');
+test('every committed generated surface is in sync with data/cv.json', () => {
+  for (const [path, expected] of committedSurfaces(data)) {
+    const label = path.slice(ROOT.length + 1);
+    assert.ok(existsSync(path), `${label} exists — run \`npm run build\``);
+    assert.equal(
+      readFileSync(path, 'utf8'),
+      expected,
+      `${label} drifted from data/cv.json — run \`npm run build\` and commit the result`
+    );
+  }
+});
+
+test('tex sections are ASCII-safe and structurally complete', () => {
+  assert.equal(texText('2014–18 · C# — done'), "2014--18 ~$\\cdot$~ C\\# --- done");
+  const sections = renderTexSections(data, 'Amr-Headshot_v3.jpg');
+  for (const [name, content] of Object.entries(sections)) {
+    assert.ok(!/[–—·‘’“”]/.test(content), `${name}: no raw unicode punctuation`);
+    assert.ok(content.startsWith('% GENERATED FILE'), `${name}: carries the generated banner`);
+  }
+  assert.ok(sections['experience.tex'].includes('\\Experience'), 'experience uses the resume.sty macro');
+  assert.equal((sections['experience.tex'].match(/\\Experience\n/g) ?? []).length, data.experience.length);
+  assert.equal((sections['education.tex'].match(/\\Education\n/g) ?? []).length, data.education.length);
+  assert.equal((sections['projects.tex'].match(/\\CompanyProjects\{/g) ?? []).length, data.projects.length);
+  assert.ok(sections['skills.tex'].includes('C\\#'), 'skills escape LaTeX specials');
+  assert.ok(!sections['skills.tex'].includes('Core Strengths'), 'strengths split into their own section');
+  assert.ok(sections['strengths.tex'].includes('multicols'), 'strengths render as the 4-column block');
+  assert.ok(sections['heading.tex'].includes('\\faEnvelope'), 'heading keeps the fontawesome contact row');
 });
 
 test('markdown export contains the headline facts', () => {

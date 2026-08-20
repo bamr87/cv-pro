@@ -4,16 +4,18 @@ Guidance for AI coding agents (Claude Code, Copilot, Cursor) working in **cv**.
 
 ## What this is
 
-The CV of Amr Abdel-Motaleb run as a build machine: `data/cv.json` (canonical CVData, schema shared with [bamr87/cv-builder-pro](https://github.com/bamr87/cv-builder-pro)) is rendered by the TypeScript engine in `builder/` into Markdown (`CV.md`, committed + sync-gated), ASCII, generated LaTeX, and the HTML Pages site, while the hand-tuned LaTeX lane (`cv.tex` + `resume.sty` + `sections/*.tex`) produces `cv.pdf`. See `README.md` for the full architecture.
+The CV of Amr Abdel-Motaleb run as a build machine, edited primarily in VS Code: `data/cv.json` (canonical CVData, schema shared with [bamr87/cv-builder-pro](https://github.com/bamr87/cv-builder-pro)) is the single source of truth, rendered by the TypeScript engine in `builder/` into Markdown (`CV.md`), the LaTeX content sections (`sections/*.tex` — both committed + sync-gated), ASCII, portable LaTeX templates, and the HTML Pages site; `cv.tex` + `resume.sty` are the layout-only shell that turns the generated sections into `cv.pdf`. See `README.md` for the full architecture and the VS Code editing loop (`.vscode/` tasks, watch mode, snippets).
 
 ## Stack & commands
 
 ```bash
 # install dependencies:
 npm install
-# run the build (data/cv.json -> CV.md + dist/):
+# run the build (data/cv.json -> CV.md + sections/*.tex + dist/):
 npm run build
-# run tests (data contract + CV.md sync gate + generator invariants):
+# rebuild on every save (the VS Code editing loop; also the "CV: watch" task):
+npm run watch
+# run tests (data contract + CV.md/sections sync gates + generator invariants):
 npm test
 # lint (typecheck):
 npm run lint
@@ -25,8 +27,8 @@ latexmk -pdf cv.tex
 
 ## Rules of the machine
 
-- **`data/cv.json` is the single source of truth.** Content changes start there. Never edit `CV.md` by hand (generated; `npm test` fails on drift — always run `npm run build` and commit `CV.md` together with the data change).
-- **Two LaTeX lanes.** `dist/cv-*.tex` is generated — never hand-edit. `cv.tex`/`sections/*.tex` is artisanal — edit deliberately, and mirror substantive data changes into it (CI cannot check tex ↔ json sync; you must).
+- **`data/cv.json` is the single source of truth.** Content changes start there — never in a render. `CV.md` and `sections/*.tex` are generated and committed; `npm test` fails on any drift, so always run `npm run build` and commit the regenerated surfaces together with the data change.
+- **Layout ≠ content.** `cv.tex` + `resume.sty` carry typography/spacing/section order only — edit them for looks, never to add or change facts. `sections/*.tex` and `dist/**` are never hand-edited.
 - **The CVData contract is shared** with cv-builder-pro (`src/types/cv.ts` there, `builder/types.ts` + `data/cv.schema.json` here). Schema changes must land in both repos, backward-compatibly.
 - **This is real personal data.** Transcribe, reorder, and reformat — never invent facts, dates, employers, or credentials. Tailored variants (from the `jd/` loop) go in `jd/*.tailored.json`, not in `data/cv.json`.
 - Generated PDFs/renders belong in releases and Pages, not the working tree (`cv.pdf` is the one committed render; the publish workflow recompiles it).

@@ -1,0 +1,19 @@
+{
+  // One-click VS Code / Codespaces environment for the CV machine.
+  // Node powers the engine; the TeX Live install (chunky, ~2 GB) is only for
+  // in-editor PDF preview of cv.tex — skip the onCreateCommand if you're happy
+  // letting CI compile the PDF.
+  "name": "cv machine",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:22",
+  "onCreateCommand": "sudo apt-get update && sudo apt-get install -y --no-install-recommends latexmk texlive-latex-extra texlive-fonts-extra",
+  "postCreateCommand": "npm install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "james-yu.latex-workshop",
+        "ms-vscode.live-server",
+        "streetsidesoftware.code-spell-checker"
+      ]
+    }
+  }
+}

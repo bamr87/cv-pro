@@ -1,33 +1,35 @@
 # cv — the CV build, maintain & publish machine
 
-The CV of **Amr Abdel-Motaleb**, run like software: one canonical data file, generated renders in every format, automated publishing, and scheduled freshness checks. The generation engine is ported from (and round-trips with) [**CV Builder Pro**](https://github.com/bamr87/cv-builder-pro), this repo's companion editor app.
+The CV of **Amr Abdel-Motaleb**, run like software: one canonical data file edited in **VS Code**, generated renders in every format, automated publishing, and scheduled freshness checks. The generation engine is ported from (and round-trips with) [**CV Builder Pro**](https://github.com/bamr87/cv-builder-pro), this repo's companion app.
 
 **Read the CV**: [live site](https://bamr87.github.io/cv/) · [PDF](cv.pdf) · [Markdown](CV.md) · [releases](https://github.com/bamr87/cv/releases) (frozen snapshots).
 
 ## How the machine works
 
 ```text
+                 VS Code (schema completion, cv-* snippets, watch task)
+                                 │ edits
+                                 ▼
                     ┌───────────────────────────┐
-   edit directly →  │      data/cv.json         │  ← import/export with
-   (or via PR)      │  (canonical CVData, the   │    CV Builder Pro
-                    │   cv-builder-pro schema)  │
+                    │      data/cv.json         │ ← import/export with CV Builder Pro
+                    │  SINGLE SOURCE OF TRUTH   │ ← curated fleet proposals from the
+                    │  (CVData contract)        │    bamr87 hub (dash-gen cv)
                     └────────────┬──────────────┘
-                                 │  npm run build  (builder/ — engine ported
-                                 ▼                  from cv-builder-pro)
-        ┌──────────┬─────────────┼──────────────┬─────────────┐
-        ▼          ▼             ▼              ▼             ▼
-      CV.md    dist/cv.txt  dist/cv-*.tex  dist/index.html  dist/cv.json
-    (committed) (ASCII)     (generated       (Pages site)   (published data)
-                             LaTeX lane)
-                                 +
-                    cv.tex + resume.sty + sections/*.tex
-                    (artisanal LaTeX lane → cv.pdf, compiled by CI)
+                                 │  npm run build / watch   (builder/)
+        ┌──────────┬─────────────┼───────────────┬───────────────┐
+        ▼          ▼             ▼               ▼               ▼
+      CV.md    sections/*.tex  dist/cv.txt   dist/index.html  dist/cv-*.tex
+    (committed, (committed,    dist/cv.json  (Pages site)     (portable LaTeX
+     sync-gated) sync-gated)   (ASCII/data)                    templates)
+                     │
+                     ▼
+       cv.tex + resume.sty  =  LAYOUT ONLY  →  cv.pdf (compiled by CI)
                                  │
                                  ▼
               GitHub Pages  ·  GitHub Releases  ·  PR artifacts
 ```
 
-There are **two LaTeX lanes** by design. The *artisanal lane* (`cv.tex`, `resume.sty`, `sections/*.tex`) is the hand-tuned typography that produces the real `cv.pdf` — edit it like prose. The *generated lane* (`dist/cv-minimal.tex`, `dist/cv-academic.tex`) is rendered from `data/cv.json` by the engine and always tracks the data. When you change substance (a new role, project, or skill), update `data/cv.json` **and** mirror it into the artisanal sections; CI's sync gate only enforces data ↔ `CV.md`, so the LaTeX mirror is on you (or on `@claude`).
+**Content and layout are fully separated — there is no hand-mirrored copy of anything.** All content lives in `data/cv.json`; the engine renders it into every surface, including the `sections/*.tex` files that `cv.tex` inputs. `cv.tex` and `resume.sty` carry only typography, spacing, and section order — edit them for *looks*, never for *facts*. `CV.md` and `sections/*.tex` are committed-and-generated with a CI sync gate (`npm test`), so no surface can drift from the data.
 
 ## Routine loops
 
@@ -39,49 +41,47 @@ There are **two LaTeX lanes** by design. The *artisanal lane* (`cv.tex`, `resume
 | **Snapshot** | tag `vYYYY.MM.DD` or manual dispatch | GitHub release with recruiter-named PDF/MD/TXT/TeX/JSON assets — cut one every time the CV goes out the door |
 | **LaTeX preview** | PR touching `*.tex`/`*.sty`/images | compiles the artisanal lane, uploads the PDF as a run artifact |
 | **Tailoring** | [issue template](.github/ISSUE_TEMPLATE/tailor-cv.md) | paste a JD, `@claude` drafts a tailored variant into `jd/` as a PR |
+| **Fleet sync** | hub-driven (`dash-gen cv` + `sync-cv` skill) | the [bamr87 hub](https://github.com/bamr87/bamr87) projects its project registry into `_data/cv_portfolio.json` (this repo's CVData shapes) and proposes curated merges into `data/cv.json` — projects/skills flow in from the fleet, never as an automatic overwrite |
 
-## Editing the CV
+## Editing the CV — VS Code is the main editor
 
-Direct edit (any editor — the JSON Schema in `data/cv.schema.json` gives completion/validation):
+Open this repo in VS Code (or a Codespace — `.devcontainer/` sets up Node and TeX Live automatically) and accept the recommended extensions. Then:
 
-```bash
-npm install
-$EDITOR data/cv.json
-npm run build     # regenerates CV.md + dist/; commit CV.md with your change
-npm test          # what CI runs: contract validation + sync check
-```
+1. `npm install`, and start the **CV: watch** task (`Terminal → Run Task`, or `npm run watch`) — every save rebuilds every surface.
+2. Edit `data/cv.json`. The JSON Schema gives completion, hover docs, and validation squiggles; type `cv-experience`, `cv-education`, `cv-project`, or `cv-skill` for a snippet of a new entry. Generated files are marked read-only in the editor so edits can only land in the data.
+3. Preview as you type: open `dist/index.html` with **Live Preview** for the rendered CV, or `CV.md` with the built-in Markdown preview. For the PDF, run the **CV: PDF** task or open `cv.tex` with **LaTeX Workshop** (needs local TeX Live; CI compiles it for you otherwise).
+4. Commit the data change **together with the regenerated `CV.md` + `sections/*.tex`** (the watch/build task already wrote them) and open a PR — `npm test` in CI fails on any drift.
 
-Visual edit — round-trip through [CV Builder Pro](https://github.com/bamr87/cv-builder-pro):
+Typography is a separate concern: edit `resume.sty` / `cv.tex` for looks (the **latex-preview** workflow attaches a compiled PDF to any PR touching them).
 
-1. Run the app, use **Export → Import cv.json** to load `data/cv.json`.
-2. Edit in the forms, then **Export → JSON** to download the updated `cv.json`.
-3. Replace `data/cv.json`, run `npm run build`, and open a PR.
-
-Never edit `CV.md` by hand — it is generated, and CI fails if it drifts from the data.
+Other ways in, both landing on the same data file: **[CV Builder Pro](https://github.com/bamr87/cv-builder-pro)** (browser forms + AI parsing of an existing resume/PDF; use *Import cv.json* / *Export cv.json* to round-trip) and **fleet sync** (the hub proposes portfolio/skills updates — see below).
 
 ## Repo map
 
 | Path | What it is |
 | --- | --- |
 | `data/cv.json` | **Single source of truth** — CVData, the schema shared with CV Builder Pro |
-| `data/cv.schema.json` | JSON Schema for the contract |
-| `builder/` | The generation engine (TypeScript, ported from cv-builder-pro) |
+| `data/cv.schema.json` | JSON Schema for the contract (powers VS Code completion/validation) |
+| `builder/` | The generation engine (TypeScript, ported from cv-builder-pro) + watch mode |
 | `CV.md` | Generated Markdown render (committed, sync-gated) |
-| `cv.tex`, `resume.sty`, `sections/` | Artisanal LaTeX lane → `cv.pdf` |
-| `cv.pdf` | Latest artisanal render (recompiled by CI on publish) |
+| `sections/*.tex` | **Generated** LaTeX content (committed, sync-gated — never hand-edit) |
+| `cv.tex`, `resume.sty` | LaTeX **layout shell** → `cv.pdf` (edit for typography only) |
+| `cv.pdf` | Latest render (recompiled by CI on publish) |
 | `jd/` | Job descriptions + tailored CV variants |
 | `dist/` | Build output (gitignored; published to Pages) |
+| `.vscode/`, `.devcontainer/` | The editor kit: tasks, watch loop, snippets, schema wiring, extensions, Codespace image |
 | `.github/workflows/` | The loops: `ci`, `publish`, `release`, `latex-preview`, `markdown-oneline`, `claude` |
 
 ## Commands
 
 ```bash
 npm install        # deps (fleet policy: always-latest, no lockfile)
-npm run build      # data/cv.json -> CV.md + dist/
-npm run check      # is CV.md in sync? (CI gate)
+npm run build      # data/cv.json -> CV.md + sections/*.tex + dist/
+npm run watch      # same, on every save (the VS Code editing loop)
+npm run check      # are CV.md + sections/*.tex in sync? (CI gate)
 npm run lint       # tsc --noEmit
 npm test           # full gate: contract + sync + generator invariants
-latexmk -pdf cv.tex  # artisanal PDF locally (or let CI do it)
+latexmk -pdf cv.tex  # PDF locally (or let CI / LaTeX Workshop do it)
 ```
 
 ## Fleet context
