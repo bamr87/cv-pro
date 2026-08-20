@@ -32,7 +32,7 @@ jobs:
           root_file: cv.tex
 
       - name: Upload PDF preview
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: cv-pdf-preview
           path: cv.pdf
