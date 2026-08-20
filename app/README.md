@@ -52,12 +52,11 @@ Open the URL printed by Vite.
 - Use Quick actions for one-click common exports
 
 ### Round-trip with bamr87/cv (the build machine)
-[bamr87/cv](https://github.com/bamr87/cv) keeps the CV of record as `data/cv.json` — the exact shape this app edits — and runs the automation this app doesn't: CI-validated builds to Markdown/ASCII/LaTeX/HTML, a compiled PDF, GitHub Pages publishing, snapshot releases, and freshness reminders. The loop:
-1. **Import cv.json** (Export tab → Data File) to load that repo's `data/cv.json` into the forms
-2. Edit visually here (or parse a resume/PDF with the AI Parser)
-3. **Export cv.json** and commit it back as `data/cv.json`; the machine regenerates and publishes everything else
+[bamr87/cv](https://github.com/bamr87/cv) keeps the CV of record as `data/cv.json` — the exact shape this app edits — and runs the automation this app doesn't: CI-validated builds to Markdown/ASCII/LaTeX/HTML, a compiled PDF, GitHub Pages publishing, snapshot releases, and freshness reminders. **VS Code is the primary editor over there** (schema-backed completion, entry snippets, a rebuild-on-save watch task); this app is the visual/AI companion for two jobs it does better than a text editor:
+1. **AI intake** — parse an existing resume or PDF into structured CVData, then **Export cv.json** and commit it as that repo's `data/cv.json`
+2. **Form-based editing on the go** — **Import cv.json** (Export tab → Data File), edit in the forms, export back
 
-The generation engine in that repo (`builder/`) is a Node port of this app's exporters (`src/lib/export-utils.ts`, `src/lib/latex-templates.ts`) over the shared `CVData` contract (`src/types/cv.ts`) — schema changes must land in both repos, backward-compatibly.
+The `CVData` shape is a **two-repo contract**: `contract/cv.schema.json` is a byte-identical vendored copy of that repo's schema, and `npm test` (`scripts/contract-check.mjs`) fails CI if the Cypress fixture stops validating against it or `src/types/cv.ts` is missing any contract property. Change the contract only backward-compatibly, upstream-first — see [contract/README.md](contract/README.md). The generation engine in that repo (`builder/`) is a Node port of this app's exporters over the same contract.
 
 ### AI Parser (optional)
 AI parsing extracts structured CV data from pasted text or PDF.
@@ -141,6 +140,7 @@ Generated `.tex` can be compiled externally (e.g., Overleaf) if you don’t have
 - `npm run build` — Type-check then build for production
 - `npm run preview` — Preview the production build
 - `npm run lint` — Lint source
+- `npm test` — Contract gate: fixture validates against `contract/cv.schema.json`; types cover every contract property
 - `npm run optimize` — Vite dependency optimization
 
 ## Environment & Security

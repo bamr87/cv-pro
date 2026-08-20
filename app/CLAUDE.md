@@ -19,7 +19,7 @@ npm run preview    # serve the production dist/
 npm run kill       # fuser -k 5000/tcp
 ```
 
-**Tests** — there is no `npm test`. Tests are Cypress e2e specs (`cypress/e2e/*.cy.js`) that hit a **running** dev server at `http://localhost:5173` (see `cypress.config.js`). Start `npm run dev` first, then:
+**Tests** — `npm test` runs the **contract gate** (`scripts/contract-check.mjs`): the Cypress fixture must validate against `contract/cv.schema.json` (a byte-identical vendored copy of bamr87/cv's `data/cv.schema.json` — see `contract/README.md`), and `src/types/cv.ts` must contain every contract property. Standard-ci runs it. E2E tests are Cypress specs (`cypress/e2e/*.cy.js`) that hit a **running** dev server at `http://localhost:5173` (see `cypress.config.js`). Start `npm run dev` first, then:
 ```bash
 npx cypress run                                   # headless, all specs
 npx cypress run --spec cypress/e2e/cv-builder.cy.js   # single spec
@@ -37,7 +37,7 @@ Because `build` is type-unchecked, rely on `npm run lint` and the editor for typ
 
 **Export pipeline.** [src/lib/export-utils.ts](src/lib/export-utils.ts) builds Markdown/ASCII strings from `CVData` and exposes `downloadFile` (Blob + anchor click). [src/lib/latex-templates.ts](src/lib/latex-templates.ts) holds the selectable `latexTemplates` and `generateLaTeX(template, data)` — which LaTeX-escapes all interpolated values (`escapeLatex`) during normalization, so user content like `C#`/`FP&A` compiles. [ExportSection](src/components/cv/ExportSection.tsx) wires format choice → generator → `downloadFile`. To add an export format or LaTeX template, add to these two files and surface it in ExportSection.
 
-**Canonical JSON round-trip (bamr87/cv).** [src/lib/cv-json.ts](src/lib/cv-json.ts) serializes/parses the canonical `cv.json` — the exact file the sibling [bamr87/cv](https://github.com/bamr87/cv) repo keeps as `data/cv.json` and renders/publishes from (its `builder/` engine is a Node port of this app's exporters). ExportSection's "Data File" panel exposes Import/Export; import backfills missing `id`s (same convention as AIParser) and tolerates unknown keys. **The `CVData` shape in [src/types/cv.ts](src/types/cv.ts) is a two-repo contract**: change it only backward-compatibly, and land the same change in bamr87/cv's `builder/types.ts` + `data/cv.schema.json`.
+**Canonical JSON round-trip (bamr87/cv).** [src/lib/cv-json.ts](src/lib/cv-json.ts) serializes/parses the canonical `cv.json` — the exact file the sibling [bamr87/cv](https://github.com/bamr87/cv) repo keeps as `data/cv.json` and renders/publishes from (its `builder/` engine is a Node port of this app's exporters; VS Code is that repo's primary editor, this app is the visual/AI-intake companion). ExportSection's "Data File" panel exposes Import/Export; import backfills missing `id`s (same convention as AIParser) and tolerates unknown keys. **The `CVData` shape in [src/types/cv.ts](src/types/cv.ts) is a two-repo contract**: change it only backward-compatibly, land it upstream in bamr87/cv first (`builder/types.ts` + `data/cv.schema.json`), then refresh the vendored `contract/cv.schema.json` here — `npm test` enforces the alignment.
 
 **Routing/shell.** [src/App.tsx](src/App.tsx) wraps everything in `AuthProvider` + `BrowserRouter`. `/` is the builder, `/login`, `/settings` (behind a `Protected` route). [src/main.tsx](src/main.tsx) mounts under a `react-error-boundary` ([src/ErrorFallback.tsx](src/ErrorFallback.tsx)).
 
