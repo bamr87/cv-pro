@@ -1,0 +1,41 @@
+{
+  "personalInfo": {
+    "fullName": "Roundtrip Tester",
+    "email": "roundtrip@example.com",
+    "phone": "+1 (555) 010-0100",
+    "location": "Testville, TS",
+    "website": "https://example.com",
+    "linkedin": "https://linkedin.com/in/roundtrip",
+    "github": "https://github.com/roundtrip",
+    "summary": "Fixture matching bamr87/cv's data/cv.json shape, used to test the JSON import path."
+  },
+  "experience": [
+    {
+      "id": "exp-fixture-1",
+      "company": "Fixture Corp",
+      "position": "Contract Verifier",
+      "startDate": "2020-01",
+      "endDate": "",
+      "current": true,
+      "description": "Keeps the cv.json contract honest.",
+      "achievements": ["Imported successfully"],
+      "location": "Denver, CO"
+    }
+  ],
+  "education": [
+    {
+      "id": "edu-fixture-1",
+      "institution": "Test University",
+      "degree": "BSc",
+      "field": "Interoperability",
+      "startDate": "2015-08",
+      "endDate": "2019-05",
+      "gpa": "4.0",
+      "location": "Testville, TS"
+    }
+  ],
+  "projects": [],
+  "skills": [{ "category": "Formats", "skills": ["JSON", "LaTeX", "Markdown"] }],
+  "certifications": [],
+  "languages": []
+}

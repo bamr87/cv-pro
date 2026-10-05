@@ -97,7 +97,16 @@ export function EducationForm({ data, onChange }: EducationFormProps) {
                   placeholder="3.8/4.0"
                 />
               </div>
-              
+
+              <div className="space-y-2">
+                <Label>Location</Label>
+                <Input
+                  value={edu.location || ''}
+                  onChange={(e) => updateEducation(edu.id, 'location', e.target.value)}
+                  placeholder="City, State"
+                />
+              </div>
+
               <div className="space-y-2">
                 <Label>Start Date *</Label>
                 <Input

@@ -1,41 +1,46 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { DownloadSimple, FilePdf, FileText, Code } from '@phosphor-icons/react';
+import { DownloadSimple, FileText, Code, BracketsCurly, UploadSimple } from '@phosphor-icons/react';
 import { CVData } from '@/types/cv';
 import { exportToMarkdown, exportToASCII, downloadFile } from '@/lib/export-utils';
 import { latexTemplates, generateLaTeX } from '@/lib/latex-templates';
-import { useState } from 'react';
+import { serializeCVData, parseCVData } from '@/lib/cv-json';
+import { useRef, useState } from 'react';
 import { toast } from 'sonner';
 
 interface ExportSectionProps {
   data: CVData;
+  onImport?: (data: CVData) => void;
 }
 
-type ExportFormat = 'markdown' | 'ascii' | 'latex';
+type ExportFormat = 'markdown' | 'ascii' | 'latex' | 'json';
 
-export function ExportSection({ data }: ExportSectionProps) {
+export function ExportSection({ data, onImport }: ExportSectionProps) {
   const [selectedFormat, setSelectedFormat] = useState<ExportFormat>('markdown');
   const [selectedTemplate, setSelectedTemplate] = useState(latexTemplates[0].id);
+  const importInputRef = useRef<HTMLInputElement>(null);
 
   const handleExport = () => {
     const fileName = data.personalInfo.fullName.replace(/\s+/g, '_') || 'CV';
-    
+
     try {
       switch (selectedFormat) {
-        case 'markdown':
+        case 'markdown': {
           const markdown = exportToMarkdown(data);
           downloadFile(markdown, `${fileName}.md`, 'text/markdown');
           toast.success('CV exported as Markdown');
           break;
-          
-        case 'ascii':
+        }
+
+        case 'ascii': {
           const ascii = exportToASCII(data);
           downloadFile(ascii, `${fileName}.txt`, 'text/plain');
           toast.success('CV exported as ASCII text');
           break;
-          
-        case 'latex':
+        }
+
+        case 'latex': {
           const template = latexTemplates.find(t => t.id === selectedTemplate);
           if (template) {
             const latex = generateLaTeX(template, data);
@@ -43,10 +48,33 @@ export function ExportSection({ data }: ExportSectionProps) {
             toast.success('CV exported as LaTeX');
           }
           break;
+        }
+
+        case 'json': {
+          // Fixed filename: this is the canonical data file, drop-in for the
+          // bamr87/cv repo's data/cv.json.
+          downloadFile(serializeCVData(data), 'cv.json', 'application/json');
+          toast.success('CV data exported as cv.json');
+          break;
+        }
       }
     } catch (error) {
       console.error('Export failed:', error);
       toast.error('Export failed. Please try again.');
+    }
+  };
+
+  const handleImportFile = async (file: File | undefined) => {
+    if (!file || !onImport) return;
+    try {
+      const text = await file.text();
+      onImport(parseCVData(text));
+      toast.success(`Imported CV data from ${file.name}`);
+    } catch (error) {
+      console.error('Import failed:', error);
+      toast.error(`Import failed: ${error instanceof Error ? error.message : 'unreadable file'}`);
+    } finally {
+      if (importInputRef.current) importInputRef.current.value = '';
     }
   };
 
@@ -64,6 +92,8 @@ export function ExportSection({ data }: ExportSectionProps) {
         return <FileText className="w-4 h-4" />;
       case 'latex':
         return <Code className="w-4 h-4" />;
+      case 'json':
+        return <BracketsCurly className="w-4 h-4" />;
     }
   };
 
@@ -75,6 +105,8 @@ export function ExportSection({ data }: ExportSectionProps) {
         return 'Plain text format - universal compatibility, email-friendly';
       case 'latex':
         return 'LaTeX source code - for professional typesetting and PDF generation';
+      case 'json':
+        return 'Canonical CV data (cv.json) - round-trips with the bamr87/cv build machine';
     }
   };
 
@@ -114,6 +146,12 @@ export function ExportSection({ data }: ExportSectionProps) {
                   <div className="flex items-center gap-2">
                     <Code className="w-4 h-4" />
                     LaTeX Source (.tex)
+                  </div>
+                </SelectItem>
+                <SelectItem value="json">
+                  <div className="flex items-center gap-2">
+                    <BracketsCurly className="w-4 h-4" />
+                    CV Data (cv.json)
                   </div>
                 </SelectItem>
               </SelectContent>
@@ -166,8 +204,8 @@ export function ExportSection({ data }: ExportSectionProps) {
         <div className="border-t pt-4">
           <h4 className="font-medium mb-2">Quick Actions</h4>
           <div className="grid grid-cols-1 gap-2">
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               size="sm"
               onClick={() => {
                 setSelectedFormat('markdown');
@@ -178,8 +216,8 @@ export function ExportSection({ data }: ExportSectionProps) {
               <FileText className="w-4 h-4 mr-2" />
               Quick Export Markdown
             </Button>
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               size="sm"
               onClick={() => {
                 setSelectedFormat('latex');
@@ -192,6 +230,54 @@ export function ExportSection({ data }: ExportSectionProps) {
             </Button>
           </div>
         </div>
+
+        {onImport && (
+          <div className="border-t pt-4">
+            <h4 className="font-medium mb-2">Data File (bamr87/cv)</h4>
+            <p className="text-xs text-muted-foreground mb-2">
+              cv.json is the canonical data format shared with the{' '}
+              <a
+                href="https://github.com/bamr87/cv"
+                target="_blank"
+                rel="noreferrer"
+                className="underline"
+              >
+                bamr87/cv build machine
+              </a>
+              : import its data/cv.json to edit here, export it back to publish.
+            </p>
+            <input
+              ref={importInputRef}
+              type="file"
+              accept=".json,application/json"
+              className="hidden"
+              data-testid="import-cv-json"
+              onChange={(e) => handleImportFile(e.target.files?.[0])}
+            />
+            <div className="grid grid-cols-1 gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => importInputRef.current?.click()}
+              >
+                <UploadSimple className="w-4 h-4 mr-2" />
+                Import cv.json
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => {
+                  setSelectedFormat('json');
+                  setTimeout(handleExport, 100);
+                }}
+                disabled={!isDataComplete()}
+              >
+                <BracketsCurly className="w-4 h-4 mr-2" />
+                Export cv.json
+              </Button>
+            </div>
+          </div>
+        )}
       </CardContent>
     </Card>
   );
