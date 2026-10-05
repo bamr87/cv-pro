@@ -99,7 +99,16 @@ export function ExperienceForm({ data, onChange }: ExperienceFormProps) {
                   required
                 />
               </div>
-              
+
+              <div className="space-y-2">
+                <Label>Location</Label>
+                <Input
+                  value={exp.location || ''}
+                  onChange={(e) => updateExperience(exp.id, 'location', e.target.value)}
+                  placeholder="City, State"
+                />
+              </div>
+
               <div className="space-y-2">
                 <Label>Start Date *</Label>
                 <Input

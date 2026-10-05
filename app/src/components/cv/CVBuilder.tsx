@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { usePersistedState } from '@/lib/usePersistedState';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { PersonalInfoForm } from './PersonalInfoForm';
 import { ExperienceForm } from './ExperienceForm';
 import { EducationForm } from './EducationForm';
@@ -30,6 +29,11 @@ export function CVBuilder() {
     setCvData(parsedData);
     setActiveTab('personal');
     toast.success('CV data imported from AI parsing!');
+  };
+
+  const handleImported = (importedData: CVData) => {
+    setCvData(importedData);
+    setActiveTab('personal');
   };
 
   const tabs = [
@@ -111,7 +115,7 @@ export function CVBuilder() {
         </TabsContent>
 
         <TabsContent value="export" className="space-y-6">
-          <ExportSection data={safeData} />
+          <ExportSection data={safeData} onImport={handleImported} />
         </TabsContent>
 
         <TabsContent value="ai-parser" className="space-y-6">

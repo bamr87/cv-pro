@@ -1,4 +1,3 @@
-/// <reference path="../../vite-end.d.ts" />
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -11,12 +10,6 @@ import { db, firebaseReady } from '@/lib/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { extractTextFromPdf } from '@/lib/pdf';
 import { parseCvText, AISettings } from '@/lib/aiClient';
-
-// Declare spark for this file
-declare const spark: {
-  llmPrompt: (strings: TemplateStringsArray, ...values: any[]) => string;
-  llm: (prompt: string, modelName?: string, jsonMode?: boolean) => Promise<string>;
-};
 
 interface AIParserProps {
   onParsed: (data: CVData) => void;
@@ -130,7 +123,7 @@ export function AIParser({ onParsed }: AIParserProps) {
         setIsLoading(true);
         const text = await extractTextFromPdf(file);
         await parseWithAI(text);
-      } catch (e) {
+      } catch {
         toast.error('Failed to extract text from PDF');
       } finally {
         setIsLoading(false);
