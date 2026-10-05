@@ -28,7 +28,7 @@ export function SettingsPage() {
           setProvider((data.provider as Provider) || 'grok');
           setApiKey(data.apiKey || '');
         }
-      } catch (e) {
+      } catch {
         // noop
       } finally {
         setLoading(false);

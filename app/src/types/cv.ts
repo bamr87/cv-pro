@@ -18,6 +18,7 @@ export interface Experience {
   current: boolean;
   description: string;
   achievements: string[];
+  location?: string;
 }
 
 export interface Education {
@@ -29,6 +30,7 @@ export interface Education {
   endDate: string;
   gpa?: string;
   honors?: string;
+  location?: string;
 }
 
 export interface Project {
