@@ -155,6 +155,38 @@ export const latexTemplates: LaTeXTemplate[] = [
   }
 ];
 
+// LaTeX-escape user content so real-world values (C#, FP&A, 100%, snake_case)
+// produce compilable documents instead of breaking the template. Escaping runs
+// over the normalized data before interpolation, so the templates themselves
+// stay untouched.
+const LATEX_SPECIALS: Record<string, string> = {
+  '\\': '\\textbackslash{}',
+  '&': '\\&',
+  '%': '\\%',
+  '$': '\\$',
+  '#': '\\#',
+  '_': '\\_',
+  '{': '\\{',
+  '}': '\\}',
+  '~': '\\textasciitilde{}',
+  '^': '\\textasciicircum{}',
+};
+
+export function escapeLatex(text: string): string {
+  return text.replace(/[\\&%$#_{}~^]/g, (ch) => LATEX_SPECIALS[ch]);
+}
+
+function escapeDeep<T>(value: T): T {
+  if (typeof value === 'string') return escapeLatex(value) as unknown as T;
+  if (Array.isArray(value)) return value.map(escapeDeep) as unknown as T;
+  if (value && typeof value === 'object') {
+    return Object.fromEntries(
+      Object.entries(value as Record<string, unknown>).map(([k, v]) => [k, escapeDeep(v)])
+    ) as unknown as T;
+  }
+  return value;
+}
+
 export function generateLaTeX(template: LaTeXTemplate, data: any): string {
   // Use Function constructor to create a template function
   // This safely evaluates the template string with the provided data
@@ -177,7 +209,7 @@ export function generateLaTeX(template: LaTeXTemplate, data: any): string {
         technologies: Array.isArray(proj?.technologies) ? proj.technologies : [],
       }));
 
-      return {
+      return escapeDeep({
         fullName: personal.fullName ?? '',
         phone: personal.phone ?? '',
         email: personal.email ?? '',
@@ -190,7 +222,7 @@ export function generateLaTeX(template: LaTeXTemplate, data: any): string {
         education: normalizedEducation,
         projects: normalizedProjects,
         skills: Array.isArray(data?.skills) ? data.skills : [],
-      };
+      });
     })();
 
     const templateFunction = new Function('data', `
