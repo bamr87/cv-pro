@@ -28,7 +28,7 @@ export function usePersistedState<T>(key: string, initialValue: T) {
   }, []);
 
   const remove = useCallback(() => {
-    try { localStorage.removeItem(key); } catch {}
+    try { localStorage.removeItem(key); } catch { /* ignore storage errors */ }
   }, [key]);
 
   return [state, set, remove] as const;

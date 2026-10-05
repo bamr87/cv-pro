@@ -2,7 +2,6 @@ import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist';
 
 // Configure worker (pdfjs v4+). Host the worker from the package.
 // Vite will bundle this import path correctly.
-// @ts-ignore - pdfjs types may not expose exact path
 GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
 
 export async function extractTextFromPdf(file: File): Promise<string> {
