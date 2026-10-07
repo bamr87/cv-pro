@@ -18,14 +18,14 @@ describe('CV Builder End-to-End Test', () => {
     cy.get('input[placeholder="Job Title"]').type('Test Position');
     cy.get('input[type="month"]').first().type('2020-01');
     cy.get('input[type="month"]').last().type('2023-01');
-    cy.get('textarea[placeholder="Brief description"]').type('Test description');
+    cy.get('textarea[placeholder^="Brief description"]').type('Test description');
 
     // Navigate to Export tab
     cy.contains('Export').click();
     cy.contains('Export as MARKDOWN').click();
 
     // Basic assertion - check if toast appears
-    cy.get('.sonner-toast').should('be.visible').contains('CV exported as Markdown');
+    cy.contains('[data-sonner-toast]', 'CV exported as Markdown').should('be.visible');
   });
 
   it('should import a cv.json data file (bamr87/cv round-trip)', () => {
@@ -40,5 +40,19 @@ describe('CV Builder End-to-End Test', () => {
     cy.contains('Experience').click();
     cy.get('input[placeholder="Company Name"]').should('have.value', 'Fixture Corp');
     cy.get('input[placeholder="City, State"]').first().should('have.value', 'Denver, CO');
+  });
+
+  it('quick-exports the format on the button, not the one in the dropdown', () => {
+    // Regression: the Quick Actions used to call setSelectedFormat and then a
+    // setTimeout'd handler that still closed over the previous format, so this
+    // button exported Markdown (the default selection) instead of LaTeX.
+    cy.contains('Export').click();
+    cy.get('[data-testid="import-cv-json"]').selectFile('cypress/fixtures/cv.json', { force: true });
+
+    cy.contains('Export').click();
+    cy.contains('Export Format').parent().contains('Markdown (.md)');
+    cy.contains('Quick Export LaTeX').click();
+
+    cy.contains('[data-sonner-toast]', 'CV exported as LaTeX').should('be.visible');
   });
 });

@@ -10,6 +10,7 @@ import { db, firebaseReady } from '@/lib/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { extractTextFromPdf } from '@/lib/pdf';
 import { parseCvText, AISettings } from '@/lib/aiClient';
+import { parseCVData } from '@/lib/cv-json';
 
 interface AIParserProps {
   onParsed: (data: CVData) => void;
@@ -57,59 +58,39 @@ export function AIParser({ onParsed }: AIParserProps) {
       }
 
       const jsonString = await parseCvText(settings, text);
+      let parsedData: CVData;
       try {
-        const parsedData = JSON.parse(jsonString);
-        
-        // Add IDs if missing
-        if (parsedData.experience) {
-          parsedData.experience = parsedData.experience.map((exp: any, index: number) => ({
-            ...exp,
-            id: exp.id || `exp-${Date.now()}-${index}`,
-            achievements: exp.achievements || []
-          }));
-        }
-        
-        if (parsedData.education) {
-          parsedData.education = parsedData.education.map((edu: any, index: number) => ({
-            ...edu,
-            id: edu.id || `edu-${Date.now()}-${index}`
-          }));
-        }
-        
-        if (parsedData.projects) {
-          parsedData.projects = parsedData.projects.map((proj: any, index: number) => ({
-            ...proj,
-            id: proj.id || `proj-${Date.now()}-${index}`,
-            technologies: proj.technologies || []
-          }));
-        }
-
-        // Ensure required arrays exist
-        parsedData.experience = parsedData.experience || [];
-        parsedData.education = parsedData.education || [];
-        parsedData.projects = parsedData.projects || [];
-        parsedData.skills = parsedData.skills || [];
-        parsedData.certifications = parsedData.certifications || [];
-        parsedData.languages = parsedData.languages || [];
-
-        onParsed(parsedData);
-        toast.success('CV parsed successfully!');
-        setCvText('');
+        // Normalize through the same reader the cv.json import uses: it backfills
+        // missing ids, fills absent sections, drops keys outside the contract, and
+        // rejects a response that is not a CV — so a provider's error payload or a
+        // half-hallucinated object can never be handed to the forms as CVData.
+        parsedData = parseCVData(jsonString);
       } catch (parseError) {
         console.error('Failed to parse AI response:', parseError);
-        toast.error('Failed to parse CV. Please check the format and try again.');
+        toast.error('The AI did not return usable CV data. Try again, or paste a cleaner excerpt.');
+        return;
       }
+
+      onParsed(parsedData);
+      toast.success('CV parsed successfully!');
+      setCvText('');
     } catch (error) {
+      // Surface the provider's own message (bad key, quota, rate limit) — it is
+      // the only part of this failure the user can act on.
       console.error('AI parsing failed:', error);
-      toast.error('AI parsing failed. Please try again.');
+      toast.error(`AI parsing failed: ${error instanceof Error ? error.message : 'unknown error'}`);
     } finally {
       setIsLoading(false);
     }
   };
 
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
+    const input = event.target;
+    const file = input.files?.[0];
     if (!file) return;
+    // Clear the picker (the File reference above stays valid) so re-selecting the
+    // same file after a failed parse still fires onChange instead of doing nothing.
+    input.value = '';
 
     if (file.type === 'text/plain') {
       const reader = new FileReader();
@@ -117,6 +98,7 @@ export function AIParser({ onParsed }: AIParserProps) {
         const text = e.target?.result as string;
         parseWithAI(text);
       };
+      reader.onerror = () => toast.error('Could not read the selected file');
       reader.readAsText(file);
     } else if (file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf')) {
       try {

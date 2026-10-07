@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
-import { db } from '@/lib/firebase';
+import { db, firebaseReady } from '@/lib/firebase';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -18,7 +18,9 @@ export function SettingsPage() {
 
   useEffect(() => {
     const load = async () => {
-      if (!user) return;
+      // db is undefined when the VITE_FIREBASE_* env vars are absent — same guard
+      // the rest of the app uses before touching Firestore.
+      if (!user || !firebaseReady || !db) return;
       setLoading(true);
       try {
         const ref = doc(db, 'users', user.uid, 'settings', 'ai');
@@ -39,6 +41,10 @@ export function SettingsPage() {
 
   const save = async () => {
     if (!user) return;
+    if (!firebaseReady || !db) {
+      toast.error('Firebase is not configured — AI settings cannot be saved');
+      return;
+    }
     setLoading(true);
     try {
       const ref = doc(db, 'users', user.uid, 'settings', 'ai');

@@ -21,11 +21,14 @@ export function ExportSection({ data, onImport }: ExportSectionProps) {
   const [selectedTemplate, setSelectedTemplate] = useState(latexTemplates[0].id);
   const importInputRef = useRef<HTMLInputElement>(null);
 
-  const handleExport = () => {
+  // The Quick Actions pass their format in explicitly. Calling setSelectedFormat
+  // and then reading selectedFormat would still see the previous render's value,
+  // so a one-click export has to be told which format it is.
+  const handleExport = (format: ExportFormat = selectedFormat) => {
     const fileName = data.personalInfo.fullName.replace(/\s+/g, '_') || 'CV';
 
     try {
-      switch (selectedFormat) {
+      switch (format) {
         case 'markdown': {
           const markdown = exportToMarkdown(data);
           downloadFile(markdown, `${fileName}.md`, 'text/markdown');
@@ -42,11 +45,10 @@ export function ExportSection({ data, onImport }: ExportSectionProps) {
 
         case 'latex': {
           const template = latexTemplates.find(t => t.id === selectedTemplate);
-          if (template) {
-            const latex = generateLaTeX(template, data);
-            downloadFile(latex, `${fileName}.tex`, 'text/plain');
-            toast.success('CV exported as LaTeX');
-          }
+          if (!template) throw new Error(`Unknown LaTeX template "${selectedTemplate}"`);
+          const latex = generateLaTeX(template, data);
+          downloadFile(latex, `${fileName}.tex`, 'text/plain');
+          toast.success('CV exported as LaTeX');
           break;
         }
 
@@ -182,8 +184,8 @@ export function ExportSection({ data, onImport }: ExportSectionProps) {
             </div>
           )}
 
-          <Button 
-            onClick={handleExport} 
+          <Button
+            onClick={() => handleExport()}
             disabled={!isDataComplete()}
             className="w-full"
             size="lg"
@@ -209,7 +211,7 @@ export function ExportSection({ data, onImport }: ExportSectionProps) {
               size="sm"
               onClick={() => {
                 setSelectedFormat('markdown');
-                setTimeout(handleExport, 100);
+                handleExport('markdown');
               }}
               disabled={!isDataComplete()}
             >
@@ -221,7 +223,7 @@ export function ExportSection({ data, onImport }: ExportSectionProps) {
               size="sm"
               onClick={() => {
                 setSelectedFormat('latex');
-                setTimeout(handleExport, 100);
+                handleExport('latex');
               }}
               disabled={!isDataComplete()}
             >
@@ -268,7 +270,7 @@ export function ExportSection({ data, onImport }: ExportSectionProps) {
                 size="sm"
                 onClick={() => {
                   setSelectedFormat('json');
-                  setTimeout(handleExport, 100);
+                  handleExport('json');
                 }}
                 disabled={!isDataComplete()}
               >

@@ -5,6 +5,37 @@ export interface AISettings {
   apiKey: string;
 }
 
+// Providers report a bad key, an exhausted quota or a rejected request with an
+// HTTP status and a JSON error body. Without this, a 401 fell through to
+// "Invalid response from <provider>" (or, for Affinda, was handed on as if it
+// were a parsed CV), so the one thing the user could actually fix was hidden.
+async function assertOk(res: Response, provider: string): Promise<void> {
+  if (res.ok) return;
+  const body = await res.text().catch(() => '');
+  const detail = errorDetail(body) ?? `${res.status} ${res.statusText}`;
+  throw new Error(`${provider} rejected the request (HTTP ${res.status}): ${detail}`);
+}
+
+function errorDetail(body: string): string | undefined {
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(body);
+  } catch {
+    return body.slice(0, 200) || undefined;
+  }
+  if (typeof parsed !== 'object' || parsed === null) return body.slice(0, 200) || undefined;
+  const record = parsed as Record<string, unknown>;
+  // OpenAI/xAI: { error: { message } }; Affinda: { error } or { detail }.
+  if (typeof record.error === 'object' && record.error !== null) {
+    const message = (record.error as Record<string, unknown>).message;
+    if (typeof message === 'string') return message;
+  }
+  for (const key of ['error', 'message', 'detail'] as const) {
+    if (typeof record[key] === 'string') return record[key] as string;
+  }
+  return body.slice(0, 200) || undefined;
+}
+
 export async function parseCvText(settings: AISettings, text: string): Promise<string> {
   // Returns raw JSON string from provider
   const systemPrompt = `Extract CV/resume information from the following text and return it as a structured JSON object with keys: personalInfo, experience[], education[], projects[], skills[], certifications[], languages[]. Use YYYY-MM for dates.`;
@@ -27,6 +58,7 @@ export async function parseCvText(settings: AISettings, text: string): Promise<s
         temperature: 0,
       }),
     });
+    await assertOk(res, 'xAI Grok');
     const data = await res.json();
     const content = data?.choices?.[0]?.message?.content;
     if (!content) throw new Error('Invalid response from Grok');
@@ -51,6 +83,7 @@ export async function parseCvText(settings: AISettings, text: string): Promise<s
         temperature: 0,
       }),
     });
+    await assertOk(res, 'OpenAI');
     const data = await res.json();
     const content = data?.choices?.[0]?.message?.content;
     if (!content) throw new Error('Invalid response from OpenAI');
@@ -67,6 +100,7 @@ export async function parseCvText(settings: AISettings, text: string): Promise<s
       },
       body: JSON.stringify({ data: text, extractor: 'resume' }),
     });
+    await assertOk(res, 'Affinda');
     const data = await res.json();
     // Convert Affinda structure to our expected JSON; for now return raw
     return JSON.stringify(data);

@@ -38,7 +38,7 @@ If Firebase env vars are not set, the app still works offline for CV editing and
 ```bash
 npm run dev
 ```
-Open the URL printed by Vite.
+Open `http://localhost:5000` (the Spark Vite plugin pins the dev server to port 5000; `npm run kill` frees it if something else is holding it).
 
 ## Usage
 ### Build your CV
@@ -70,12 +70,18 @@ AI parsing extracts structured CV data from pasted text or PDF.
 Notes:
 - PDF support uses text extraction via pdf.js (layout may be imperfect depending on the source)
 - Your AI API key is saved under your user in Firestore; CV content remains in your browser storage
+- The provider's response is normalized through the same reader as `Import cv.json`, so anything that is not a CV in the contract shape is rejected with a toast instead of replacing your data
+- Affinda is selectable but not yet mapped: `parseCvText` returns its raw payload, which the normalizer rejects. Use xAI Grok or OpenAI for now
 
 ## Project Structure
 - `src/components/cv` — Forms, AI parser, export panel, main `CVBuilder`
+- `src/components/ui` — shadcn/ui primitives (generated; add new ones with the shadcn CLI)
 - `src/types/cv.ts` — Strongly-typed CV data model
-- `src/lib` — Firebase init, export helpers, LaTeX templates, PDF extraction, AI client
+- `src/lib` — Firebase init, export helpers, LaTeX templates, PDF extraction, AI client, cv.json reader/writer
 - `src/pages` — `LoginPage`, `SettingsPage`
+- `contract/` — Vendored copy of the bamr87/cv `cv.schema.json` plus the update procedure
+- `scripts/contract-check.mjs` — The `npm test` contract gate
+- `cypress/` — End-to-end specs and the round-trip `cv.json` fixture
 
 ### Data Model (excerpt)
 ```ts
@@ -136,12 +142,23 @@ Two starter templates are included and selectable in the Export tab:
 Generated `.tex` can be compiled externally (e.g., Overleaf) if you don’t have a local LaTeX toolchain.
 
 ## Scripts
-- `npm run dev` — Start dev server
-- `npm run build` — Type-check then build for production
+- `npm run dev` — Start the dev server on `http://localhost:5000` (the Spark Vite plugin pins the port; it is not Vite's usual 5173)
+- `npm run build` — Build for production (`tsc -b --noCheck && vite build`) — **`--noCheck` means type errors do not fail the build**; use `npm run lint` and `npx tsc --noEmit` for type feedback
 - `npm run preview` — Preview the production build
 - `npm run lint` — Lint source
 - `npm test` — Contract gate: fixture validates against `contract/cv.schema.json`; types cover every contract property
 - `npm run optimize` — Vite dependency optimization
+- `npm run kill` — Free port 5000 (`fuser -k 5000/tcp`), for the parent repo's compose setup
+
+## Testing
+`npm test` runs the contract gate ([scripts/contract-check.mjs](scripts/contract-check.mjs)) and is what CI enforces — it needs no browser and no dev server.
+
+The Cypress end-to-end specs in [cypress/e2e](cypress/e2e) drive a **running** dev server at `http://localhost:5000` (Cypress's `baseUrl`; override with `CYPRESS_BASE_URL`), so start it first:
+```bash
+npm run dev                 # in one terminal
+npx cypress run             # headless, all specs — in another
+npx cypress open            # interactive runner
+```
 
 ## Environment & Security
 - Do not embed AI provider API keys in client env vars; use the in-app Settings page so keys are stored per-user in Firestore
