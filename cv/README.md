@@ -1,5 +1,11 @@
 # cv — the CV build, maintain & publish machine
 
+> Amr's CV as code: one cv.json rendered to Markdown, LaTeX, HTML and PDF, with automated publishing and releases.
+
+[![CI](https://github.com/bamr87/cv/actions/workflows/ci.yml/badge.svg)](https://github.com/bamr87/cv/actions/workflows/ci.yml)
+
+## Overview
+
 The CV of **Amr Abdel-Motaleb**, run like software: one canonical data file edited in **VS Code**, generated renders in every format, automated publishing, and scheduled freshness checks. The generation engine is ported from (and round-trips with) [**CV Builder Pro**](https://github.com/bamr87/cv-builder-pro), this repo's companion app.
 
 **Read the CV**: [live site](https://bamr87.github.io/cv/) · [PDF](cv.pdf) · [Markdown](CV.md) · [releases](https://github.com/bamr87/cv/releases) (frozen snapshots).
@@ -56,8 +62,7 @@ Typography is a separate concern: edit `resume.sty` / `cv.tex` for looks (the **
 
 Other ways in, both landing on the same data file: **[CV Builder Pro](https://github.com/bamr87/cv-builder-pro)** (browser forms + AI parsing of an existing resume/PDF; use *Import cv.json* / *Export cv.json* to round-trip) and **fleet sync** (the hub proposes portfolio/skills updates — see below).
 
-## Repo map
-
+## Project structure
 | Path | What it is |
 | --- | --- |
 | `data/cv.json` | **Single source of truth** — CVData, the schema shared with CV Builder Pro |
@@ -87,3 +92,30 @@ latexmk -pdf cv.tex  # PDF locally (or let CI / LaTeX Workshop do it)
 ## Fleet context
 
 This repo is one of ~40 managed by the [bamr87/bamr87 dash](https://github.com/bamr87/bamr87) (registry: `_data/projects.yml`) and is vendored there as a git submodule — commit and push here first; the hub bumps its pointer afterwards. Its sibling [cv-builder-pro](https://github.com/bamr87/cv-builder-pro) provides the editing UI and AI parsing (paste a resume or PDF, get CVData back); this repo provides the data of record, the render pipeline, and the publishing automation.
+
+## Development
+
+```bash
+npm test         # data contract, sync gates and generator invariants
+npm run lint     # typecheck
+npm run check    # verify CV.md is in sync
+```
+
+Full commands, conventions and gotchas for humans and AI agents live in [CLAUDE.md](CLAUDE.md).
+
+## Contributing
+
+Contributions are welcome via pull request. Use [Conventional Commits](https://www.conventionalcommits.org/) and keep the CI checks green. The fleet-wide workflow is described in the hub's [CONTRIBUTING.md](https://github.com/bamr87/bamr87/blob/main/CONTRIBUTING.md). AI agents should start with [CLAUDE.md](CLAUDE.md).
+
+## Changelog
+
+There is no CHANGELOG.md yet; changes are tracked in the [commit history](https://github.com/bamr87/cv/commits/main).
+
+## License
+
+No license file has been added yet, so all rights are reserved by default.
+
+---
+
+<!-- bamr87-portfolio-footer -->
+Part of the [bamr87 portfolio](https://github.com/bamr87) — browse every project on [Amr's GitHub profile](https://github.com/bamr87).
