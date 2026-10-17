@@ -2,7 +2,7 @@
 
 > Amr's CV as code: one cv.json rendered to Markdown, LaTeX, HTML and PDF, with automated publishing and releases.
 
-[![CI](https://github.com/bamr87/cv/actions/workflows/ci.yml/badge.svg)](https://github.com/bamr87/cv/actions/workflows/ci.yml)
+[![CI](https://github.com/bamr87/cv/actions/workflows/ci.yml/badge.svg)](https://github.com/bamr87/cv/actions/workflows/ci.yml) [![License](https://img.shields.io/github/license/bamr87/cv)](LICENSE)
 
 ## Overview
 
@@ -109,11 +109,11 @@ Contributions are welcome via pull request. Use [Conventional Commits](https://w
 
 ## Changelog
 
-There is no CHANGELOG.md yet; changes are tracked in the [commit history](https://github.com/bamr87/cv/commits/main).
+Notable changes are recorded in [CHANGELOG.md](CHANGELOG.md); the full record is in the [commit history](https://github.com/bamr87/cv/commits/main).
 
 ## License
 
-No license file has been added yet, so all rights are reserved by default.
+Released under the [MIT License](LICENSE).
 
 ---
 
