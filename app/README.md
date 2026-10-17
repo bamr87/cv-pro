@@ -1,5 +1,11 @@
 # CV Builder Pro
 
+> React web app for building CVs and résumés with LaTeX templates, Markdown/PDF export and optional AI parsing.
+
+[![CI](https://github.com/bamr87/cv-builder-pro/actions/workflows/ci.yml/badge.svg)](https://github.com/bamr87/cv-builder-pro/actions/workflows/ci.yml) [![License](https://img.shields.io/github/license/bamr87/cv-builder-pro)](LICENSE)
+
+## Overview
+
 AI-powered CV/Resume builder with LaTeX templates, multiple export formats, and optional AI parsing. Built with React + TypeScript, Tailwind, and shadcn/ui.
 
 ### Key Features
@@ -167,5 +173,18 @@ npx cypress open            # interactive runner
 ## Deployment
 Deploy the built `dist` to any static host (e.g., Vercel, Netlify). Remember to set Firebase env vars in your hosting platform if you want auth/AI to work.
 
+## Contributing
+
+Contributions are welcome via pull request. Use [Conventional Commits](https://www.conventionalcommits.org/) and keep the CI checks green. The fleet-wide workflow is described in the hub's [CONTRIBUTING.md](https://github.com/bamr87/bamr87/blob/main/CONTRIBUTING.md). AI agents should start with [CLAUDE.md](CLAUDE.md).
+
+## Changelog
+
+There is no CHANGELOG.md yet; changes are tracked in the [commit history](https://github.com/bamr87/cv-builder-pro/commits/main).
+
 ## License
 MIT — see `LICENSE`.
+
+---
+
+<!-- bamr87-portfolio-footer -->
+Part of the [bamr87 portfolio](https://github.com/bamr87) — browse every project on [Amr's GitHub profile](https://github.com/bamr87).
