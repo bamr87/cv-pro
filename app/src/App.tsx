@@ -17,20 +17,28 @@ function Shell({ children }: { children: React.ReactNode }) {
   const { user, signOutUser } = useAuth();
   return (
     <div className="min-h-screen bg-background">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-background focus:px-4 focus:py-2 focus:ring-2 focus:ring-ring"
+      >
+        Skip to main content
+      </a>
       <header className="border-b">
         <div className="max-w-6xl mx-auto p-4 flex items-center justify-between">
           <Link to="/" className="font-semibold">CV Builder</Link>
           <div className="flex items-center gap-2">
-            <Link to="/settings"><Button variant="outline" size="sm">Settings</Button></Link>
+            <Button asChild variant="outline" size="sm"><Link to="/settings">Settings</Link></Button>
             {user ? (
               <Button variant="outline" size="sm" onClick={signOutUser}>Sign out</Button>
             ) : (
-              <Link to="/login"><Button size="sm">Sign in</Button></Link>
+              <Button asChild size="sm"><Link to="/login">Sign in</Link></Button>
             )}
           </div>
         </div>
       </header>
-      {children}
+      <main id="main-content" tabIndex={-1} className="focus:outline-none">
+        {children}
+      </main>
       <Toaster position="bottom-right" />
     </div>
   );
