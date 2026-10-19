@@ -1,0 +1,109 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/bamr87/cv/main/data/cv.schema.json",
+  "title": "CVData",
+  "description": "Canonical CV data contract shared between bamr87/cv (the build machine) and bamr87/cv-builder-pro (the editor). Mirrors src/types/cv.ts in cv-builder-pro; builder/validate.ts enforces the same shape at build time.",
+  "type": "object",
+  "required": ["personalInfo", "experience", "education", "projects", "skills", "certifications", "languages"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "personalInfo": {
+      "type": "object",
+      "required": ["fullName", "email", "phone", "location", "summary"],
+      "additionalProperties": false,
+      "properties": {
+        "fullName": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "location": { "type": "string" },
+        "website": { "type": "string" },
+        "linkedin": { "type": "string" },
+        "github": { "type": "string" },
+        "summary": { "type": "string" }
+      }
+    },
+    "experience": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "company", "position", "startDate", "endDate", "current", "description", "achievements"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "company": { "type": "string" },
+          "position": { "type": "string" },
+          "startDate": { "$ref": "#/definitions/month" },
+          "endDate": { "$ref": "#/definitions/monthOrEmpty" },
+          "current": { "type": "boolean" },
+          "description": { "type": "string" },
+          "achievements": { "type": "array", "items": { "type": "string" } },
+          "location": { "type": "string" }
+        }
+      }
+    },
+    "education": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "institution", "degree", "field", "startDate", "endDate"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "institution": { "type": "string" },
+          "degree": { "type": "string" },
+          "field": { "type": "string" },
+          "startDate": { "$ref": "#/definitions/month" },
+          "endDate": { "$ref": "#/definitions/monthOrEmpty" },
+          "gpa": { "type": "string" },
+          "honors": { "type": "string" },
+          "location": { "type": "string" }
+        }
+      }
+    },
+    "projects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "description", "technologies", "startDate"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "technologies": { "type": "array", "items": { "type": "string" } },
+          "url": { "type": "string" },
+          "github": { "type": "string" },
+          "startDate": { "$ref": "#/definitions/month" },
+          "endDate": { "$ref": "#/definitions/monthOrEmpty" }
+        }
+      }
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["category", "skills"],
+        "additionalProperties": false,
+        "properties": {
+          "category": { "type": "string" },
+          "skills": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "certifications": { "type": "array", "items": { "type": "string" } },
+    "languages": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "month": {
+      "type": "string",
+      "description": "YYYY-MM, the app's <input type=\"month\"> format",
+      "pattern": "^\\d{4}-\\d{2}$"
+    },
+    "monthOrEmpty": {
+      "type": "string",
+      "description": "YYYY-MM, or empty for current/ongoing entries",
+      "pattern": "^(\\d{4}-\\d{2})?$"
+    }
+  }
+}

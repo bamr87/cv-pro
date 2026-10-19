@@ -1,0 +1,178 @@
+name: publish
+
+# The CV machine's publishing loop. On every change to the CV's inputs (and on
+# a weekly schedule as a safety net + freshness probe) it:
+#   1. regenerates every text surface from data/cv.json (builder/),
+#   2. recompiles the artisanal LaTeX lane (cv.tex) to a fresh cv.pdf,
+#   3. deploys the whole bundle to GitHub Pages.
+# The scheduled run additionally opens/refreshes a reminder issue when the CV
+# data hasn't been touched in STALE_DAYS — the "maintaining" half of the
+# machine. No job pushes commits (house rule: workflows never end in a bare
+# `git push` to a protected branch).
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/**"
+      - "builder/**"
+      - "cv.tex"
+      - "resume.sty"
+      - "sections/**"
+      - "Amr-Headshot_v3.jpg"
+      - "package.json"
+      - "tsconfig.json"
+      - ".github/workflows/publish.yml"
+  # Schedule paused (Actions waste reduction, Oct 14): Actions jobs in this private repo are refused
+  # by the billing block ("recent account payments have failed or your spending limit needs to be
+  # increased"), bamr87/bamr87#268, so every scheduled run failed without running.
+  # To restore once billing is fixed: uncomment the schedule block below (workflow_dispatch still works).
+  # schedule:
+  #   - cron: "23 9 * * 1" # weekly routine rebuild (Mon 09:23 UTC)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-pages
+  cancel-in-progress: false
+
+env:
+  STALE_DAYS: 120
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    # configure-pages (with enablement) reads and creates the Pages site from
+    # this job, so it needs pages: write here — the workflow-level default of
+    # contents: read alone 403s with "Resource not accessible by integration".
+    permissions:
+      contents: read
+      pages: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0 # full history so the site footer shows the data's real last-updated date
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ vars.NODE_VERSION || '20' }}
+
+      - name: Install
+        run: npm install
+
+      - name: Validate (data contract + CV.md sync)
+        run: npm test
+
+      - name: Compile artisanal LaTeX lane (cv.tex -> cv.pdf)
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: cv.tex
+
+      - name: Generate publishing bundle
+        run: npm run build
+
+      # GITHUB_TOKEN can read but not CREATE the Pages site, and private-repo
+      # Pages needs a plan that includes it — so site creation is a one-time
+      # human act (Settings -> Pages -> Source: GitHub Actions). Until then
+      # this step fails; we degrade to a run artifact instead of a red run,
+      # and deploys switch on automatically once the site exists.
+      - name: Configure Pages
+        id: pages
+        continue-on-error: true
+        uses: actions/configure-pages@v6
+        with:
+          enablement: true
+
+      - name: Upload Pages artifact
+        if: steps.pages.outcome == 'success'
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+      - name: Pages unavailable — ship the bundle as a run artifact
+        if: steps.pages.outcome != 'success'
+        uses: actions/upload-artifact@v7
+        with:
+          name: cv-publish-bundle
+          path: dist
+          retention-days: 30
+
+      - name: Pages unavailable — say so
+        if: steps.pages.outcome != 'success'
+        run: |
+          echo "::warning title=GitHub Pages not enabled::Configure Pages failed. GITHUB_TOKEN cannot create the Pages site, and a private repo needs a plan with Pages. One-time fix: Settings -> Pages -> Source: GitHub Actions (make the repo public if the plan requires it). Until then every publish ships the full bundle as this run's 'cv-publish-bundle' artifact, and releases still work."
+
+    outputs:
+      pages_ready: ${{ steps.pages.outcome == 'success' }}
+
+  deploy:
+    needs: build
+    if: needs.build.outputs.pages_ready == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
+
+  freshness:
+    # The maintaining loop: nag (via one idempotent issue) when the CV data has
+    # gone stale. Runs only on the weekly schedule.
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      issues: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Open a reminder issue if data/cv.json is stale
+        run: |
+          last=$(git log -1 --format=%ct -- data/cv.json)
+          if [ -z "$last" ]; then
+            echo "::warning::data/cv.json has no history; skipping freshness check"
+            exit 0
+          fi
+          age_days=$(( ( $(date +%s) - last ) / 86400 ))
+          echo "data/cv.json last changed ${age_days} day(s) ago (threshold: ${STALE_DAYS})"
+          if [ "$age_days" -le "$STALE_DAYS" ]; then
+            exit 0
+          fi
+          gh label create cv-freshness \
+            --description "CV data staleness reminders from the publish workflow" \
+            --color D93F0B --force || true
+          open_issue=$(gh issue list --label cv-freshness --state open --json number --jq '.[0].number // empty')
+          if [ -n "$open_issue" ]; then
+            gh issue comment "$open_issue" --body "Still stale: \`data/cv.json\` last changed **${age_days} days ago**."
+          else
+            gh issue create \
+              --title "chore: CV data is ${age_days} days old — time for a refresh" \
+              --label cv-freshness \
+              --body "$(printf '%s\n' \
+                "The weekly publish run noticed \`data/cv.json\` has not changed in **${age_days} days** (threshold: ${STALE_DAYS})." \
+                "" \
+                "Refresh loop:" \
+                "1. Update \`data/cv.json\` (edit directly, or export from [CV Builder Pro](https://github.com/bamr87/cv-builder-pro))." \
+                "2. Mirror any narrative changes into \`sections/*.tex\` (the artisanal lane)." \
+                "3. \`npm run build\`, commit \`CV.md\` with the data, and open a PR." \
+                "" \
+                "Closing this issue without a data change just snoozes it until the next weekly run past the threshold." \
+                "" \
+                "_Opened automatically by .github/workflows/publish.yml._")"
+          fi
+        env:
+          GH_REPO: ${{ github.repository }}

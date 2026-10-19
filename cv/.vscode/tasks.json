@@ -1,0 +1,39 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "CV: build (data → all surfaces)",
+      "type": "npm",
+      "script": "build",
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "CV: watch (rebuild on save)",
+      "type": "npm",
+      "script": "watch",
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "panel": "dedicated", "reveal": "silent" }
+    },
+    {
+      "label": "CV: test (contract + sync gates)",
+      "type": "npm",
+      "script": "test",
+      "group": { "kind": "test", "isDefault": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "CV: check sync (no writes)",
+      "type": "npm",
+      "script": "check",
+      "problemMatcher": []
+    },
+    {
+      "label": "CV: PDF (latexmk, needs local TeX Live)",
+      "type": "shell",
+      "command": "latexmk -pdf cv.tex",
+      "problemMatcher": []
+    }
+  ]
+}

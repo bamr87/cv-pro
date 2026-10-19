@@ -1,0 +1,80 @@
+name: release
+
+# Snapshot the CV as a GitHub release with every artifact attached — the
+# "publishing" record of exactly what was sent out. Two ways in:
+#   - push a tag like v2026.08.19 (cut one whenever the CV goes out the door)
+#   - run the workflow manually: it tags today's date for you
+# Assets are named after the CV owner (recruiter-friendly), sourced from the
+# same build the Pages site gets.
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ vars.NODE_VERSION || '20' }}
+
+      - name: Install
+        run: npm install
+
+      - name: Validate (data contract + CV.md sync)
+        run: npm test
+
+      - name: Compile artisanal LaTeX lane (cv.tex -> cv.pdf)
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: cv.tex
+
+      - name: Generate publishing bundle
+        run: npm run build
+
+      - name: Assemble release assets
+        id: assets
+        run: |
+          name=$(node -p "require('./data/cv.json').personalInfo.fullName.replace(/\s+/g, '-')")
+          mkdir -p release-assets
+          cp dist/cv.pdf         "release-assets/${name}-CV.pdf"
+          cp dist/cv.md          "release-assets/${name}-CV.md"
+          cp dist/cv.txt         "release-assets/${name}-CV.txt"
+          cp dist/cv-minimal.tex "release-assets/${name}-CV-minimal.tex"
+          cp dist/cv-academic.tex "release-assets/${name}-CV-academic.tex"
+          cp dist/cv.json        "release-assets/cv.json"
+          echo "name=${name}" >> "$GITHUB_OUTPUT"
+
+      - name: Create release
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            tag="${GITHUB_REF_NAME}"
+          else
+            tag="v$(date -u +%Y.%m.%d)"
+          fi
+          gh release create "$tag" \
+            --target "$GITHUB_SHA" \
+            --title "CV snapshot ${tag#v}" \
+            --notes "$(printf '%s\n' \
+              "Frozen render of the CV as of ${tag#v}." \
+              "" \
+              "- Live version: https://bamr87.github.io/cv/" \
+              "- Source data: [data/cv.json](https://github.com/${GITHUB_REPOSITORY}/blob/${GITHUB_SHA}/data/cv.json)" \
+              "- Edit with: https://github.com/bamr87/cv-builder-pro")" \
+            release-assets/*

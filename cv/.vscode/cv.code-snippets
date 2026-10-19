@@ -1,0 +1,67 @@
+{
+  "CV experience entry": {
+    "scope": "json",
+    "prefix": "cv-experience",
+    "description": "New experience entry for data/cv.json (CVData shape)",
+    "body": [
+      "{",
+      "  \"id\": \"${1:company-slug}\",",
+      "  \"company\": \"${2:Company Name}\",",
+      "  \"position\": \"${3:Title}\",",
+      "  \"startDate\": \"${4:2026-01}\",",
+      "  \"endDate\": \"${5}\",",
+      "  \"current\": ${6|true,false|},",
+      "  \"description\": \"Industry: ${7:Industry} · Scope: ${8:North America}\",",
+      "  \"achievements\": [",
+      "    \"${9:What you did, one bullet per string}\"",
+      "  ],",
+      "  \"location\": \"${10:Denver, CO}\"",
+      "}"
+    ]
+  },
+  "CV education entry": {
+    "scope": "json",
+    "prefix": "cv-education",
+    "description": "New education entry for data/cv.json",
+    "body": [
+      "{",
+      "  \"id\": \"${1:school-slug}\",",
+      "  \"institution\": \"${2:University}\",",
+      "  \"degree\": \"${3:Master of Science}\",",
+      "  \"field\": \"${4:Information Systems}\",",
+      "  \"startDate\": \"${5:2015-08}\",",
+      "  \"endDate\": \"${6:2017-07}\",",
+      "  \"gpa\": \"${7:4.0}\",",
+      "  \"honors\": \"${8:Emphasis: …}\",",
+      "  \"location\": \"${9:Denver, CO}\"",
+      "}"
+    ]
+  },
+  "CV project entry": {
+    "scope": "json",
+    "prefix": "cv-project",
+    "description": "New project entry for data/cv.json",
+    "body": [
+      "{",
+      "  \"id\": \"${1:project-slug}\",",
+      "  \"name\": \"${2:Project Name}\",",
+      "  \"description\": \"${3:What it is and what it delivered.}\",",
+      "  \"technologies\": [\"${4:Tech}\"],",
+      "  \"url\": \"${5:https://}\",",
+      "  \"github\": \"${6:https://github.com/bamr87/}\",",
+      "  \"startDate\": \"${7:2026-01}\"",
+      "}"
+    ]
+  },
+  "CV skill group": {
+    "scope": "json",
+    "prefix": "cv-skill",
+    "description": "New skill category for data/cv.json",
+    "body": [
+      "{",
+      "  \"category\": \"${1:Category}\",",
+      "  \"skills\": [\"${2:Skill}\"]",
+      "}"
+    ]
+  }
+}

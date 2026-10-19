@@ -1,0 +1,39 @@
+name: latex-preview
+
+# PR gate for the artisanal LaTeX lane: whenever the hand-tuned sources change,
+# prove they still compile and attach the rendered PDF to the run so reviewers
+# can eyeball the typography before merging.
+
+on:
+  pull_request:
+    paths:
+      - "**.tex"
+      - "resume.sty"
+      - "*.jpg"
+      - "*.JPG"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: latex-preview-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Compile cv.tex
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: cv.tex
+
+      - name: Upload PDF preview
+        uses: actions/upload-artifact@v7
+        with:
+          name: cv-pdf-preview
+          path: cv.pdf
+          retention-days: 14

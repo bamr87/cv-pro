@@ -1,0 +1,19 @@
+{
+  "name": "@bamr87/cv",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "CV build machine: data/cv.json -> Markdown/ASCII/LaTeX/HTML, published to Pages and releases. Engine ported from bamr87/cv-builder-pro.",
+  "scripts": {
+    "build": "tsx builder/build.ts",
+    "check": "tsx builder/build.ts --check",
+    "watch": "tsx builder/watch.ts",
+    "lint": "tsc -p tsconfig.json --noEmit",
+    "test": "node --import tsx --test builder/build.test.ts"
+  },
+  "devDependencies": {
+    "@types/node": "*",
+    "tsx": "*",
+    "typescript": "*"
+  }
+}
