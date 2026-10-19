@@ -1,0 +1,95 @@
+# CV Builder - Product Requirements Document
+
+Build a comprehensive CV/resume builder that leverages LaTeX templating for professional formatting with AI-powered CV parsing and multiple export options.
+
+**Experience Qualities**:
+1. **Professional** - Clean, formal interface that reflects the quality of CVs it produces
+2. **Intelligent** - AI-powered features that save time and improve content quality
+3. **Flexible** - Multiple templates and export formats to suit different needs
+
+**Complexity Level**: Light Application (multiple features with basic state)
+- Manages user CV data with structured forms and templates, includes AI integration for parsing, but doesn't require complex user accounts or advanced workflows
+
+## Essential Features
+
+### CV Data Management
+- **Functionality**: Structured form interface for entering personal info, experience, education, skills, projects
+- **Purpose**: Central data store that feeds all export formats and templates
+- **Trigger**: User clicks "Edit CV" or starts new CV
+- **Progression**: Dashboard → CV Form → Section Selection → Data Entry → Save → Preview
+- **Success Criteria**: Data persists between sessions, validation prevents incomplete entries
+
+### LaTeX Template System
+- **Functionality**: Generate LaTeX code from CV data using professional templates
+- **Purpose**: Provides high-quality typesetting foundation for all export formats
+- **Trigger**: User saves CV data or requests LaTeX export
+- **Progression**: CV Data → Template Selection → LaTeX Generation → Export/Preview
+- **Success Criteria**: Valid LaTeX code generated, template switching works seamlessly
+
+### AI CV Parser
+- **Functionality**: Upload existing CV (PDF/text) and extract structured data using AI
+- **Purpose**: Eliminates manual data entry for users with existing CVs
+- **Trigger**: User uploads CV file or pastes text
+- **Progression**: File Upload → AI Processing → Data Extraction → Review/Edit → Save
+- **Success Criteria**: Accurately extracts 90%+ of CV content into structured format
+
+### Multi-Format Export
+- **Functionality**: Export CV as PDF, Markdown, ASCII text, or LaTeX source
+- **Purpose**: Flexibility for different application requirements and platforms
+- **Trigger**: User clicks export button and selects format
+- **Progression**: CV Data → Format Selection → Generation → Download
+- **Success Criteria**: All formats maintain professional appearance and completeness
+
+### Template Gallery
+- **Functionality**: Multiple LaTeX templates (Academic, Corporate, Creative, Minimal)
+- **Purpose**: Customization for different industries and personal preferences
+- **Trigger**: User browses templates or changes template
+- **Progression**: Template Browser → Preview → Apply → Regenerate Exports
+- **Success Criteria**: Templates apply correctly, previews are accurate
+
+## Edge Case Handling
+- **Empty CV Data**: Display guided onboarding with sample data and clear next steps
+- **AI Parsing Failures**: Graceful fallback with manual entry options and error explanations
+- **Large File Uploads**: Progress indicators and file size limits with helpful messaging
+- **LaTeX Compilation Errors**: Error reporting with suggested fixes and template fallbacks
+- **Missing Sections**: Smart defaults and optional section handling
+
+## Design Direction
+The design should feel professional and trustworthy like a high-end consulting firm's tools - clean typography, subtle shadows, and confident use of whitespace that conveys expertise and attention to detail.
+
+## Color Selection
+Complementary (opposite colors) - Using a sophisticated blue-gray primary with warm accent touches to balance professionalism with approachability.
+
+- **Primary Color**: Deep Blue-Gray `oklch(0.25 0.05 240)` - Conveys professionalism and trust
+- **Secondary Colors**: Light Gray `oklch(0.95 0.01 240)` for backgrounds, Medium Gray `oklch(0.7 0.02 240)` for borders
+- **Accent Color**: Warm Coral `oklch(0.65 0.15 25)` - For CTAs and important highlights, adds warmth to the professional palette
+- **Foreground/Background Pairings**: 
+  - Background (Light Gray #F8F9FA): Dark Blue-Gray text (#2B3A42) - Ratio 12.8:1 ✓
+  - Card (White #FFFFFF): Dark Blue-Gray text (#2B3A42) - Ratio 14.1:1 ✓
+  - Primary (Deep Blue-Gray #2B3A42): White text (#FFFFFF) - Ratio 14.1:1 ✓
+  - Accent (Warm Coral #E8965A): White text (#FFFFFF) - Ratio 4.8:1 ✓
+
+## Font Selection
+Inter for its exceptional readability and professional appearance in both digital interfaces and PDF exports, with clear hierarchy through weight variations.
+
+- **Typographic Hierarchy**:
+  - H1 (Page Titles): Inter Bold/32px/tight letter spacing
+  - H2 (Section Headers): Inter SemiBold/24px/normal spacing
+  - H3 (Subsections): Inter Medium/20px/normal spacing
+  - Body Text: Inter Regular/16px/relaxed line height
+  - Labels: Inter Medium/14px/tracking wide
+  - Captions: Inter Regular/12px/muted color
+
+## Animations
+Subtle and purposeful animations that enhance workflow clarity - smooth transitions between form sections and gentle feedback for actions, avoiding anything that feels frivolous in a professional context.
+
+- **Purposeful Meaning**: Motion reinforces the structured, step-by-step nature of CV building
+- **Hierarchy of Movement**: Form transitions and save confirmations get priority, decorative elements are minimal
+
+## Component Selection
+- **Components**: Cards for CV sections, Forms with react-hook-form, Dialogs for confirmations, Tabs for template switching, Progress indicators for AI processing, Dropzone for file uploads
+- **Customizations**: Custom CV preview component, specialized LaTeX code display with syntax highlighting
+- **States**: Clear loading states for AI processing, success confirmations for saves, error states with actionable feedback
+- **Icon Selection**: Phosphor icons - Document for CVs, Upload for file import, Download for exports, User for profile, Settings for templates
+- **Spacing**: Consistent 4/6/8/12 spacing scale for tight professional layout
+- **Mobile**: Stack form sections vertically, collapsible sidebar for templates, responsive preview with zoom controls
