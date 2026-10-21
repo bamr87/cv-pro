@@ -1,3 +1,18 @@
+# Dependencies and build output (each half installs and builds on its own)
 node_modules/
 dist/
+*.tsbuildinfo
+
+# Local environment and logs
+.env
+.env.local
+*.log
+
+# Test artifacts
+coverage/
+app/cypress/videos/
+app/cypress/screenshots/
+
+# OS and editor noise
 .DS_Store
+Thumbs.db
