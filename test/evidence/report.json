@@ -1,0 +1,29 @@
+{
+  "schema": "verify-report/v1",
+  "base": "http://127.0.0.1:4613",
+  "generated": "2026-11-16T05:06:55.431Z",
+  "by": "agent",
+  "run": null,
+  "total": 1,
+  "passed": 1,
+  "failed": 0,
+  "scenarios": [
+    {
+      "id": "page-feedback",
+      "title": "Page feedback widget files a prefilled issue",
+      "features": [
+        "CVPRO-006"
+      ],
+      "ok": true,
+      "dir": "test/evidence/page-feedback",
+      "screenshots": [
+        "test/evidence/page-feedback/desktop-home.png",
+        "test/evidence/page-feedback/desktop-dialog.png",
+        "test/evidence/page-feedback/desktop-login.png",
+        "test/evidence/page-feedback/mobile-home.png",
+        "test/evidence/page-feedback/mobile-dialog.png",
+        "test/evidence/page-feedback/mobile-login.png"
+      ]
+    }
+  ]
+}

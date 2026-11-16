@@ -1,0 +1,79 @@
+# =============================================================================
+# verify/scenarios/page-feedback.yml — a USER SCENARIO (scenario/v1)
+# =============================================================================
+# The fleet page-feedback widget (CVPRO-006; bamr87/bamr87 specs/FEEDBACK.md):
+# the "Improve this page" button and the header link are on every route, the
+# capture buffer keeps console errors from page load on, and submitting the
+# dialog opens a prefilled issue on bamr87/cv-pro. window.open is stubbed, so
+# no issue is ever filed and no GitHub tab opens.
+#
+# Run against a built app (verify/verify.yml has no start command yet):
+#   (cd app && npm run build && npx vite preview --host 127.0.0.1 --port 4173 --strictPort)
+#   node verify/runner.mjs --only page-feedback --base http://127.0.0.1:4173
+# =============================================================================
+id: page-feedback
+feature: CVPRO-006
+title: "Page feedback widget files a prefilled issue"
+description: "A reader sees the 'Improve this page' button and header link on every route, opens the dialog, describes a problem and is sent to a prefilled GitHub issue on bamr87/cv-pro that carries the page context, the captured console logs and the fleet-feedback marker."
+viewports: [desktop, mobile]
+# The probe line is logged on purpose to prove the capture buffer works. The
+# 401 is the @github/spark runtime's POST /_spark/loaded beacon, which answers
+# 401 outside the Spark host on main too (smoke-home fails on it); it is not
+# this feature's.
+ignore_console:
+  - "^probe: fleet-feedback capture check$"
+  - "^Failed to load resource: the server responded with a status of 401 \\(Unauthorized\\)$"
+steps:
+  - goto: /
+  - expect: { status: 200 }
+  - expect: { visible: "button.fab[aria-label='Improve this page']" }
+  - expect: { visible: "header a[data-fleet-feedback-open]" }
+  - expect: { no_horizontal_scroll: true }
+  - expect: { no_console_errors: true }
+  - screenshot: home
+  - eval:
+      name: capture_buffer
+      script: >-
+        (() => {
+          if (!window.__fleetFeedback || !window.__fleetFeedback.installed) throw new Error('capture buffer not installed');
+          console.error('probe: fleet-feedback capture check');
+          const logs = window.__fleetFeedback.snapshot();
+          if (!JSON.stringify(logs).includes('probe: fleet-feedback capture check')) throw new Error('probe line not in the capture buffer');
+          return { entries: logs.length, version: window.__fleetFeedback.version };
+        })()
+  - eval:
+      name: stub_window_open
+      script: >-
+        (() => {
+          window.__ffOpened = [];
+          window.open = (url) => { window.__ffOpened.push(String(url)); return {}; };
+          return true;
+        })()
+  - click: "header a[data-fleet-feedback-open]"
+  - expect: { visible: "dialog#ff-dlg" }
+  - fill: { selector: "#ff-desc", value: "Scenario check: the page-feedback dialog builds a prefilled issue." }
+  # Let the dialog's 180ms open animation finish so the screenshot is not mid-fade.
+  - wait: { ms: 400 }
+  - screenshot: dialog
+  - click: "#ff-submit"
+  - eval:
+      name: issue_url
+      script: >-
+        (() => {
+          const opened = window.__ffOpened || [];
+          if (opened.length !== 1) throw new Error('expected one window.open call, got ' + opened.length);
+          const u = new URL(opened[0]);
+          if (u.origin + u.pathname !== 'https://github.com/bamr87/cv-pro/issues/new') throw new Error('wrong target ' + u.origin + u.pathname);
+          const body = u.searchParams.get('body') || '';
+          const labels = (u.searchParams.get('labels') || '').split(',');
+          if (!/<!-- fleet-feedback v1 type=[a-z-]+ -->/.test(body)) throw new Error('fleet-feedback marker missing from the body');
+          if (!labels.includes('page-feedback')) throw new Error('page-feedback label missing: ' + labels.join(','));
+          if (!body.includes('probe: fleet-feedback capture check')) throw new Error('captured logs missing from the body');
+          return { target: u.origin + u.pathname, title: u.searchParams.get('title'), labels, marker: (body.match(/<!-- fleet-feedback v1 type=[a-z-]+ -->/) || [''])[0], body_chars: body.length };
+        })()
+  - goto: /login
+  - expect: { status: 200 }
+  - expect: { visible: "button.fab[aria-label='Improve this page']" }
+  - expect: { visible: "header a[data-fleet-feedback-open]" }
+  - expect: { no_horizontal_scroll: true }
+  - screenshot: login
