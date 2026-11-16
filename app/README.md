@@ -79,6 +79,11 @@ Notes:
 - The provider's response is normalized through the same reader as `Import cv.json`, so anything that is not a CV in the contract shape is rejected with a toast instead of replacing your data
 - Affinda is selectable but not yet mapped: `parseCvText` returns its raw payload, which the normalizer rejects. Use xAI Grok or OpenAI for now
 
+### Page feedback
+Every route shows the fleet's "Improve this page" button (bottom right) and a matching link in the header ("Feedback" on narrow screens). Both open one dialog that turns the reader's note into a prefilled GitHub issue on `bamr87/cv-pro`, labelled `page-feedback`, with the page, the environment and the console errors captured since load attached. Nothing is sent until the reader submits the form on GitHub under their own account, and the header link is a plain link to the issue form when JavaScript does not run. Feature `CVPRO-006`; contract: the hub's [specs/FEEDBACK.md](https://github.com/bamr87/bamr87/blob/main/specs/FEEDBACK.md).
+
+`index.html` loads `fleet-feedback-capture.js` first in `<head>`, so errors thrown while the app boots are kept, and mounts `<fleet-feedback repo="bamr87/cv-pro">` with `fleet-feedback.js` before `</body>`. Both scripts live in the repository-root [`public/`](../public), which `vite.config.ts` sets as this app's `publicDir`, so the dev server serves them and `npm run build` copies them into `dist/`. They are vendored byte-identical from the hub's `templates/feedback/` kit: never copy or edit them here; the hub upgrades them with `tools/fanout.sh --kit feedback --upgrade`. The user scenario [`verify/scenarios/page-feedback.yml`](../verify/scenarios/page-feedback.yml) checks the button, the capture buffer and the issue URL with `window.open` stubbed, so no issue is ever filed.
+
 ## Project Structure
 - `src/components/cv` — Forms, AI parser, export panel, main `CVBuilder`
 - `src/components/ui` — shadcn/ui primitives (generated; add new ones with the shadcn CLI)
