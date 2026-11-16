@@ -3,7 +3,7 @@
 
 # cv-pro
 
-> Amr's CV as code (cv/) and the CV Builder Pro app that edits it (app/), in one repository that shares one CVData contract.
+> CV Pro's direction is to become the ultimate open home for all things professional CVs: data, tools, resources and transparency, with CVs as code, LaTeX typesetting, reviewed AI parsing and multi-format export for everyone ([constitution](docs/constitution.md) §1).
 
 ## What this repo is
 

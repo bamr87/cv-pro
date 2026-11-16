@@ -6,11 +6,27 @@
 > Agents read this before [AGENTS.md](../AGENTS.md) conventions, the [PRD](../PRD.md), or the
 > [feature catalog](../features/features.yml). Ratified by merged PR; amended only per § 8.
 
-## 1. Mission
+## 1. Missions
 
-Edge Case Handling - Empty CV Data: Display guided onboarding with sample data and clear next steps - AI Parsing Failures: Graceful fallback with manual entry options and error explanations - Large File Uploads: Progress indicators and file size limits with helpful messaging - LaTeX Compilation Errors: Error reporting with suggested fixes and template fallbacks - Missing Sections: Smart defaults and optional section handling
+CV Pro's direction is to become the ultimate open home for all things professional CVs — data, tools, resources and transparency, gathered in one place that anyone can inspect and reuse.
 
-_Source: [app/PRD.md](../app/PRD.md)._
+1. **Provide data, tools, resources and transparency for all stakeholders, job seekers, hiring professionals and the general public.** Authors, reviewers and anyone presenting their work are first-class audiences. The aim is a shared, inspectable commons: the same CV data, the same contract, and the same renders for everyone.
+2. **Treat the CV as code: a single canonical data contract that feeds professional LaTeX typesetting and multi-format export (PDF, Markdown, ASCII and LaTeX source), with a builder that edits that contract rather than a one-off document.** The data, the contract and the renders live together so the builder and the published CV cannot silently drift.
+3. **Make getting a CV into that contract effortless and honest: parse an existing CV with AI, then always leave the author in control to review, edit and fall back to manual entry when parsing fails.** Intelligence should save time without inventing a career, and every export should stay complete and professional.
+
+These missions set the course; they do not claim the work is finished. They serve the PRD's essential features: CV data management, a LaTeX template system, an AI CV parser, multi-format export and a template gallery.
+
+### Edge case handling
+
+These handling rules remain in force and were previously the whole of §1:
+
+- Empty CV data: display guided onboarding with sample data and clear next steps.
+- AI parsing failures: graceful fallback with manual entry options and error explanations.
+- Large file uploads: progress indicators and file size limits with helpful messaging.
+- LaTeX compilation errors: error reporting with suggested fixes and template fallbacks.
+- Missing sections: smart defaults and optional section handling.
+
+_Source: [app/PRD.md](../app/PRD.md) §1.1._
 
 ## 2. Invariants (non-negotiable)
 

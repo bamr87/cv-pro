@@ -10,6 +10,22 @@ Build a comprehensive CV/resume builder that leverages LaTeX templating for prof
 **Complexity Level**: Light Application (multiple features with basic state)
 - Manages user CV data with structured forms and templates, includes AI integration for parsing, but doesn't require complex user accounts or advanced workflows
 
+## 1.1 Missions
+
+CV Pro's direction is to become the ultimate open home for all things professional CVs — data, tools, resources and transparency, gathered in one place that anyone can inspect and reuse.
+
+1. **Provide data, tools, resources and transparency for all stakeholders, job seekers, hiring professionals and the general public.** Authors, reviewers and anyone presenting their work are first-class audiences. The aim is a shared, inspectable commons: the same CV data, the same contract, and the same renders for everyone.
+2. **Treat the CV as code: a single canonical data contract that feeds professional LaTeX typesetting and multi-format export (PDF, Markdown, ASCII and LaTeX source), with a builder that edits that contract rather than a one-off document.** The data, the contract and the renders live together so the builder and the published CV cannot silently drift.
+3. **Make getting a CV into that contract effortless and honest: parse an existing CV with AI, then always leave the author in control to review, edit and fall back to manual entry when parsing fails.** Intelligence should save time without inventing a career, and every export should stay complete and professional.
+
+These missions set the course; they do not claim the work is finished. They serve the PRD's essential features: CV data management, a LaTeX template system, an AI CV parser, multi-format export and a template gallery.
+
+**Requirement**
+
+- MR1: Constitution §1 states one direction statement and exactly three numbered missions, and the README and AGENTS.md taglines match that direction and link to constitution §1.
+
+Feature [CVPRO-006](../features/features.yml) traces to requirement MR1.
+
 ## Essential Features
 
 ### CV Data Management
@@ -59,6 +75,7 @@ Every user-facing capability has a stable id in the feature catalog [`features/f
 | [CVPRO-003](../features/features.yml) | AI CV parser | shipped | [`app/src/components/cv/AIParser.tsx`](src/components/cv/AIParser.tsx) · [`app/PRD.md`](PRD.md) | AI CV Parser |
 | [CVPRO-004](../features/features.yml) | Multi-format export | shipped | [`app/src/components/cv/ExportSection.tsx`](src/components/cv/ExportSection.tsx) · [`app/PRD.md`](PRD.md) | Multi-Format Export |
 | [CVPRO-005](../features/features.yml) | Template gallery | tbd | [`app/src/lib/latex-templates.ts`](src/lib/latex-templates.ts) · [`app/PRD.md`](PRD.md) | Template Gallery |
+| [CVPRO-006](../features/features.yml) | Constitution missions | planned | [`docs/constitution.md`](../docs/constitution.md) · [`app/PRD.md`](PRD.md) | MR1 |
 
 **Requirement → feature trace**
 
@@ -69,6 +86,7 @@ Every user-facing capability has a stable id in the feature catalog [`features/f
 | AI CV Parser | CVPRO-003 |
 | Multi-Format Export | CVPRO-004 |
 | Template Gallery | CVPRO-005 |
+| MR1 | CVPRO-006 |
 <!-- features:end -->
 
 ## Edge Case Handling
