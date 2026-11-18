@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.3.0](https://github.com/bamr87/cv-pro/compare/v0.2.0...v0.3.0) (2026-11-18)
+
+
+### Added
+
+* **app:** mount the fleet page-feedback widget ([9a4da9b](https://github.com/bamr87/cv-pro/commit/9a4da9b6635a8ee8ad3b422897623496622c3b38))
+* **app:** mount the fleet page-feedback widget ([c03aea3](https://github.com/bamr87/cv-pro/commit/c03aea3d4679640d46dca09b4359383860525fb8))
+
+
+### Documentation
+
+* **constitution:** state the missions in §1 (amendment 0002) ([a9d4816](https://github.com/bamr87/cv-pro/commit/a9d4816e7e20d0d4b80900fa672d9d8c1122b12e))
+* **constitution:** state the missions in §1 (amendment 0002) ([21078d9](https://github.com/bamr87/cv-pro/commit/21078d92ac30548b1aba1b7e82f0c35459ec1486))
+* regenerate the docs index and give the amendments log a summary line ([df6b653](https://github.com/bamr87/cv-pro/commit/df6b653f8bf66cfd8bf66ab751a6bc56faa0819b))
+* regenerate the docs index and give the amendments log a summary line ([844904a](https://github.com/bamr87/cv-pro/commit/844904a5d8cceb33dde10a3f34336455aa004c52)), closes [#14](https://github.com/bamr87/cv-pro/issues/14)
+
 ## [0.2.0](https://github.com/bamr87/cv-pro/compare/v0.1.0...v0.2.0) (2026-10-30)
 
 
