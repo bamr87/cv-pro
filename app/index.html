@@ -3,6 +3,8 @@
 
 <head>
     <meta charset="UTF-8" />
+    <!-- Fleet page-feedback capture buffer (UPS-FB-04): first, before any app code, so load-time errors are kept. -->
+    <script src="/fleet-feedback-capture.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CV Builder - Professional Resume Generator</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,6 +16,9 @@
 <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <!-- Fleet page-feedback widget (UPS-FB-01, UPS-FE-13): the "Improve this page" button and dialog. -->
+    <fleet-feedback repo="bamr87/cv-pro" branch="main"></fleet-feedback>
+    <script src="/fleet-feedback.js" defer></script>
 </body>
 
 </html>

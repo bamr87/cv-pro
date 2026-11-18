@@ -59,6 +59,7 @@ Every user-facing capability has a stable id in the feature catalog [`features/f
 | [CVPRO-003](../features/features.yml) | AI CV parser | shipped | [`app/src/components/cv/AIParser.tsx`](src/components/cv/AIParser.tsx) · [`app/PRD.md`](PRD.md) | AI CV Parser |
 | [CVPRO-004](../features/features.yml) | Multi-format export | shipped | [`app/src/components/cv/ExportSection.tsx`](src/components/cv/ExportSection.tsx) · [`app/PRD.md`](PRD.md) | Multi-Format Export |
 | [CVPRO-005](../features/features.yml) | Template gallery | tbd | [`app/src/lib/latex-templates.ts`](src/lib/latex-templates.ts) · [`app/PRD.md`](PRD.md) | Template Gallery |
+| [CVPRO-006](../features/features.yml) | Page feedback widget | shipped | [`app/index.html`](index.html) · [`app/README.md`](README.md) | TBD |
 
 **Requirement → feature trace**
 
@@ -69,6 +70,7 @@ Every user-facing capability has a stable id in the feature catalog [`features/f
 | AI CV Parser | CVPRO-003 |
 | Multi-Format Export | CVPRO-004 |
 | Template Gallery | CVPRO-005 |
+| TBD | CVPRO-006 |
 <!-- features:end -->
 
 ## Edge Case Handling
