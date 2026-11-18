@@ -5,9 +5,9 @@
 - **Date:** 2026-11-16
 - **Proposed by:** Grok Bot (agent), at the maintainer's request
 - **Ratified by:**
-- **Affects:** constitution §1; PRD §1.1; feature CVPRO-006
+- **Affects:** constitution §1; PRD §1.1; feature CVPRO-007
 - **Supersedes:** none
-- **Related:** [app/PRD.md](../../app/PRD.md) §1.1; feature CVPRO-006
+- **Related:** [app/PRD.md](../../app/PRD.md) §1.1; feature CVPRO-007
 
 ## Context
 
@@ -42,4 +42,4 @@ These handling rules remain in force and were previously the whole of §1:
 
 ## Consequences
 
-Agents and reviewers judge fit against these three missions before inventing scope, treating them as the direction of the repo rather than a description of what already ships. The same text is added as PRD §1.1 so the constitution's `_Source:` line stays accurate. The original PRD purpose / overview paragraph is left in place. This PR also aligns the README and AGENTS.md taglines with the missions and links them to constitution §1, and adds feature CVPRO-006 to the feature catalog, traced to requirement MR1. Merging this PR ratifies amendment 0002. Until then the record stays `Status: proposed`.
+Agents and reviewers judge fit against these three missions before inventing scope, treating them as the direction of the repo rather than a description of what already ships. The same text is added as PRD §1.1 so the constitution's `_Source:` line stays accurate. The original PRD purpose / overview paragraph is left in place. This PR also aligns the README and AGENTS.md taglines with the missions and links them to constitution §1, and adds feature CVPRO-007 to the feature catalog, traced to requirement MR1. Merging this PR ratifies amendment 0002. Until then the record stays `Status: proposed`.

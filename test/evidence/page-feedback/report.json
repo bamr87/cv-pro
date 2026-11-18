@@ -1,0 +1,462 @@
+{
+  "id": "page-feedback",
+  "title": "Page feedback widget files a prefilled issue",
+  "features": [
+    "CVPRO-006"
+  ],
+  "path": "verify/scenarios/page-feedback.yml",
+  "started": "2026-11-16T05:06:48.921Z",
+  "viewports": [
+    {
+      "name": "desktop",
+      "width": 1280,
+      "height": 800,
+      "ok": true,
+      "steps": [
+        {
+          "step": "goto",
+          "arg": "/",
+          "ok": true,
+          "ms": 1651
+        },
+        {
+          "step": "expect",
+          "arg": {
+            "status": 200
+          },
+          "ok": true,
+          "ms": 0
+        },
+        {
+          "step": "expect",
+          "arg": {
+            "visible": "button.fab[aria-label='Improve this page']"
+          },
+          "ok": true,
+          "ms": 29
+        },
+        {
+          "step": "expect",
+          "arg": {
+            "visible": "header a[data-fleet-feedback-open]"
+          },
+          "ok": true,
+          "ms": 4
+        },
+        {
+          "step": "expect",
+          "arg": {
+            "no_horizontal_scroll": true
+          },
+          "ok": true,
+          "value": {
+            "sw": 1280,
+            "cw": 1280
+          },
+          "ms": 3
+        },
+        {
+          "step": "expect",
+          "arg": {
+            "no_console_errors": true
+          },
+          "ok": true,
+          "ms": 0
+        },
+        {
+          "step": "screenshot",
+          "arg": "home",
+          "ok": true,
+          "file": "test/evidence/page-feedback/desktop-home.png",
+          "ms": 65
+        },
+        {
+          "step": "eval",
+          "arg": {
+            "name": "capture_buffer",
+            "script": "(() => {\n  if (!window.__fleetFeedback || !window.__fleetFeedback.installed) throw new Error('capture buffer not installed');\n  console.error('probe: fleet-feedback capture check');\n  const logs = window.__fleetFeedback.snapshot();\n  if (!JSON.stringify(logs).includes('probe: fleet-feedback capture check')) throw new Error('probe line not in the capture buffer');\n  return { entries: logs.length, version: window.__fleetFeedback.version };\n})()"
+          },
+          "ok": true,
+          "value": {
+            "entries": 2,
+            "version": "0.2.0"
+          },
+          "ms": 3
+        },
+        {
+          "step": "eval",
+          "arg": {
+            "name": "stub_window_open",
+            "script": "(() => {\n  window.__ffOpened = [];\n  window.open = (url) => { window.__ffOpened.push(String(url)); return {}; };\n  return true;\n})()"
+          },
+          "ok": true,
+          "value": true,
+          "ms": 1
+        },
+        {
+          "step": "click",
+          "arg": "header a[data-fleet-feedback-open]",
+          "ok": true,
+          "ms": 94
+        },
+        {
+          "step": "expect",
+          "arg": {
+            "visible": "dialog#ff-dlg"
+          },
+          "ok": true,
+          "ms": 3
+        },
+        {
+          "step": "fill",
+          "arg": {
+            "selector": "#ff-desc",
+            "value": "Scenario check: the page-feedback dialog builds a prefilled issue."
+          },
+          "ok": true,
+          "ms": 9
+        },
+        {
+          "step": "wait",
+          "arg": {
+            "ms": 400
+          },
+          "ok": true,
+          "ms": 401
+        },
+        {
+          "step": "screenshot",
+          "arg": "dialog",
+          "ok": true,
+          "file": "test/evidence/page-feedback/desktop-dialog.png",
+          "ms": 45
+        },
+        {
+          "step": "click",
+          "arg": "#ff-submit",
+          "ok": true,
+          "ms": 30
+        },
+        {
+          "step": "eval",
+          "arg": {
+            "name": "issue_url",
+            "script": "(() => {\n  const opened = window.__ffOpened || [];\n  if (opened.length !== 1) throw new Error('expected one window.open call, got ' + opened.length);\n  const u = new URL(opened[0]);\n  if (u.origin + u.pathname !== 'https://github.com/bamr87/cv-pro/issues/new') throw new Error('wrong target ' + u.origin + u.pathname);\n  const body = u.searchParams.get('body') || '';\n  const labels = (u.searchParams.get('labels') || '').split(',');\n  if (!/<!-- fleet-feedback v1 type=[a-z-]+ -->/.test(body)) throw new Error('fleet-feedback marker missing from the body');\n  if (!labels.includes('page-feedback')) throw new Error('page-feedback label missing: ' + labels.join(','));\n  if (!body.includes('probe: fleet-feedback capture check')) throw new Error('captured logs missing from the body');\n  return { target: u.origin + u.pathname, title: u.searchParams.get('title'), labels, marker: (body.match(/<!-- fleet-feedback v1 type=[a-z-]+ -->/) || [''])[0], body_chars: body.length };\n})()"
+          },
+          "ok": true,
+          "value": {
+            "target": "https://github.com/bamr87/cv-pro/issues/new",
+            "title": "[Report a problem] CV Builder - Professional Resume Generator",
+            "labels": [
+              "page-feedback",
+              "bug"
+            ],
+            "marker": "<!-- fleet-feedback v1 type=fix-page -->",
+            "body_chars": 1154
+          },
+          "ms": 1
+        },
+        {
+          "step": "goto",
+          "arg": "/login",
+          "ok": true,
+          "ms": 1211
+        },
+        {
+          "step": "expect",
+          "arg": {
+            "status": 200
+          },
+          "ok": true,
+          "ms": 0
+        },
+        {
+          "step": "expect",
+          "arg": {
+            "visible": "button.fab[aria-label='Improve this page']"
+          },
+          "ok": true,
+          "ms": 11
+        },
+        {
+          "step": "expect",
+          "arg": {
+            "visible": "header a[data-fleet-feedback-open]"
+          },
+          "ok": true,
+          "ms": 2
+        },
+        {
+          "step": "expect",
+          "arg": {
+            "no_horizontal_scroll": true
+          },
+          "ok": true,
+          "value": {
+            "sw": 1280,
+            "cw": 1280
+          },
+          "ms": 1
+        },
+        {
+          "step": "screenshot",
+          "arg": "login",
+          "ok": true,
+          "file": "test/evidence/page-feedback/desktop-login.png",
+          "ms": 34
+        }
+      ],
+      "console_errors": [],
+      "screenshots": [
+        "test/evidence/page-feedback/desktop-home.png",
+        "test/evidence/page-feedback/desktop-dialog.png",
+        "test/evidence/page-feedback/desktop-login.png"
+      ],
+      "evals": {
+        "capture_buffer": {
+          "entries": 2,
+          "version": "0.2.0"
+        },
+        "stub_window_open": true,
+        "issue_url": {
+          "target": "https://github.com/bamr87/cv-pro/issues/new",
+          "title": "[Report a problem] CV Builder - Professional Resume Generator",
+          "labels": [
+            "page-feedback",
+            "bug"
+          ],
+          "marker": "<!-- fleet-feedback v1 type=fix-page -->",
+          "body_chars": 1154
+        }
+      },
+      "final_url": "http://127.0.0.1:4613/login"
+    },
+    {
+      "name": "mobile",
+      "width": 390,
+      "height": 844,
+      "ok": true,
+      "steps": [
+        {
+          "step": "goto",
+          "arg": "/",
+          "ok": true,
+          "ms": 1160
+        },
+        {
+          "step": "expect",
+          "arg": {
+            "status": 200
+          },
+          "ok": true,
+          "ms": 0
+        },
+        {
+          "step": "expect",
+          "arg": {
+            "visible": "button.fab[aria-label='Improve this page']"
+          },
+          "ok": true,
+          "ms": 16
+        },
+        {
+          "step": "expect",
+          "arg": {
+            "visible": "header a[data-fleet-feedback-open]"
+          },
+          "ok": true,
+          "ms": 3
+        },
+        {
+          "step": "expect",
+          "arg": {
+            "no_horizontal_scroll": true
+          },
+          "ok": true,
+          "value": {
+            "sw": 390,
+            "cw": 390
+          },
+          "ms": 3
+        },
+        {
+          "step": "expect",
+          "arg": {
+            "no_console_errors": true
+          },
+          "ok": true,
+          "ms": 0
+        },
+        {
+          "step": "screenshot",
+          "arg": "home",
+          "ok": true,
+          "file": "test/evidence/page-feedback/mobile-home.png",
+          "ms": 26
+        },
+        {
+          "step": "eval",
+          "arg": {
+            "name": "capture_buffer",
+            "script": "(() => {\n  if (!window.__fleetFeedback || !window.__fleetFeedback.installed) throw new Error('capture buffer not installed');\n  console.error('probe: fleet-feedback capture check');\n  const logs = window.__fleetFeedback.snapshot();\n  if (!JSON.stringify(logs).includes('probe: fleet-feedback capture check')) throw new Error('probe line not in the capture buffer');\n  return { entries: logs.length, version: window.__fleetFeedback.version };\n})()"
+          },
+          "ok": true,
+          "value": {
+            "entries": 2,
+            "version": "0.2.0"
+          },
+          "ms": 4
+        },
+        {
+          "step": "eval",
+          "arg": {
+            "name": "stub_window_open",
+            "script": "(() => {\n  window.__ffOpened = [];\n  window.open = (url) => { window.__ffOpened.push(String(url)); return {}; };\n  return true;\n})()"
+          },
+          "ok": true,
+          "value": true,
+          "ms": 2
+        },
+        {
+          "step": "click",
+          "arg": "header a[data-fleet-feedback-open]",
+          "ok": true,
+          "ms": 90
+        },
+        {
+          "step": "expect",
+          "arg": {
+            "visible": "dialog#ff-dlg"
+          },
+          "ok": true,
+          "ms": 3
+        },
+        {
+          "step": "fill",
+          "arg": {
+            "selector": "#ff-desc",
+            "value": "Scenario check: the page-feedback dialog builds a prefilled issue."
+          },
+          "ok": true,
+          "ms": 6
+        },
+        {
+          "step": "wait",
+          "arg": {
+            "ms": 400
+          },
+          "ok": true,
+          "ms": 400
+        },
+        {
+          "step": "screenshot",
+          "arg": "dialog",
+          "ok": true,
+          "file": "test/evidence/page-feedback/mobile-dialog.png",
+          "ms": 23
+        },
+        {
+          "step": "click",
+          "arg": "#ff-submit",
+          "ok": true,
+          "ms": 27
+        },
+        {
+          "step": "eval",
+          "arg": {
+            "name": "issue_url",
+            "script": "(() => {\n  const opened = window.__ffOpened || [];\n  if (opened.length !== 1) throw new Error('expected one window.open call, got ' + opened.length);\n  const u = new URL(opened[0]);\n  if (u.origin + u.pathname !== 'https://github.com/bamr87/cv-pro/issues/new') throw new Error('wrong target ' + u.origin + u.pathname);\n  const body = u.searchParams.get('body') || '';\n  const labels = (u.searchParams.get('labels') || '').split(',');\n  if (!/<!-- fleet-feedback v1 type=[a-z-]+ -->/.test(body)) throw new Error('fleet-feedback marker missing from the body');\n  if (!labels.includes('page-feedback')) throw new Error('page-feedback label missing: ' + labels.join(','));\n  if (!body.includes('probe: fleet-feedback capture check')) throw new Error('captured logs missing from the body');\n  return { target: u.origin + u.pathname, title: u.searchParams.get('title'), labels, marker: (body.match(/<!-- fleet-feedback v1 type=[a-z-]+ -->/) || [''])[0], body_chars: body.length };\n})()"
+          },
+          "ok": true,
+          "value": {
+            "target": "https://github.com/bamr87/cv-pro/issues/new",
+            "title": "[Report a problem] CV Builder - Professional Resume Generator",
+            "labels": [
+              "page-feedback",
+              "bug"
+            ],
+            "marker": "<!-- fleet-feedback v1 type=fix-page -->",
+            "body_chars": 1153
+          },
+          "ms": 0
+        },
+        {
+          "step": "goto",
+          "arg": "/login",
+          "ok": true,
+          "ms": 800
+        },
+        {
+          "step": "expect",
+          "arg": {
+            "status": 200
+          },
+          "ok": true,
+          "ms": 0
+        },
+        {
+          "step": "expect",
+          "arg": {
+            "visible": "button.fab[aria-label='Improve this page']"
+          },
+          "ok": true,
+          "ms": 11
+        },
+        {
+          "step": "expect",
+          "arg": {
+            "visible": "header a[data-fleet-feedback-open]"
+          },
+          "ok": true,
+          "ms": 2
+        },
+        {
+          "step": "expect",
+          "arg": {
+            "no_horizontal_scroll": true
+          },
+          "ok": true,
+          "value": {
+            "sw": 390,
+            "cw": 390
+          },
+          "ms": 1
+        },
+        {
+          "step": "screenshot",
+          "arg": "login",
+          "ok": true,
+          "file": "test/evidence/page-feedback/mobile-login.png",
+          "ms": 20
+        }
+      ],
+      "console_errors": [],
+      "screenshots": [
+        "test/evidence/page-feedback/mobile-home.png",
+        "test/evidence/page-feedback/mobile-dialog.png",
+        "test/evidence/page-feedback/mobile-login.png"
+      ],
+      "evals": {
+        "capture_buffer": {
+          "entries": 2,
+          "version": "0.2.0"
+        },
+        "stub_window_open": true,
+        "issue_url": {
+          "target": "https://github.com/bamr87/cv-pro/issues/new",
+          "title": "[Report a problem] CV Builder - Professional Resume Generator",
+          "labels": [
+            "page-feedback",
+            "bug"
+          ],
+          "marker": "<!-- fleet-feedback v1 type=fix-page -->",
+          "body_chars": 1153
+        }
+      },
+      "final_url": "http://127.0.0.1:4613/login"
+    }
+  ],
+  "ok": true,
+  "finished": "2026-11-16T05:06:55.408Z",
+  "base": "http://127.0.0.1:4613"
+}
