@@ -25,8 +25,20 @@ function Shell({ children }: { children: React.ReactNode }) {
       </a>
       <header className="border-b">
         <div className="max-w-6xl mx-auto p-4 flex items-center justify-between">
-          <Link to="/" className="font-semibold">CV Builder</Link>
+          <Link to="/" className="font-semibold whitespace-nowrap">CV Builder</Link>
           <div className="flex items-center gap-2">
+            {/* Inline page-feedback trigger (UPS-FB-01/FB-07): a real link to the issue form,
+                upgraded to open the <fleet-feedback> dialog mounted in index.html.
+                The short label keeps the header on one line at phone widths. */}
+            <Button asChild variant="ghost" size="sm">
+              <a
+                data-fleet-feedback-open
+                href="https://github.com/bamr87/cv-pro/issues/new?template=page_feedback.yml&labels=page-feedback"
+              >
+                <span className="hidden sm:inline">Improve this page</span>
+                <span className="sm:hidden">Feedback</span>
+              </a>
+            </Button>
             <Button asChild variant="outline" size="sm"><Link to="/settings">Settings</Link></Button>
             {user ? (
               <Button variant="outline" size="sm" onClick={signOutUser}>Sign out</Button>
