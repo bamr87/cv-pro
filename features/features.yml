@@ -79,3 +79,12 @@ features:
     verified:
       date: 2026-11-16
       by: agent
+  - id: CVPRO-007
+    title: "Constitution missions"
+    description: "One direction statement and exactly three numbered missions in constitution §1, with matching README and AGENTS.md taglines linked to that section."
+    implemented: true
+    status: planned
+    prd: [MR1]
+    surface: docs
+    link: "docs/constitution.md"
+    docs: "app/PRD.md"

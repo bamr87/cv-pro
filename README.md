@@ -1,6 +1,6 @@
 # cv-pro — the CV machine and its builder, in one repository
 
-> Amr's CV as code and the CV Builder Pro app, consolidated: `cv/` holds the canonical data, the CVData contract and every render; `app/` holds the React builder that edits it.
+> CV Pro's direction is to become the ultimate open home for all things professional CVs: data, tools, resources and transparency, with CVs as code, LaTeX typesetting, reviewed AI parsing and multi-format export for everyone ([constitution](docs/constitution.md) §1).
 
 [![CI](https://github.com/bamr87/cv-pro/actions/workflows/ci.yml/badge.svg)](https://github.com/bamr87/cv-pro/actions/workflows/ci.yml) [![License](https://img.shields.io/github/license/bamr87/cv-pro)](LICENSE)
 

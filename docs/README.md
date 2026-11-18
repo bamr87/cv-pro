@@ -12,7 +12,7 @@
 
 | Document | What it covers |
 | --- | --- |
-| [`AGENTS.md`](../AGENTS.md) | Amr's CV as code (cv/) and the CV Builder Pro app that edits it (app/), in one repository that shares one CVData contract. |
+| [`AGENTS.md`](../AGENTS.md) | CV Pro's direction is to become the ultimate open home for all things professional CVs: data, tools, resources and transparency, with CVs as code, LaTeX typesetting, reviewed AI parsing and multi-format export for everyone… |
 | [`CHANGELOG.md`](../CHANGELOG.md) | Release history: the notable changes in each version, newest first. |
 | [`app/`](../app/README.md) | React web app for building CVs and résumés with LaTeX templates, Markdown/PDF export and optional AI parsing. |
 | [`cv/`](../cv/README.md) | Amr's CV as code: one cv.json rendered to Markdown, LaTeX, HTML and PDF, with automated publishing and releases. |
