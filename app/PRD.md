@@ -76,7 +76,7 @@ Every user-facing capability has a stable id in the feature catalog [`features/f
 | [CVPRO-004](../features/features.yml) | Multi-format export | shipped | [`app/src/components/cv/ExportSection.tsx`](src/components/cv/ExportSection.tsx) · [`app/PRD.md`](PRD.md) | Multi-Format Export |
 | [CVPRO-005](../features/features.yml) | Template gallery | tbd | [`app/src/lib/latex-templates.ts`](src/lib/latex-templates.ts) · [`app/PRD.md`](PRD.md) | Template Gallery |
 | [CVPRO-006](../features/features.yml) | Page feedback widget | shipped | [`app/index.html`](index.html) · [`app/README.md`](README.md) | TBD |
-| [CVPRO-007](../features/features.yml) | Constitution missions | planned | [`docs/constitution.md`](../docs/constitution.md) · [`app/PRD.md`](PRD.md) | MR1 |
+| [CVPRO-007](../features/features.yml) | Constitution missions | shipped | [`docs/constitution.md`](../docs/constitution.md) · [`app/PRD.md`](PRD.md) | MR1 |
 
 **Requirement → feature trace**
 
