@@ -34,6 +34,7 @@ Feature [CVPRO-007](../features/features.yml) traces to requirement MR1.
 - **Trigger**: User clicks "Edit CV" or starts new CV
 - **Progression**: Dashboard → CV Form → Section Selection → Data Entry → Save → Preview
 - **Success Criteria**: Data persists between sessions, validation prevents incomplete entries
+- **Requirement**: FR1 — A structured form captures personal info, experience, education, skills, projects, certifications and languages; data persists between sessions and validation prevents incomplete or schema-invalid entries from being treated as a CV.
 
 ### LaTeX Template System
 - **Functionality**: Generate LaTeX code from CV data using professional templates
@@ -41,6 +42,7 @@ Feature [CVPRO-007](../features/features.yml) traces to requirement MR1.
 - **Trigger**: User saves CV data or requests LaTeX export
 - **Progression**: CV Data → Template Selection → LaTeX Generation → Export/Preview
 - **Success Criteria**: Valid LaTeX code generated, template switching works seamlessly
+- **Requirement**: FR2 — The builder generates valid LaTeX from the same CVData contract the machine typesets, and switching the available templates regenerates the export.
 
 ### AI CV Parser
 - **Functionality**: Upload existing CV (PDF/text) and extract structured data using AI
@@ -48,6 +50,7 @@ Feature [CVPRO-007](../features/features.yml) traces to requirement MR1.
 - **Trigger**: User uploads CV file or pastes text
 - **Progression**: File Upload → AI Processing → Data Extraction → Review/Edit → Save
 - **Success Criteria**: Accurately extracts 90%+ of CV content into structured format
+- **Requirement**: FR3 — An author can upload a PDF or text CV (or paste text), have it parsed into the contract, and must be able to review, edit, or fall back to manual entry when parsing fails.
 
 ### Multi-Format Export
 - **Functionality**: Export CV as PDF, Markdown, ASCII text, or LaTeX source
@@ -55,6 +58,7 @@ Feature [CVPRO-007](../features/features.yml) traces to requirement MR1.
 - **Trigger**: User clicks export button and selects format
 - **Progression**: CV Data → Format Selection → Generation → Download
 - **Success Criteria**: All formats maintain professional appearance and completeness
+- **Requirement**: FR4 — The builder exports a complete CV as PDF, Markdown, ASCII text, LaTeX source and canonical cv.json, and those formats stay consistent with the machine renders.
 
 ### Template Gallery
 - **Functionality**: Multiple LaTeX templates (Academic, Corporate, Creative, Minimal)
@@ -62,6 +66,22 @@ Feature [CVPRO-007](../features/features.yml) traces to requirement MR1.
 - **Trigger**: User browses templates or changes template
 - **Progression**: Template Browser → Preview → Apply → Regenerate Exports
 - **Success Criteria**: Templates apply correctly, previews are accurate
+- **Requirement**: FR5 — The author can browse, preview and apply multiple LaTeX templates (Academic, Corporate, Creative, Minimal).
+
+### Page feedback
+- **Functionality**: An "Improve this page" control on every route files a prefilled GitHub issue with page context and recent console errors.
+- **Purpose**: Let readers report problems in the builder without leaving the page.
+- **Requirement**: FR6 — Every route exposes the fleet page-feedback widget (or a fallback link to the issue form) so a visitor can file an issue that includes the current page and captured console errors.
+
+### JSON Resume interchange
+- **Functionality**: Import and export a JSON Resume 1.x `resume.json`, mapped to and from this repo's CVData contract.
+- **Purpose**: Interoperate with the open resume ecosystem (JSON Resume CLI and themes, RenderCV, Reactive Resume) without replacing the canonical contract.
+- **Requirement**: FR7 — The builder can import a valid JSON Resume document into CVData and export a document that validates against the JSON Resume schema; unmapped sections are reported, not invented. Canonical storage remains `cv.json` / CVData.
+
+### Builder typographic preview
+- **Functionality**: A live typographic preview in the builder that reuses the CV machine's HTML/print lane, including a 390px layout and Print / Save as PDF.
+- **Purpose**: The author can see and print the same professional page the machine publishes, without a second layout.
+- **Requirement**: FR8 — The builder shows a preview generated from the same HTML exporter as the machine, with print CSS that hides app chrome and a layout that does not require horizontal scrolling at 390px.
 
 ## Feature catalog
 
@@ -70,25 +90,29 @@ Every user-facing capability has a stable id in the feature catalog [`features/f
 
 | ID | Feature | Status | Where | Requirements |
 | --- | --- | --- | --- | --- |
-| [CVPRO-001](../features/features.yml) | CV data management | shipped | [`app/src/components/cv`](src/components/cv) · [`app/PRD.md`](PRD.md) | CV Data Management |
-| [CVPRO-002](../features/features.yml) | LaTeX template system | shipped | [`app/src/lib/latex-templates.ts`](src/lib/latex-templates.ts) · [`app/PRD.md`](PRD.md) | LaTeX Template System |
-| [CVPRO-003](../features/features.yml) | AI CV parser | shipped | [`app/src/components/cv/AIParser.tsx`](src/components/cv/AIParser.tsx) · [`app/PRD.md`](PRD.md) | AI CV Parser |
-| [CVPRO-004](../features/features.yml) | Multi-format export | shipped | [`app/src/components/cv/ExportSection.tsx`](src/components/cv/ExportSection.tsx) · [`app/PRD.md`](PRD.md) | Multi-Format Export |
-| [CVPRO-005](../features/features.yml) | Template gallery | tbd | [`app/src/lib/latex-templates.ts`](src/lib/latex-templates.ts) · [`app/PRD.md`](PRD.md) | Template Gallery |
-| [CVPRO-006](../features/features.yml) | Page feedback widget | shipped | [`app/index.html`](index.html) · [`app/README.md`](README.md) | TBD |
+| [CVPRO-001](../features/features.yml) | CV data management | shipped | [`app/src/components/cv`](src/components/cv) · [`app/PRD.md`](PRD.md) | FR1 |
+| [CVPRO-002](../features/features.yml) | LaTeX template system | shipped | [`app/src/lib/latex-templates.ts`](src/lib/latex-templates.ts) · [`app/PRD.md`](PRD.md) | FR2 |
+| [CVPRO-003](../features/features.yml) | AI CV parser | shipped | [`app/src/components/cv/AIParser.tsx`](src/components/cv/AIParser.tsx) · [`app/PRD.md`](PRD.md) | FR3 |
+| [CVPRO-004](../features/features.yml) | Multi-format export | shipped | [`app/src/components/cv/ExportSection.tsx`](src/components/cv/ExportSection.tsx) · [`app/PRD.md`](PRD.md) | FR4 |
+| [CVPRO-005](../features/features.yml) | Template gallery | tbd | [`app/src/lib/latex-templates.ts`](src/lib/latex-templates.ts) · [`app/PRD.md`](PRD.md) | FR5 |
+| [CVPRO-006](../features/features.yml) | Page feedback widget | shipped | [`app/index.html`](index.html) · [`app/README.md`](README.md) | FR6 |
 | [CVPRO-007](../features/features.yml) | Constitution missions | planned | [`docs/constitution.md`](../docs/constitution.md) · [`app/PRD.md`](PRD.md) | MR1 |
+| [CVPRO-008](../features/features.yml) | JSON Resume interchange | planned | [`app/src/lib/cv-json.ts`](src/lib/cv-json.ts) · [`app/PRD.md`](PRD.md) | FR7 |
+| [CVPRO-009](../features/features.yml) | Builder typographic preview | planned | [`cv/builder/html.ts`](../cv/builder/html.ts) · [`app/PRD.md`](PRD.md) | FR8 |
 
 **Requirement → feature trace**
 
 | Requirement | Features |
 | --- | --- |
-| CV Data Management | CVPRO-001 |
-| LaTeX Template System | CVPRO-002 |
-| AI CV Parser | CVPRO-003 |
-| Multi-Format Export | CVPRO-004 |
-| Template Gallery | CVPRO-005 |
-| TBD | CVPRO-006 |
+| FR1 | CVPRO-001 |
+| FR2 | CVPRO-002 |
+| FR3 | CVPRO-003 |
+| FR4 | CVPRO-004 |
+| FR5 | CVPRO-005 |
+| FR6 | CVPRO-006 |
 | MR1 | CVPRO-007 |
+| FR7 | CVPRO-008 |
+| FR8 | CVPRO-009 |
 <!-- features:end -->
 
 ## Edge Case Handling

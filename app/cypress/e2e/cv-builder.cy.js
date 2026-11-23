@@ -28,7 +28,7 @@ describe('CV Builder End-to-End Test', () => {
     cy.contains('[data-sonner-toast]', 'CV exported as Markdown').should('be.visible');
   });
 
-  it('should import a cv.json data file (bamr87/cv round-trip)', () => {
+  it('should import a cv.json data file (cv/ data round-trip)', () => {
     cy.contains('Export').click();
     cy.get('[data-testid="import-cv-json"]').selectFile('cypress/fixtures/cv.json', { force: true });
 

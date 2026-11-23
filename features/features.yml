@@ -23,7 +23,7 @@ features:
     description: "Structured form for personal info, experience, education, skills and projects that feeds every export and template."
     implemented: true
     status: shipped
-    prd: ["CV Data Management"]
+    prd: ["FR1"]
     surface: ui
     link: "app/src/components/cv"
     docs: "app/PRD.md"
@@ -32,7 +32,7 @@ features:
     description: "Generates LaTeX from CV data using professional templates."
     implemented: true
     status: shipped
-    prd: ["LaTeX Template System"]
+    prd: ["FR2"]
     surface: ui
     link: "app/src/lib/latex-templates.ts"
     docs: "app/PRD.md"
@@ -41,7 +41,7 @@ features:
     description: "Upload an existing CV (PDF/text) and extract structured data with AI, then review and edit."
     implemented: true
     status: shipped
-    prd: ["AI CV Parser"]
+    prd: ["FR3"]
     surface: ui
     link: "app/src/components/cv/AIParser.tsx"
     docs: "app/PRD.md"
@@ -50,7 +50,7 @@ features:
     description: "Export the CV as PDF, Markdown, ASCII text or LaTeX source."
     implemented: true
     status: shipped
-    prd: ["Multi-Format Export"]
+    prd: ["FR4"]
     surface: ui
     link: "app/src/components/cv/ExportSection.tsx"
     docs: "app/PRD.md"
@@ -59,7 +59,7 @@ features:
     description: "Multiple LaTeX templates (Academic, Corporate, Creative, Minimal) with preview and apply."
     implemented: false
     status: tbd
-    prd: ["Template Gallery"]
+    prd: ["FR5"]
     surface: ui
     link: "app/src/lib/latex-templates.ts"
     docs: "app/PRD.md"
@@ -68,7 +68,7 @@ features:
     description: "An 'Improve this page' button on every route, and a header link, open a dialog that files a prefilled GitHub issue on bamr87/cv-pro carrying the page context and the console errors captured since load."
     implemented: true
     status: shipped
-    prd: [TBD]
+    prd: ["FR6"]
     surface: ui
     link: "app/index.html"
     docs: "app/README.md"
@@ -87,4 +87,23 @@ features:
     prd: [MR1]
     surface: docs
     link: "docs/constitution.md"
+    docs: "app/PRD.md"
+
+  - id: CVPRO-008
+    title: "JSON Resume interchange"
+    description: "Import and export the JSON Resume 1.x resume.json format, keeping CVData as the canonical store and reporting unmapped sections instead of inventing them."
+    implemented: false
+    status: planned
+    prd: ["FR7"]
+    surface: ui
+    link: "app/src/lib/cv-json.ts"
+    docs: "app/PRD.md"
+  - id: CVPRO-009
+    title: "Builder typographic preview"
+    description: "Live typographic preview in the builder that reuses the CV machine HTML/print lane, with a 390px layout and a Print / Save as PDF path."
+    implemented: false
+    status: planned
+    prd: ["FR8"]
+    surface: ui
+    link: "cv/builder/html.ts"
     docs: "app/PRD.md"
