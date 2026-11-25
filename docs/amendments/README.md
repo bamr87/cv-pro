@@ -12,4 +12,4 @@ Process: constitution § 8.
 | # | Title | Status | Affects |
 | --- | --- | --- | --- |
 | [0001](0001-ratify-constitution.md) | Ratify the constitution | ratified on merge | whole constitution |
-| [0002](0002-mission-statement.md) | Missions | proposed | constitution §1; PRD §1.1; feature CVPRO-007 |
+| [0002](0002-mission-statement.md) | Missions | ratified by [#23](https://github.com/bamr87/cv-pro/pull/23) | constitution §1; PRD §1.1; feature CVPRO-007 |

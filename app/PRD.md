@@ -96,7 +96,7 @@ Every user-facing capability has a stable id in the feature catalog [`features/f
 | [CVPRO-004](../features/features.yml) | Multi-format export | shipped | [`app/src/components/cv/ExportSection.tsx`](src/components/cv/ExportSection.tsx) · [`app/PRD.md`](PRD.md) | FR4 |
 | [CVPRO-005](../features/features.yml) | Template gallery | tbd | [`app/src/lib/latex-templates.ts`](src/lib/latex-templates.ts) · [`app/PRD.md`](PRD.md) | FR5 |
 | [CVPRO-006](../features/features.yml) | Page feedback widget | shipped | [`app/index.html`](index.html) · [`app/README.md`](README.md) | FR6 |
-| [CVPRO-007](../features/features.yml) | Constitution missions | planned | [`docs/constitution.md`](../docs/constitution.md) · [`app/PRD.md`](PRD.md) | MR1 |
+| [CVPRO-007](../features/features.yml) | Constitution missions | shipped | [`docs/constitution.md`](../docs/constitution.md) · [`app/PRD.md`](PRD.md) | MR1 |
 | [CVPRO-008](../features/features.yml) | JSON Resume interchange | planned | [`app/src/lib/cv-json.ts`](src/lib/cv-json.ts) · [`app/PRD.md`](PRD.md) | FR7 |
 | [CVPRO-009](../features/features.yml) | Builder typographic preview | planned | [`cv/builder/html.ts`](../cv/builder/html.ts) · [`app/PRD.md`](PRD.md) | FR8 |
 
