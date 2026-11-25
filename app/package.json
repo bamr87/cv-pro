@@ -10,12 +10,11 @@
         "lint": "eslint .",
         "optimize": "vite optimize",
         "preview": "vite preview",
-        "test": "node scripts/contract-check.mjs"
+        "test": "node scripts/contract-check.mjs && vitest run"
     },
     "dependencies": {
         "@github/spark": "^0.39.0",
         "@heroicons/react": "^2.2.0",
-        "@hookform/resolvers": "^4.1.3",
         "@octokit/core": "^6.1.4",
         "@phosphor-icons/react": "^2.1.7",
         "@radix-ui/colors": "^3.0.0",
@@ -48,6 +47,7 @@
         "@tailwindcss/container-queries": "^0.1.1",
         "@tailwindcss/vite": "^4.1.11",
         "@tanstack/react-query": "^5.83.1",
+        "ajv": "^8.17.1",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
         "cmdk": "^1.1.1",
@@ -75,8 +75,7 @@
         "three": "^0.175.0",
         "tw-animate-css": "^1.2.4",
         "uuid": "^14.0.3",
-        "vaul": "^1.1.2",
-        "zod": "^4.6.6"
+        "vaul": "^1.1.2"
     },
     "devDependencies": {
         "@eslint/js": "^9.21.0",
@@ -86,7 +85,6 @@
         "@types/react-dom": "^19.0.4",
         "@vitejs/plugin-react": "^4.3.4",
         "@vitejs/plugin-react-swc": "^3.10.1",
-        "ajv": "^8.17.1",
         "cypress": "^16.0.0",
         "eslint": "^9.28.0",
         "eslint-plugin-react-hooks": "^5.2.0",
@@ -95,7 +93,8 @@
         "tailwindcss": "^4.1.11",
         "typescript": "~5.7.2",
         "typescript-eslint": "^8.73.0",
-        "vite": "^6.4.5"
+        "vite": "^6.4.5",
+        "vitest": "^5.1.1"
     },
     "workspaces": {
         "packages": [

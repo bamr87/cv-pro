@@ -39,7 +39,7 @@ A comprehensive, professional CV/Resume builder application built with React and
 - Professional links (website, LinkedIn, GitHub)
 - Professional summary/objective writing
 - Real-time form validation
-- Data persistence using useKV hook
+- Data persistence in browser `localStorage` (`usePersistedState`), validated against `contract/cv.schema.json` on load
 
 ### 3. Work Experience Management
 **Location**: `/src/components/cv/ExperienceForm.tsx`
@@ -99,7 +99,7 @@ A comprehensive, professional CV/Resume builder application built with React and
 ## Technical Architecture
 
 ### Data Management
-- **Persistent Storage**: useKV hook for data that survives page refreshes
+- **Persistent Storage**: `usePersistedState` keeps the CV in `localStorage` across refreshes; a stored value that fails the schema (or is not JSON) is not loaded: the builder starts empty, a toast says so, and the stored text is kept under `cv-data.rejected-backup`
 - **State Management**: React useState for temporary UI state
 - **Data Validation**: Form validation and error handling
 - **Type Safety**: TypeScript interfaces for all CV data structures

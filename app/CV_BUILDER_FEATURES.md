@@ -144,7 +144,7 @@ A professional CV/Resume builder application with AI-powered parsing, multiple e
 
 ### Frontend Framework
 - **React 18** with TypeScript
-- **Modern Hooks**: useState, useKV for persistence
+- **Modern Hooks**: useState, `usePersistedState` (schema-validated `localStorage`) for persistence
 - **Component Library**: Shadcn/ui components
 
 ### Styling & Design

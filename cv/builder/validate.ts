@@ -7,7 +7,20 @@ export interface ValidationResult {
   warnings: string[];
 }
 
-type Field = { name: string; kind: 'string' | 'boolean' | 'string[]'; required: boolean };
+type Field = {
+  name: string;
+  kind: 'string' | 'boolean' | 'string[]';
+  required: boolean;
+  /** A string's pattern: data/cv.schema.json's `month` / `monthOrEmpty` definitions. */
+  format?: 'month' | 'monthOrEmpty';
+};
+
+// The schema's definitions, verbatim: YYYY-MM, or (monthOrEmpty) empty for an
+// ongoing entry. A date in any other shape is an error, as it is for Ajv.
+const FORMATS: Record<NonNullable<Field['format']>, { pattern: RegExp; label: string }> = {
+  month: { pattern: /^\d{4}-\d{2}$/, label: 'YYYY-MM' },
+  monthOrEmpty: { pattern: /^(\d{4}-\d{2})?$/, label: 'YYYY-MM or empty' }
+};
 
 const PERSONAL_FIELDS: Field[] = [
   { name: 'fullName', kind: 'string', required: true },
@@ -24,8 +37,8 @@ const EXPERIENCE_FIELDS: Field[] = [
   { name: 'id', kind: 'string', required: true },
   { name: 'company', kind: 'string', required: true },
   { name: 'position', kind: 'string', required: true },
-  { name: 'startDate', kind: 'string', required: true },
-  { name: 'endDate', kind: 'string', required: true },
+  { name: 'startDate', kind: 'string', required: true, format: 'month' },
+  { name: 'endDate', kind: 'string', required: true, format: 'monthOrEmpty' },
   { name: 'current', kind: 'boolean', required: true },
   { name: 'description', kind: 'string', required: true },
   { name: 'achievements', kind: 'string[]', required: true },
@@ -37,8 +50,8 @@ const EDUCATION_FIELDS: Field[] = [
   { name: 'institution', kind: 'string', required: true },
   { name: 'degree', kind: 'string', required: true },
   { name: 'field', kind: 'string', required: true },
-  { name: 'startDate', kind: 'string', required: true },
-  { name: 'endDate', kind: 'string', required: true },
+  { name: 'startDate', kind: 'string', required: true, format: 'month' },
+  { name: 'endDate', kind: 'string', required: true, format: 'monthOrEmpty' },
   { name: 'gpa', kind: 'string', required: false },
   { name: 'honors', kind: 'string', required: false },
   { name: 'location', kind: 'string', required: false }
@@ -51,8 +64,8 @@ const PROJECT_FIELDS: Field[] = [
   { name: 'technologies', kind: 'string[]', required: true },
   { name: 'url', kind: 'string', required: false },
   { name: 'github', kind: 'string', required: false },
-  { name: 'startDate', kind: 'string', required: true },
-  { name: 'endDate', kind: 'string', required: false }
+  { name: 'startDate', kind: 'string', required: true, format: 'month' },
+  { name: 'endDate', kind: 'string', required: false, format: 'monthOrEmpty' }
 ];
 
 const SKILL_FIELDS: Field[] = [
@@ -91,6 +104,9 @@ function checkFields(obj: Record<string, unknown>, fields: Field[], path: string
       : field.kind === 'boolean' ? typeof value === 'boolean'
       : isStringArray(value);
     if (!ok) out.errors.push(`${path}.${field.name}: expected ${field.kind}`);
+    else if (field.format && typeof value === 'string' && !FORMATS[field.format].pattern.test(value)) {
+      out.errors.push(`${path}.${field.name}: expected ${FORMATS[field.format].label}, got "${value}"`);
+    }
   }
   const known = new Set(fields.map((f) => f.name));
   for (const key of Object.keys(obj)) {

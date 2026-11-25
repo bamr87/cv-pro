@@ -1,4 +1,6 @@
+import Ajv from 'ajv';
 import { CVData, defaultCVData, Education, Experience, Project, Skill } from '../types/cv';
+import cvSchema from '../../contract/cv.schema.json';
 
 // Canonical JSON round-trip with the bamr87/cv repo.
 //
@@ -7,6 +9,30 @@ import { CVData, defaultCVData, Education, Experience, Project, Skill } from '..
 // so a CV can move freely between the forms here and the build machine there
 // (which renders Markdown/ASCII/LaTeX/HTML/PDF from the same shape — see
 // https://github.com/bamr87/cv).
+
+// The one schema validator the app ships: Ajv over contract/cv.schema.json,
+// the byte-identical copy of the contract the build machine (cv/) enforces.
+// Compiled once, at module load. An import, a stored CV and an AI response all
+// pass through it, so nothing outside the contract reaches the forms.
+const validateSchema = new Ajv({ allErrors: true, strict: false }).compile<CVData>(cvSchema);
+
+/** Every way `value` breaks the CVData contract, as `<path> <message>`; empty when it conforms. */
+export function cvDataErrors(value: unknown): string[] {
+  if (validateSchema(value)) return [];
+  return (validateSchema.errors ?? []).map((e) => `${e.instancePath || '/'} ${e.message ?? 'is invalid'}`);
+}
+
+/** True when `value` is a CVData the contract accepts. */
+export function isValidCVData(value: unknown): value is CVData {
+  return cvDataErrors(value).length === 0;
+}
+
+function assertValidCVData(value: unknown, what: string): void {
+  const errors = cvDataErrors(value);
+  if (errors.length === 0) return;
+  const more = errors.length > 3 ? ` (and ${errors.length - 3} more)` : '';
+  throw new Error(`${what} does not match the cv.json schema: ${errors.slice(0, 3).join('; ')}${more}`);
+}
 
 function asString(value: unknown, fallback = ''): string {
   return typeof value === 'string' ? value : fallback;
@@ -77,7 +103,7 @@ export function serializeCVData(data: CVData): string {
   return JSON.stringify(ordered, null, 2) + '\n';
 }
 
-export function parseCVData(text: string): CVData {
+function readObject(text: string): Record<string, unknown> {
   let raw: unknown;
   try {
     raw = JSON.parse(text);
@@ -87,11 +113,38 @@ export function parseCVData(text: string): CVData {
   if (!isRecord(raw)) {
     throw new Error('Expected a JSON object in the cv.json format');
   }
-  const personal = isRecord(raw.personalInfo) ? raw.personalInfo : {};
-  if (!isRecord(raw.personalInfo) || typeof personal.fullName !== 'string') {
+  return raw;
+}
+
+/**
+ * Read a cv.json file (Import cv.json). The file must conform to the contract
+ * as it stands: a date that is not YYYY-MM or a missing required field throws,
+ * naming the path, instead of being coerced to an empty string.
+ */
+export function parseCVData(text: string): CVData {
+  const raw = readObject(text);
+  assertValidCVData(raw, 'This file');
+  return coerceCVData(raw);
+}
+
+/**
+ * Normalize an AI provider's answer, which is CV-shaped but not a cv.json:
+ * missing ids are backfilled and absent sections filled, then the result must
+ * conform to the contract like any import (so a date such as "June 2020" is
+ * still rejected rather than stored).
+ */
+export function normalizeCVData(text: string): CVData {
+  const raw = readObject(text);
+  if (!isRecord(raw.personalInfo) || typeof raw.personalInfo.fullName !== 'string') {
     throw new Error('Missing personalInfo.fullName — is this a cv.json file?');
   }
+  const data = coerceCVData(raw);
+  assertValidCVData(data, 'The parsed CV');
+  return data;
+}
 
+function coerceCVData(raw: Record<string, unknown>): CVData {
+  const personal = isRecord(raw.personalInfo) ? raw.personalInfo : {};
   const stamp = Date.now();
 
   const experience: Experience[] = (Array.isArray(raw.experience) ? raw.experience : [])

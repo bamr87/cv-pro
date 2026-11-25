@@ -41,6 +41,21 @@ test('validator rejects broken data', () => {
   assert.ok(errors.some((e) => e.startsWith('languages')), 'flags non-array languages');
 });
 
+test('validator rejects a date that breaks the schema month pattern', () => {
+  const raw = JSON.parse(readFileSync(new URL('../data/cv.json', import.meta.url), 'utf8'));
+  raw.experience[0].startDate = 'June 2020';
+  raw.education[0].endDate = '2020/05';
+  raw.projects[0].startDate = '';
+  const { errors } = validateCVData(raw);
+  assert.ok(errors.some((e) => e.startsWith('experience[0].startDate: expected YYYY-MM')), 'flags a prose start date');
+  assert.ok(errors.some((e) => e.startsWith('education[0].endDate: expected YYYY-MM or empty')), 'flags a slashed end date');
+  assert.ok(errors.some((e) => e.startsWith('projects[0].startDate: expected YYYY-MM')), 'an empty start date is not a month');
+  raw.experience[0].startDate = '2020-06';
+  raw.education[0].endDate = '';
+  raw.projects[0].startDate = '2021-01';
+  assert.deepEqual(validateCVData(raw).errors, [], 'YYYY-MM and an empty end date pass');
+});
+
 test('every committed generated surface is in sync with data/cv.json', () => {
   for (const [path, expected] of committedSurfaces(data)) {
     const label = path.slice(ROOT.length + 1);

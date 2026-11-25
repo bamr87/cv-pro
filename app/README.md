@@ -76,7 +76,7 @@ AI parsing extracts structured CV data from pasted text or PDF.
 Notes:
 - PDF support uses text extraction via pdf.js (layout may be imperfect depending on the source)
 - Your AI API key is saved under your user in Firestore; CV content remains in your browser storage
-- The provider's response is normalized through the same reader as `Import cv.json`, so anything that is not a CV in the contract shape is rejected with a toast instead of replacing your data
+- The provider's response is normalized (missing ids and sections backfilled) and then validated against the same schema as `Import cv.json`, so anything that is not a CV in the contract shape (including a date that is not `YYYY-MM`) is rejected with a toast instead of replacing your data
 - Affinda is selectable but not yet mapped: `parseCvText` returns its raw payload, which the normalizer rejects. Use xAI Grok or OpenAI for now
 
 ### Page feedback
@@ -92,6 +92,7 @@ Every route shows the fleet's "Improve this page" button (bottom right) and a ma
 - `src/pages` — `LoginPage`, `SettingsPage`
 - `contract/` — Vendored copy of the bamr87/cv `cv.schema.json` plus the update procedure
 - `scripts/contract-check.mjs` — The `npm test` contract gate
+- `vitest.config.ts` — Vitest settings for the unit tests (`src/**/*.test.ts`), apart from the Spark build config
 - `cypress/` — End-to-end specs and the round-trip `cv.json` fixture
 
 ### Data Model (excerpt)
@@ -157,12 +158,14 @@ Generated `.tex` can be compiled externally (e.g., Overleaf) if you don’t have
 - `npm run build` — Build for production (`tsc -b --noCheck && vite build`) — **`--noCheck` means type errors do not fail the build**; use `npm run lint` and `npx tsc --noEmit` for type feedback
 - `npm run preview` — Preview the production build
 - `npm run lint` — Lint source
-- `npm test` — Contract gate: fixture validates against `contract/cv.schema.json`; types cover every contract property
+- `npm test` — Contract gate (fixture validates against `contract/cv.schema.json`; types cover every contract property), then the Vitest unit tests (`src/**/*.test.ts`)
 - `npm run optimize` — Vite dependency optimization
 - `npm run kill` — Free port 5000 (`fuser -k 5000/tcp`), for the parent repo's compose setup
 
 ## Testing
-`npm test` runs the contract gate ([scripts/contract-check.mjs](scripts/contract-check.mjs)) and is what CI enforces — it needs no browser and no dev server.
+`npm test` runs the contract gate ([scripts/contract-check.mjs](scripts/contract-check.mjs)) and then the [Vitest](https://vitest.dev) unit tests beside their modules (`src/**/*.test.ts`, configured in [vitest.config.ts](vitest.config.ts)): the schema validation in `cv-json.ts` and the stored-CV guard in `usePersistedState.ts`. It is what CI enforces, and it needs no browser and no dev server.
+
+**Validation.** The app ships one schema validator: Ajv over `contract/cv.schema.json`, compiled once in `src/lib/cv-json.ts`. Import cv.json (`parseCVData`) refuses a file that breaks the contract, for example a date that is not `YYYY-MM` or a missing required field, and the error names the path. An AI response is normalized (ids and absent sections backfilled) and then validated the same way (`normalizeCVData`). On load, a stored `cv-data` value that fails the schema or is not JSON is not used: the builder starts from the empty default, a toast says why, and the raw text is kept in `localStorage` under `cv-data.rejected-backup` so the write-back cannot destroy it.
 
 The Cypress end-to-end specs in [cypress/e2e](cypress/e2e) drive a **running** dev server at `http://localhost:5000` (Cypress's `baseUrl`; override with `CYPRESS_BASE_URL`), so start it first:
 ```bash

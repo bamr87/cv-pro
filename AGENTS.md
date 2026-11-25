@@ -25,7 +25,7 @@ Each half has its own dependencies; run commands from inside it.
 (cd app && npm run dev)       # dev server on port 5000
 (cd app && npm run build)     # tsc -b --noCheck && vite build
 (cd app && npm run lint)      # eslint .
-(cd app && npm test)          # the CVData contract gate (scripts/contract-check.mjs)
+(cd app && npm test)          # the CVData contract gate (scripts/contract-check.mjs), then Vitest unit tests
 (cd app && npx cypress run)   # e2e, against a running dev server
 
 # the contract: the vendored copy must match the source byte for byte
