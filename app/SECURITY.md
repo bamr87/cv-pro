@@ -29,3 +29,9 @@ This information will help us triage your report more quickly.
 ## Policy
 
 See [GitHub's Safe Harbor Policy](https://docs.github.com/en/site-policy/security-policies/github-bug-bounty-program-legal-safe-harbor#1-safe-harbor-terms)
+
+## AI API keys and Firestore rules (cv-pro)
+
+- **Where keys live.** The AI provider key a user enters on the Settings page is stored per user, **in plaintext**, in a Firestore field: `users/{uid}/settings/ai` → `{provider, apiKey}`. It is not encrypted at rest beyond what Firestore itself provides, and the browser sends it directly to the provider. The Settings field masks the key on screen (`type="password"`, `autoComplete="off"`, a show/hide toggle); masking hides it from shoulder-surfing and screen shares, not from anyone who can read the document.
+- **Who can read them.** [firestore.rules](firestore.rules) allows a signed-in user to read and write only their own `users/{uid}/**` subtree and denies every other path. `npm test` (`scripts/security-check.mjs`) fails if the rules or the masked field regress.
+- **Deploying the rules.** The rules take effect only once deployed to the Firebase project. From `app/` (where `firebase.json` points at the file): `firebase deploy --only firestore:rules`. Deploy them before pointing a production build at a project, and again after any change to `firestore.rules`.

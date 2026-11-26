@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { toast } from 'sonner';
+import { Eye, EyeSlash } from '@phosphor-icons/react';
 
 type Provider = 'grok' | 'openai' | 'affinda';
 
@@ -15,6 +16,8 @@ export function SettingsPage() {
   const [loading, setLoading] = useState(false);
   const [provider, setProvider] = useState<Provider>('grok');
   const [apiKey, setApiKey] = useState('');
+  // The key is masked by default; the toggle reveals it on demand.
+  const [showKey, setShowKey] = useState(false);
 
   useEffect(() => {
     const load = async () => {
@@ -30,8 +33,8 @@ export function SettingsPage() {
           setProvider((data.provider as Provider) || 'grok');
           setApiKey(data.apiKey || '');
         }
-      } catch {
-        // noop
+      } catch (e) {
+        toast.error(e instanceof Error ? e.message : 'Failed to load AI settings');
       } finally {
         setLoading(false);
       }
@@ -78,8 +81,28 @@ export function SettingsPage() {
             </Select>
           </div>
           <div className="space-y-2">
-            <label className="text-sm font-medium">API Key</label>
-            <Input value={apiKey} onChange={e => setApiKey(e.target.value)} placeholder="sk-..." />
+            <label htmlFor="api-key" className="text-sm font-medium">API Key</label>
+            <div className="flex gap-2">
+              <Input
+                id="api-key"
+                type={showKey ? 'text' : 'password'}
+                autoComplete="off"
+                spellCheck={false}
+                value={apiKey}
+                onChange={e => setApiKey(e.target.value)}
+                placeholder="sk-..."
+              />
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                aria-pressed={showKey}
+                aria-label={showKey ? 'Hide API key' : 'Show API key'}
+                onClick={() => setShowKey(v => !v)}
+              >
+                {showKey ? <EyeSlash /> : <Eye />}
+              </Button>
+            </div>
           </div>
           <Button onClick={save} disabled={loading || !apiKey.trim()}>Save</Button>
         </CardContent>

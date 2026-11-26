@@ -1,0 +1,17 @@
+rules_version = '2';
+
+// Firestore security rules for cv-pro (bamr87/cv-pro#40).
+// The app stores one document per user: users/{uid}/settings/ai -> {provider, apiKey}.
+// Each user may read and write only their own subtree; every other path is denied.
+// Deploy with: firebase deploy --only firestore:rules
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{uid}/{document=**} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -10,7 +10,7 @@
         "lint": "eslint .",
         "optimize": "vite optimize",
         "preview": "vite preview",
-        "test": "node scripts/contract-check.mjs"
+        "test": "node scripts/contract-check.mjs && node scripts/security-check.mjs"
     },
     "dependencies": {
         "@github/spark": "^0.39.0",

@@ -92,6 +92,8 @@ Every route shows the fleet's "Improve this page" button (bottom right) and a ma
 - `src/pages` — `LoginPage`, `SettingsPage`
 - `contract/` — Vendored copy of the bamr87/cv `cv.schema.json` plus the update procedure
 - `scripts/contract-check.mjs` — The `npm test` contract gate
+- `scripts/security-check.mjs` — The `npm test` security gate: the masked API key field and the owner-only Firestore rules
+- `firestore.rules`, `firebase.json` — Firestore security rules (owner-only `users/{uid}/**`, everything else denied) and the Firebase CLI config that deploys them
 - `cypress/` — End-to-end specs and the round-trip `cv.json` fixture
 
 ### Data Model (excerpt)
@@ -157,12 +159,12 @@ Generated `.tex` can be compiled externally (e.g., Overleaf) if you don’t have
 - `npm run build` — Build for production (`tsc -b --noCheck && vite build`) — **`--noCheck` means type errors do not fail the build**; use `npm run lint` and `npx tsc --noEmit` for type feedback
 - `npm run preview` — Preview the production build
 - `npm run lint` — Lint source
-- `npm test` — Contract gate: fixture validates against `contract/cv.schema.json`; types cover every contract property
+- `npm test` — Contract gate (fixture validates against `contract/cv.schema.json`; types cover every contract property), then the security gate (`scripts/security-check.mjs`)
 - `npm run optimize` — Vite dependency optimization
 - `npm run kill` — Free port 5000 (`fuser -k 5000/tcp`), for the parent repo's compose setup
 
 ## Testing
-`npm test` runs the contract gate ([scripts/contract-check.mjs](scripts/contract-check.mjs)) and is what CI enforces — it needs no browser and no dev server.
+`npm test` runs the contract gate ([scripts/contract-check.mjs](scripts/contract-check.mjs)) and the security gate ([scripts/security-check.mjs](scripts/security-check.mjs): the Settings API key field is masked and labelled, the load error is surfaced, and `firestore.rules` is owner-only) and is what CI enforces — it needs no browser and no dev server.
 
 The Cypress end-to-end specs in [cypress/e2e](cypress/e2e) drive a **running** dev server at `http://localhost:5000` (Cypress's `baseUrl`; override with `CYPRESS_BASE_URL`), so start it first:
 ```bash
@@ -173,10 +175,12 @@ npx cypress open            # interactive runner
 
 ## Environment & Security
 - Do not embed AI provider API keys in client env vars; use the in-app Settings page so keys are stored per-user in Firestore
+- Keys are stored **in plaintext** in a Firestore field (`users/{uid}/settings/ai` → `{provider, apiKey}`), readable by anyone the rules allow. The Settings field masks the key on screen (`type="password"`, show/hide toggle), which does not encrypt it
+- [firestore.rules](firestore.rules) lets each signed-in user read and write only `users/{uid}/**` and denies every other path. Deploy them to your Firebase project with `firebase deploy --only firestore:rules` (run in `app/`, where `firebase.json` points at the file); until they are deployed, the project runs whatever rules the console holds
 - If Firebase is not configured, auth and AI features are disabled, but local editing and exports continue to work
 
 ## Deployment
-Deploy the built `dist` to any static host (e.g., Vercel, Netlify). Remember to set Firebase env vars in your hosting platform if you want auth/AI to work.
+Deploy the built `dist` to any static host (e.g., Vercel, Netlify). Remember to set Firebase env vars in your hosting platform if you want auth/AI to work, and deploy the Firestore rules with `firebase deploy --only firestore:rules`.
 
 ## Contributing
 
