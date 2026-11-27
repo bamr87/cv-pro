@@ -54,7 +54,7 @@ export function ExportSection({ data, onImport }: ExportSectionProps) {
 
         case 'json': {
           // Fixed filename: this is the canonical data file, drop-in for the
-          // bamr87/cv repo's data/cv.json.
+          // cv/data/cv.json in this repo.
           downloadFile(serializeCVData(data), 'cv.json', 'application/json');
           toast.success('CV data exported as cv.json');
           break;
@@ -108,7 +108,7 @@ export function ExportSection({ data, onImport }: ExportSectionProps) {
       case 'latex':
         return 'LaTeX source code - for professional typesetting and PDF generation';
       case 'json':
-        return 'Canonical CV data (cv.json) - round-trips with the bamr87/cv build machine';
+        return 'Canonical CV data (cv.json) - round-trips with the cv/ build machine in this repo';
     }
   };
 

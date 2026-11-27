@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://raw.githubusercontent.com/bamr87/cv/main/data/cv.schema.json",
+  "$id": "https://raw.githubusercontent.com/bamr87/cv-pro/main/cv/data/cv.schema.json",
   "title": "CVData",
-  "description": "Canonical CV data contract shared between bamr87/cv (the build machine) and bamr87/cv-builder-pro (the editor). Mirrors src/types/cv.ts in cv-builder-pro; builder/validate.ts enforces the same shape at build time.",
+  "description": "Canonical CV data contract shared between cv/ (the build machine) and app/ (the editor) in bamr87/cv-pro. Mirrors app/src/types/cv.ts; cv/builder/validate.ts enforces the same shape at build time.",
   "type": "object",
   "required": ["personalInfo", "experience", "education", "projects", "skills", "certifications", "languages"],
   "properties": {

@@ -2,13 +2,12 @@ import Ajv from 'ajv';
 import { CVData, defaultCVData, Education, Experience, Project, Skill } from '../types/cv';
 import cvSchema from '../../contract/cv.schema.json';
 
-// Canonical JSON round-trip with the bamr87/cv repo.
+// Canonical JSON round-trip with cv/data/cv.json in this repo.
 //
-// That repo's data/cv.json is this app's native file format: `serializeCVData`
-// produces it (Export → JSON) and `parseCVData` reads it back (Import cv.json),
-// so a CV can move freely between the forms here and the build machine there
-// (which renders Markdown/ASCII/LaTeX/HTML/PDF from the same shape — see
-// https://github.com/bamr87/cv).
+// `serializeCVData` produces that file (Export → JSON) and `parseCVData` reads
+// it back (Import cv.json), so a CV can move freely between the forms here and
+// the build machine in cv/ (which renders Markdown/ASCII/LaTeX/HTML/PDF from
+// the same shape — see https://github.com/bamr87/cv-pro).
 
 // The one schema validator the app ships: Ajv over contract/cv.schema.json,
 // the byte-identical copy of the contract the build machine (cv/) enforces.
