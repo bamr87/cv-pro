@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { usePersistedState } from '@/lib/usePersistedState';
+import { usePersistedState, type RejectedValue } from '@/lib/usePersistedState';
+import { isValidCVData } from '@/lib/cv-json';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { PersonalInfoForm } from './PersonalInfoForm';
@@ -13,8 +14,18 @@ import { CVData, defaultCVData } from '@/types/cv';
 import { User, Briefcase, GraduationCap, Wrench, FolderOpen, DownloadSimple, Robot, FloppyDisk } from '@phosphor-icons/react';
 import { toast } from 'sonner';
 
+// A stored CV the schema refuses is not loaded: the builder starts empty, and
+// the stored text is kept under the backup key (usePersistedState). The toast
+// waits one task: this runs in a mount effect, before App's <Toaster> (a later
+// sibling) has subscribed, and sonner drops a toast nobody is listening for.
+function reportRejectedCV({ backupKey, reason }: RejectedValue) {
+  setTimeout(() => toast.error(`Your saved CV could not be loaded because ${reason}. The builder started empty; the saved copy is kept in this browser's localStorage under "${backupKey}".`, { duration: 15000 }));
+}
+
+const CV_STORAGE = { validate: isValidCVData, onRejected: reportRejectedCV };
+
 export function CVBuilder() {
-  const [cvData, setCvData] = usePersistedState<CVData>('cv-data', defaultCVData);
+  const [cvData, setCvData] = usePersistedState<CVData>('cv-data', defaultCVData, CV_STORAGE);
   const [activeTab, setActiveTab] = useState('personal');
 
   // Ensure cvData is never undefined

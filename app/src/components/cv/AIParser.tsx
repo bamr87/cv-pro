@@ -10,7 +10,7 @@ import { db, firebaseReady } from '@/lib/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { extractTextFromPdf } from '@/lib/pdf';
 import { parseCvText, AISettings } from '@/lib/aiClient';
-import { parseCVData } from '@/lib/cv-json';
+import { normalizeCVData } from '@/lib/cv-json';
 
 interface AIParserProps {
   onParsed: (data: CVData) => void;
@@ -60,11 +60,12 @@ export function AIParser({ onParsed }: AIParserProps) {
       const jsonString = await parseCvText(settings, text);
       let parsedData: CVData;
       try {
-        // Normalize through the same reader the cv.json import uses: it backfills
-        // missing ids, fills absent sections, drops keys outside the contract, and
-        // rejects a response that is not a CV — so a provider's error payload or a
-        // half-hallucinated object can never be handed to the forms as CVData.
-        parsedData = parseCVData(jsonString);
+        // Normalize, then validate against the same schema the cv.json import
+        // uses: missing ids are backfilled, absent sections filled, keys outside
+        // the contract dropped, and a response that still is not a CV (a
+        // provider's error payload, a date that is not YYYY-MM) is rejected —
+        // so it can never be handed to the forms, or stored, as CVData.
+        parsedData = normalizeCVData(jsonString);
       } catch (parseError) {
         console.error('Failed to parse AI response:', parseError);
         toast.error('The AI did not return usable CV data. Try again, or paste a cleaner excerpt.');
