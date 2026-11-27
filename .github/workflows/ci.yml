@@ -21,3 +21,36 @@ jobs:
   ci:
     uses: bamr87/bamr87/.github/workflows/standard-ci.yml@v2
     secrets: inherit
+
+  # Companion job: the shared gate above keys its Node steps on a root
+  # package.json, and cv-pro has none (each half installs on its own), so it
+  # runs nothing here. This job runs both halves' own checks and the
+  # contract gate (cv/data/cv.schema.json ↔ app/contract/cv.schema.json).
+  halves:
+    name: cv + app + contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ vars.NODE_VERSION || '20' }}
+      - name: Contract copy is byte-identical to its source
+        run: cmp app/contract/cv.schema.json cv/data/cv.schema.json
+      - name: "cv: install"
+        working-directory: cv
+        run: npm install --no-audit --no-fund
+      - name: "cv: lint"
+        working-directory: cv
+        run: npm run lint
+      - name: "cv: test"
+        working-directory: cv
+        run: npm test
+      - name: "app: install"
+        working-directory: app
+        run: npm install --no-audit --no-fund
+      - name: "app: contract test"
+        working-directory: app
+        run: npm test

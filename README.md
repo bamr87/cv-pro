@@ -41,7 +41,7 @@ Each half has its own dependencies and commands; run them from inside `cv/` or `
 (cd app && npx cypress run)   # e2e, against a running dev server
 
 # the contract: the vendored copy must match the source byte for byte
-cmp app/contract/cv.schema.json cv/data/cv.schema.json
+cmp app/contract/cv.schema.json cv/data/cv.schema.json   # CI runs this too (ci.yml, cv + app + contract)
 
 # docs: the index in docs/README.md is generated from each document's summary line
 python3 tools/docs_index.py --check     # rebuild with --write
