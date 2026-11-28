@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.1](https://github.com/bamr87/cv-pro/compare/v0.3.0...v0.3.1) (2026-11-27)
+
+
+### Documentation
+
+* assign FR1–FR6, add planned CVPRO-008..009, fix stale pointers ([e248889](https://github.com/bamr87/cv-pro/commit/e248889739e1f8802e789038a6c2a8dc08426fa5))
+* record amendment 0002 as ratified and mark CVPRO-007 shipped ([3ec871d](https://github.com/bamr87/cv-pro/commit/3ec871dc9c1ca03d3c05acb0cea3fc3f28fbe799))
+
 ## [0.3.0](https://github.com/bamr87/cv-pro/compare/v0.2.0...v0.3.0) (2026-11-18)
 
 
