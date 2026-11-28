@@ -53,7 +53,7 @@ Feature [CVPRO-007](../features/features.yml) traces to requirement MR1.
 - **Requirement**: FR3 — An author can upload a PDF or text CV (or paste text), have it parsed into the contract, and must be able to review, edit, or fall back to manual entry when parsing fails.
 
 ### Multi-Format Export
-- **Functionality**: Export CV as PDF, Markdown, ASCII text, or LaTeX source
+- **Functionality**: Export CV as Markdown, ASCII text, LaTeX source, or canonical cv.json. Markdown and ASCII are the CV machine's own exporters (`cv/builder/markdown.ts`, `cv/builder/ascii.ts`), imported by the app, so they match the published renders. **PDF is not yet exported from the app:** download the LaTeX source to compile, or use the machine's compiled `cv/cv.pdf`; in-app Print / Save as PDF is planned as CVPRO-009 (FR8, #35).
 - **Purpose**: Flexibility for different application requirements and platforms
 - **Trigger**: User clicks export button and selects format
 - **Progression**: CV Data → Format Selection → Generation → Download
@@ -93,7 +93,7 @@ Every user-facing capability has a stable id in the feature catalog [`features/f
 | [CVPRO-001](../features/features.yml) | CV data management | shipped | [`app/src/components/cv`](src/components/cv) · [`app/PRD.md`](PRD.md) | FR1 |
 | [CVPRO-002](../features/features.yml) | LaTeX template system | shipped | [`app/src/lib/latex-templates.ts`](src/lib/latex-templates.ts) · [`app/PRD.md`](PRD.md) | FR2 |
 | [CVPRO-003](../features/features.yml) | AI CV parser | shipped | [`app/src/components/cv/AIParser.tsx`](src/components/cv/AIParser.tsx) · [`app/PRD.md`](PRD.md) | FR3 |
-| [CVPRO-004](../features/features.yml) | Multi-format export | shipped | [`app/src/components/cv/ExportSection.tsx`](src/components/cv/ExportSection.tsx) · [`app/PRD.md`](PRD.md) | FR4 |
+| [CVPRO-004](../features/features.yml) | Multi-format export | partial | [`app/src/components/cv/ExportSection.tsx`](src/components/cv/ExportSection.tsx) · [`app/PRD.md`](PRD.md) | FR4 |
 | [CVPRO-005](../features/features.yml) | Template gallery | tbd | [`app/src/lib/latex-templates.ts`](src/lib/latex-templates.ts) · [`app/PRD.md`](PRD.md) | FR5 |
 | [CVPRO-006](../features/features.yml) | Page feedback widget | shipped | [`app/index.html`](index.html) · [`app/README.md`](README.md) | FR6 |
 | [CVPRO-007](../features/features.yml) | Constitution missions | shipped | [`docs/constitution.md`](../docs/constitution.md) · [`app/PRD.md`](PRD.md) | MR1 |

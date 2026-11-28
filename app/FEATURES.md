@@ -95,13 +95,16 @@ The CV Builder is a professional resume generation application that combines AI-
 - **Real-time Preview**: See changes immediately
 
 ### 11. Professional PDF Generation
+> **Not available in the app yet.** The app exports LaTeX source; the compiled PDF is produced by the CV machine (`cv/cv.pdf`). In-app Print / Save as PDF is planned as CVPRO-009 (#35). The points below describe that target.
+
 - **High-Quality Output**: Professional-grade PDF generation
 - **Template-based Rendering**: LaTeX-powered beautiful formatting
 - **Custom Styling**: Consistent branding and styling
 - **Print-ready Format**: Optimized for both digital and print use
 
 ### 12. Export Options
-- **PDF Download**: Direct PDF file generation
+- **Markdown / ASCII**: Rendered by the CV machine's exporters (`cv/builder`), so the app's files match the published CV.md and text CV
+- **PDF Download**: Planned, not yet in the app (see section 11)
 - **LaTeX Source**: Export raw LaTeX for further customization
 - **JSON Export**: Structured data export for backup/import
 - **Multiple Formats**: Extensible export system

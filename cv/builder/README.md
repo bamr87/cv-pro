@@ -1,6 +1,6 @@
 # builder/ — the generation engine
 
-TypeScript engine that renders `data/cv.json` into every surface. **Ported from [bamr87/cv-builder-pro](https://github.com/bamr87/cv-builder-pro)** — `types.ts`, `markdown.ts`, `ascii.ts`, and `latex.ts` correspond to the app's `src/types/cv.ts`, `src/lib/export-utils.ts`, and `src/lib/latex-templates.ts`, kept intentionally close so improvements can flow both ways.
+TypeScript engine that renders `data/cv.json` into every surface. **Ported from [bamr87/cv-builder-pro](https://github.com/bamr87/cv-builder-pro)** — `types.ts` and `latex.ts` correspond to the app's `src/types/cv.ts` and `src/lib/latex-templates.ts`, kept intentionally close so improvements can flow both ways. `markdown.ts` and `ascii.ts` are no longer copies: the app imports them directly (`app/src/lib/cv-exporters.ts`), so keep both free of Node-only imports, and the app's `npm test` (`app/scripts/exporters.test.ts`) checks their completeness too.
 
 Modules with no app counterpart:
 

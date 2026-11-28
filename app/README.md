@@ -11,7 +11,7 @@ AI-powered CV/Resume builder with LaTeX templates, multiple export formats, and 
 ### Key Features
 - Personal, Experience, Education, Skills, Projects sections with validation
 - Persistent local storage for CV data (no account required)
-- Exports: Markdown (.md), ASCII Text (.txt), LaTeX source (.tex) with selectable templates, and canonical CV data (cv.json)
+- Exports: Markdown (.md) and ASCII Text (.txt) rendered by the CV machine's own exporters (`cv/builder`), LaTeX source (.tex) with selectable templates, and canonical CV data (cv.json). No in-app PDF yet: compile the .tex, or use the machine's `cv/cv.pdf` (in-app print/PDF is #35)
 - Imports: cv.json (round-trips with the [bamr87/cv](https://github.com/bamr87/cv) build machine)
 - Optional AI CV parsing from pasted text or PDF (requires sign-in + API key)
 - Minimal auth layer using Firebase (email/password) to store AI settings
@@ -62,7 +62,7 @@ Open `http://localhost:5000` (the Spark Vite plugin pins the dev server to port 
 1. **AI intake** — parse an existing resume or PDF into structured CVData, then **Export cv.json** and commit it as that repo's `data/cv.json`
 2. **Form-based editing on the go** — **Import cv.json** (Export tab → Data File), edit in the forms, export back
 
-The `CVData` shape is a **two-repo contract**: `contract/cv.schema.json` is a byte-identical vendored copy of that repo's schema, and `npm test` (`scripts/contract-check.mjs`) fails CI if the Cypress fixture stops validating against it or `src/types/cv.ts` is missing any contract property. Change the contract only backward-compatibly, upstream-first — see [contract/README.md](contract/README.md). The generation engine in that repo (`builder/`) is a Node port of this app's exporters over the same contract.
+The `CVData` shape is a **two-repo contract**: `contract/cv.schema.json` is a byte-identical vendored copy of that repo's schema, and `npm test` (`scripts/contract-check.mjs`) fails CI if the Cypress fixture stops validating against it or `src/types/cv.ts` is missing any contract property. Change the contract only backward-compatibly, upstream-first — see [contract/README.md](contract/README.md). The app's Markdown and ASCII exports import that engine's `cv/builder/markdown.ts` and `ascii.ts` directly (`src/lib/cv-exporters.ts`), so the two cannot drift.
 
 ### AI Parser (optional)
 AI parsing extracts structured CV data from pasted text or PDF.
@@ -88,10 +88,11 @@ Every route shows the fleet's "Improve this page" button (bottom right) and a ma
 - `src/components/cv` — Forms, AI parser, export panel, main `CVBuilder`
 - `src/components/ui` — shadcn/ui primitives (generated; add new ones with the shadcn CLI)
 - `src/types/cv.ts` — Strongly-typed CV data model
-- `src/lib` — Firebase init, export helpers, LaTeX templates, PDF extraction, AI client, cv.json reader/writer
+- `src/lib` — Firebase init, export helpers (`cv-exporters.ts` re-exports the machine's Markdown/ASCII exporters; `export-utils.ts` downloads), LaTeX templates, PDF extraction, AI client, cv.json reader/writer
 - `src/pages` — `LoginPage`, `SettingsPage`
 - `contract/` — Vendored copy of the bamr87/cv `cv.schema.json` plus the update procedure
 - `scripts/contract-check.mjs` — The `npm test` contract gate
+- `scripts/exporters.test.ts` — The `npm test` export-completeness check (node:test via tsx)
 - `cypress/` — End-to-end specs and the round-trip `cv.json` fixture
 
 ### Data Model (excerpt)
@@ -157,12 +158,12 @@ Generated `.tex` can be compiled externally (e.g., Overleaf) if you don’t have
 - `npm run build` — Build for production (`tsc -b --noCheck && vite build`) — **`--noCheck` means type errors do not fail the build**; use `npm run lint` and `npx tsc --noEmit` for type feedback
 - `npm run preview` — Preview the production build
 - `npm run lint` — Lint source
-- `npm test` — Contract gate: fixture validates against `contract/cv.schema.json`; types cover every contract property
+- `npm test` — Contract gate: fixture validates against `contract/cv.schema.json`; types cover every contract property. Then the export-completeness test: Markdown and ASCII carry every section, link, location and formatted date
 - `npm run optimize` — Vite dependency optimization
 - `npm run kill` — Free port 5000 (`fuser -k 5000/tcp`), for the parent repo's compose setup
 
 ## Testing
-`npm test` runs the contract gate ([scripts/contract-check.mjs](scripts/contract-check.mjs)) and is what CI enforces — it needs no browser and no dev server.
+`npm test` runs the contract gate ([scripts/contract-check.mjs](scripts/contract-check.mjs)) and the export-completeness test ([scripts/exporters.test.ts](scripts/exporters.test.ts)), and is what CI enforces — it needs no browser and no dev server.
 
 The Cypress end-to-end specs in [cypress/e2e](cypress/e2e) drive a **running** dev server at `http://localhost:5000` (Cypress's `baseUrl`; override with `CYPRESS_BASE_URL`), so start it first:
 ```bash
