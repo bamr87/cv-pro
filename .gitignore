@@ -16,3 +16,16 @@ app/cypress/screenshots/
 # OS and editor noise
 .DS_Store
 Thumbs.db
+
+# ---- lockfiles — never committed: fleet ALWAYS-LATEST dependency policy -----
+# (bamr87/bamr87 _data/fleet.yml `dependencies:` + docs/DEPENDENCIES.md)
+package-lock.json
+npm-shrinkwrap.json
+pnpm-lock.yaml
+yarn.lock
+Gemfile.lock
+poetry.lock
+Pipfile.lock
+uv.lock
+composer.lock
+.terraform.lock.hcl

@@ -7,7 +7,7 @@
 
 ## What this repo is
 
-Amr's CV as code and the CV Builder Pro app, in one repository. `cv/` holds the canonical data (`cv/data/cv.json`), the CVData contract (`cv/data/cv.schema.json`) and every render of it (Markdown, LaTeX, HTML, PDF); `app/` holds the React builder that imports and exports that same data. A change is done when the half you touched passes its own `npm test`, and, if you changed the contract, `app/contract/cv.schema.json` is byte-identical to `cv/data/cv.schema.json`. `app`'s test gates the app against its vendored copy; nothing gates the copy against the source yet, so run the `cmp` below.
+Amr's CV as code and the CV Builder Pro app, in one repository. `cv/` holds the canonical data (`cv/data/cv.json`), the CVData contract (`cv/data/cv.schema.json`) and every render of it (Markdown, LaTeX, HTML, PDF); `app/` holds the React builder that imports and exports that same data. A change is done when the half you touched passes its own `npm test`, and, if you changed the contract, `app/contract/cv.schema.json` is byte-identical to `cv/data/cv.schema.json`. `app`'s test gates the app against its vendored copy, and the `cv + app + contract` job in `.github/workflows/ci.yml` gates the copy against the source with the `cmp` below, alongside `cv`'s lint and test and `app`'s test, on every pull request and push to `main`.
 
 ## Stack & commands
 
@@ -29,7 +29,7 @@ Each half has its own dependencies; run commands from inside it.
 (cd app && npx cypress run)   # e2e, against a running dev server
 
 # the contract: the vendored copy must match the source byte for byte
-cmp app/contract/cv.schema.json cv/data/cv.schema.json
+cmp app/contract/cv.schema.json cv/data/cv.schema.json   # CI runs this too (ci.yml, cv + app + contract)
 
 # docs: the index in docs/README.md is generated from each document's summary line
 python3 tools/docs_index.py --check     # rebuild with --write
