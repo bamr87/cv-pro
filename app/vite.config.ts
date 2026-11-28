@@ -1,6 +1,6 @@
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react-swc";
-import { defineConfig, PluginOption } from "vite";
+import { defineConfig, PluginOption, searchForWorkspaceRoot } from "vite";
 
 import sparkPlugin from "@github/spark/spark-vite-plugin";
 import createIconImportProxy from "@github/spark/vitePhosphorIconProxyPlugin";
@@ -27,5 +27,13 @@ export default defineConfig({
     alias: {
       '@': resolve(projectRoot, 'src')
     }
+  },
+  // The Markdown and ASCII exporters are imported from the CV build machine
+  // (../cv/builder, see src/lib/cv-exporters.ts), outside this app's root, so
+  // the dev server must be allowed to serve that one directory.
+  server: {
+    fs: {
+      allow: [searchForWorkspaceRoot(process.cwd()), resolve(import.meta.dirname, '../cv/builder')],
+    },
   },
 });

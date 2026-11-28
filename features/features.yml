@@ -47,9 +47,9 @@ features:
     docs: "app/PRD.md"
   - id: CVPRO-004
     title: "Multi-format export"
-    description: "Export the CV as PDF, Markdown, ASCII text or LaTeX source."
+    description: "Export the CV as Markdown, ASCII text, LaTeX source or cv.json; Markdown and ASCII come from the CV machine's own exporters (cv/builder). Gap: no in-app PDF export yet. The app ships the LaTeX source, the machine publishes the compiled cv.pdf, and in-app Print / Save as PDF is tracked in #35 (CVPRO-009)."
     implemented: true
-    status: shipped
+    status: partial
     prd: ["FR4"]
     surface: ui
     link: "app/src/components/cv/ExportSection.tsx"
